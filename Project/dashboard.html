@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard – ThiranMitra | My Career Hub</title>
+    <meta name="description"
+        content="Your personalized career dashboard — resume score, skill gap, job recommendations, interview readiness, and AI career predictions." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&family=Orbitron:wght@400;700;800;900&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <style>
+        /* ── Page entry animation ── */
+        /* Use opacity-only fade so it doesn't interfere with layout height */
+        .dash-main {
+            animation: dashContentIn 0.65s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        @keyframes dashContentIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ── PREMIUM 3-COLUMN DASHBOARD HEADER ── */
+        .dash-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 70px;
+            background: rgba(7, 14, 30, 0.95);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 0 1.5rem;
+            gap: 1rem;
+        }
+
+        /* Left — Branding */
+        .dash-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+        }
+
+        .dash-brand-icon {
+            font-size: 1.5rem;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.7));
+        }
+
+        .dash-brand-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .dash-brand-name {
+            font-family: 'Orbitron', 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #e8f4ff;
+            letter-spacing: 0.04em;
+            line-height: 1.2;
+            text-shadow: 0 0 18px rgba(0, 212, 255, 0.3);
+        }
+
+        .dash-brand-name span {
+            color: #ff9933;
+        }
+
+        .dash-brand-sub {
+            font-size: 0.48rem;
+            color: rgba(0, 212, 255, 0.55);
+            letter-spacing: 0.18em;
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+        }
+
+        .dash-nav-pills {
+            display: flex;
+            gap: 0.25rem;
+            margin-left: 0.5rem;
+        }
+
+        .dash-nav-pill {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba(200, 220, 255, 0.7);
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .dash-nav-pill:hover {
+            background: rgba(0, 212, 255, 0.12);
+            color: #e8f4ff;
+        }
+
+        /* Center — Welcome & DateTime */
+        .dash-header-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-width: 220px;
+        }
+
+        .dash-welcome-line {
+            font-family: 'Orbitron', 'Outfit', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #e8f4ff;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+        }
+
+        .dash-welcome-line span {
+            color: #ff9933;
+        }
+
+        .dash-datetime {
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            font-size: 0.6rem;
+            color: rgba(0, 212, 255, 0.7);
+            letter-spacing: 0.12em;
+            margin-top: 0.18rem;
+            white-space: nowrap;
+        }
+
+        .dash-status-dot {
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background: #00ff88;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #00ff88;
+            margin-right: 0.35rem;
+            animation: statusPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.7);
+            }
+        }
+
+        /* Right — Actions */
+        .dash-header-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.625rem;
+        }
+
+        .dash-profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 8px;
+            padding: 0.4rem 0.875rem;
+            text-decoration: none;
+            color: #e8f4ff;
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .dash-profile-btn:hover {
+            background: rgba(0, 212, 255, 0.18);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 0 16px rgba(0, 212, 255, 0.2);
+        }
+
+        .dash-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: white;
+            border: 1.5px solid rgba(0, 212, 255, 0.4);
+            flex-shrink: 0;
+        }
+
+        .dash-logout-btn {
+            background: rgba(255, 68, 102, 0.08);
+            border: 1px solid rgba(255, 68, 102, 0.25);
+            border-radius: 8px;
+            padding: 0.42rem 0.875rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255, 120, 140, 0.85);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            white-space: nowrap;
+        }
+
+        .dash-logout-btn:hover {
+            background: rgba(255, 68, 102, 0.2);
+            border-color: rgba(255, 68, 102, 0.5);
+            color: #ff4466;
+        }
+
+        .dash-hamburger {
+            display: none;
+            background: transparent;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 6px;
+            padding: 0.35rem 0.5rem;
+            cursor: pointer;
+            color: #e8f4ff;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .dash-nav-pills {
+                display: none;
+            }
+
+            .dash-header {
+                grid-template-columns: 1fr auto;
+            }
+
+            .dash-header-center {
+                display: none;
+            }
+
+            .dash-hamburger {
+                display: flex;
+            }
+
+            .dash-profile-btn .ph-name {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .dash-brand-sub {
+                display: none;
+            }
+        }
+
+        /* Header height consistent at 70px — sidebar and layout handled in dashboard.css */
+
+        /* ── Welcome banner overlay ── */
+        #welcomeOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: linear-gradient(135deg, #0a0014 0%, #050a18 50%, #0a0505 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            animation: overlayOut 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes overlayOut {
+            0% {
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            70% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        .wlc-logo {
+            font-size: 3rem;
+            animation: wlcBounce 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.8));
+        }
+
+        @keyframes wlcBounce {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .wlc-text {
+            font-family: 'Orbitron', 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #e8f4ff;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+            animation: wlcSlide 0.7s 0.15s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+
+        .wlc-text span {
+            color: #ff9933;
+        }
+
+        @keyframes wlcSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .wlc-sub {
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: rgba(0, 212, 255, 0.7);
+            letter-spacing: 0.2em;
+            animation: wlcSlide 0.7s 0.3s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+
+        .wlc-bar {
+            width: 180px;
+            height: 3px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            animation: wlcSlide 0.7s 0.4s both;
+        }
+
+        .wlc-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #ff9933, #00ff88);
+            border-radius: 2px;
+            animation: wlcLoad 2s 0.5s ease forwards;
+        }
+
+        @keyframes wlcLoad {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        /* ── Score cards animate in ── */
+        .score-card {
+            animation: cardSlideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+
+        .score-card:nth-child(1) {
+            animation-delay: 0.6s;
+        }
+
+        .score-card:nth-child(2) {
+            animation-delay: 0.75s;
+        }
+
+        .score-card:nth-child(3) {
+            animation-delay: 0.9s;
+        }
+
+        .score-card:nth-child(4) {
+            animation-delay: 1.05s;
+        }
+
+        @keyframes cardSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ── Dashboard greeting headline ── */
+        #dashGreeting {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed, #c2410c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ── Notification Pulse ── */
+        .pulse-notif {
+            animation: notifPulse 2s infinite;
+        }
+
+        @keyframes notifPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 68, 102, 0.7);
+            }
+
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 10px rgba(255, 68, 102, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 68, 102, 0);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- WELCOME OVERLAY (shown briefly after login redirect) -->
+    <div id="welcomeOverlay">
+        <div class="wlc-logo">🌉</div>
+        <div class="wlc-text">Thiran<span>Mitra</span></div>
+        <div class="wlc-sub" id="wlcSub">LOADING CAREER DASHBOARD...</div>
+        <div class="wlc-bar">
+            <div class="wlc-bar-fill"></div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         PREMIUM 3-COLUMN DASHBOARD HEADER
+         Left: ThiranMitra AI Command Center + nav pills
+         Center: Welcome {name} + live datetime
+         Right: Profile avatar + Logout
+    ═══════════════════════════════════════════════════════ -->
+    <header class="dash-header" id="dashHeader">
+
+        <!-- LEFT: Branding -->
+        <div class="dash-header-left">
+            <span class="dash-brand-icon">🌉</span>
+            <a href="dashboard.html" class="dash-brand-text" style="text-decoration:none;">
+                <div class="dash-brand-name">Thiran<span>Mitra</span> AI Command Center</div>
+                <div class="dash-brand-sub">INDIA'S NATIONAL EMPLOYMENT ECOSYSTEM</div>
+            </a>
+            <nav class="dash-nav-pills">
+                <a href="jobs.html" class="dash-nav-pill">Jobs</a>
+                <a href="skills.html" class="dash-nav-pill">Skills</a>
+                <a href="interview.html" class="dash-nav-pill">Interview</a>
+                <a href="schemes.html" class="dash-nav-pill">Schemes</a>
+            </nav>
+        </div>
+
+        <!-- CENTER: Welcome + Live DateTime -->
+        <div class="dash-header-center">
+            <div class="dash-welcome-line">
+                Welcome, <span id="headerUserName">Agent</span> 👋
+            </div>
+            <div class="dash-datetime">
+                <span class="dash-status-dot"></span>
+                <span id="liveDatetime">Loading...</span>
+            </div>
+        </div>
+
+        <!-- RIGHT: Profile + Logout -->
+        <div class="dash-header-right">
+            <a href="profile.html" class="dash-profile-btn" id="profileBtn">
+                <div class="dash-avatar" id="headerAvatar">U</div>
+                <span class="ph-name" id="headerProfileName">Profile</span>
+            </a>
+            <button class="dash-logout-btn" onclick="AuthAPI.logout()">
+                🚪 Logout
+            </button>
+            <button class="dash-hamburger" onclick="document.querySelector('.dash-sidebar').classList.toggle('show')">
+                ☰
+            </button>
+        </div>
+
+    </header>
+
+    <div class="dashboard-layout">
+        <!-- SIDEBAR -->
+        <aside class="dash-sidebar">
+            <div class="dash-user-card">
+                <div class="user-avatar-lg" id="sidebarAvatar">U</div>
+                <div class="user-name" id="sidebarName">Loading...</div>
+                <div class="user-subtitle" id="sidebarSub">Career Seeker</div>
+                <div class="profile-completion">
+                    <div class="profile-completion-text">
+                        <span>Profile Completion</span>
+                        <span id="profilePct">72%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="profileBar" style="width:0%"></div>
+                    </div>
+                </div>
+            </div>
+            <nav class="dash-nav">
+                <div class="dash-nav-group">
+                    <div class="dash-nav-group-title">Overview</div>
+                    <a href="index.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">🏠</span> Home
+                    </a>
+                    <a href="dashboard.html" class="dash-nav-item active">
+                        <span class="dash-nav-icon">📊</span> Dashboard
+                    </a>
+                    <a href="profile.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">👤</span> My Profile
+                    </a>
+                    <a href="#notificationsPanel" class="dash-nav-item" id="notifSidebarLink">
+                        <span class="dash-nav-icon">🔔</span> Notifications
+                        <span class="nav-count pulse-notif">3</span>
+                    </a>
+                </div>
+                <div class="dash-nav-group">
+                    <div class="dash-nav-group-title">Career Tools</div>
+                    <a href="jobs.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">🔍</span> Job Search
+                    </a>
+                    <a href="resume.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">📄</span> Resume Analyzer
+                    </a>
+                    <a href="skills.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">📊</span> Skill Gap
+                    </a>
+                    <a href="interview.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">🎤</span> Interview Prep
+                    </a>
+                    <a href="placement.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">🎓</span> Placement Readiness
+                    </a>
+                    <a href="company-prep.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">🏢</span> Company Prep
+                    </a>
+                </div>
+                <div class="dash-nav-group">
+                    <div class="dash-nav-group-title">Resources</div>
+                    <a href="schemes.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">🏛️</span> Gov Schemes
+                    </a>
+                    <a href="rural.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">🌾</span> Rural Jobs
+                    </a>
+                    <a href="women.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">👩‍💼</span> Women Employment
+                    </a>
+                    <a href="entrepreneurship.html" class="dash-nav-item">
+                        <span class="dash-nav-icon">🏭</span> Entrepreneurship
+                    </a>
+                </div>
+                <div class="dash-nav-group">
+                    <div class="dash-nav-group-title">Account</div>
+                    <a href="profile.html#sec-security" class="dash-nav-item">
+                        <span class="dash-nav-icon">⚙️</span> Settings
+                    </a>
+                    <a href="index.html" class="dash-nav-item" onclick="event.preventDefault();AuthAPI.logout()">
+                        <span class="dash-nav-icon">🚪</span> Logout
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="dash-main">
+            <div class="dash-main-header">
+                <h1 id="dashGreeting">Good Morning! 👋</h1>
+                <p id="dashSubtitle">Here's your personalized career overview for today.</p>
+            </div>
+
+            <!-- SCORE CARDS -->
+            <div class="scores-row">
+                <div class="score-card resume-card">
+                    <div class="score-card-icon">📄</div>
+                    <div class="score-percentage" id="resumeScoreVal">—</div>%
+                    <div class="score-card-title">Resume Score</div>
+                    <div class="progress-bar" style="margin-bottom:0.5rem;">
+                        <div class="progress-fill" id="resumeBar" style="width:0%"></div>
+                    </div>
+                    <div class="score-trend">↑ +12 this week</div>
+                    <a href="resume.html" class="btn btn-sm btn-outline"
+                        style="margin-top:0.75rem;justify-content:center;width:100%;">Improve →</a>
+                </div>
+                <div class="score-card skill-card">
+                    <div class="score-card-icon">📊</div>
+                    <div class="score-percentage" id="skillScoreVal">—</div>%
+                    <div class="score-card-title">Skill Match</div>
+                    <div class="progress-bar" style="margin-bottom:0.5rem;">
+                        <div class="progress-fill progress-fill-accent" id="skillBar" style="width:0%"></div>
+                    </div>
+                    <div class="score-trend">↑ +8 after last course</div>
+                    <a href="skills.html" class="btn btn-sm btn-outline"
+                        style="margin-top:0.75rem;justify-content:center;width:100%;">Analyze →</a>
+                </div>
+                <div class="score-card placement-card">
+                    <div class="score-card-icon">🎓</div>
+                    <div class="score-percentage" id="placementScoreVal">—</div>%
+                    <div class="score-card-title">Placement Ready</div>
+                    <div class="progress-bar" style="margin-bottom:0.5rem;">
+                        <div class="progress-fill progress-fill-secondary" id="placementBar" style="width:0%"></div>
+                    </div>
+                    <div class="score-trend">↑ +5 after aptitude test</div>
+                    <a href="placement.html" class="btn btn-sm btn-outline"
+                        style="margin-top:0.75rem;justify-content:center;width:100%;">Practice →</a>
+                </div>
+                <div class="score-card interview-card">
+                    <div class="score-card-icon">🎤</div>
+                    <div class="score-percentage" id="interviewScoreVal">—</div>%
+                    <div class="score-card-title">Interview Ready</div>
+                    <div class="progress-bar" style="margin-bottom:0.5rem;">
+                        <div class="progress-fill" id="interviewBar"
+                            style="width:0%;background:linear-gradient(135deg,#f59e0b,#d97706);"></div>
+                    </div>
+                    <div class="score-trend">↑ +18 after mock interview</div>
+                    <a href="interview.html" class="btn btn-sm btn-outline"
+                        style="margin-top:0.75rem;justify-content:center;width:100%;">Train →</a>
+                </div>
+            </div>
+
+            <!-- AI CAREER PREDICTION -->
+            <div class="career-prediction-card">
+                <h3>🧠 AI Career Prediction — Your Top 3 Matches</h3>
+                <div class="prediction-items" id="predictionItems"></div>
+            </div>
+
+            <!-- MIDDLE GRID -->
+            <div class="dash-grid-2">
+                <!-- RECOMMENDED JOBS -->
+                <div class="dash-panel">
+                    <div class="dash-panel-header">
+                        <h3>🎯 Recommended Jobs</h3>
+                        <a href="jobs.html" class="dash-panel-link">View All →</a>
+                    </div>
+                    <div id="recommendedJobs"></div>
+                </div>
+
+                <!-- SKILL GAP WIDGET -->
+                <div class="dash-panel">
+                    <div class="dash-panel-header">
+                        <h3>📊 Skill Gap Analysis</h3>
+                        <a href="skills.html" class="dash-panel-link">Full Report →</a>
+                    </div>
+                    <div id="skillGapWidget"></div>
+                </div>
+            </div>
+
+            <!-- BOTTOM GRID -->
+            <div class="dash-grid-2">
+                <!-- CAREER TIMELINE -->
+                <div class="dash-panel">
+                    <div class="dash-panel-header">
+                        <h3>📈 Your Career Journey</h3>
+                    </div>
+                    <div class="career-timeline" id="careerTimeline"></div>
+                </div>
+
+                <!-- NOTIFICATIONS -->
+                <div class="dash-panel" id="notificationsPanel">
+                    <div class="dash-panel-header">
+                        <h3>🔔 Notifications</h3>
+                        <a href="#" class="dash-panel-link">Mark all read</a>
+                    </div>
+                    <div id="notificationsFeed"></div>
+                </div>
+            </div>
+
+            <!-- Footer removed from dashboard for cleaner UI as per user request -->
+
+
+
+            <!-- Dashboard Initialization -->
+            <script src="js/dashboard.js"></script>
+            <script>
+                /* ── Auth guard check for SPA ────── */
+                if (typeof AuthAPI !== 'undefined' && !AuthAPI.isLoggedIn()) {
+                    window.location.replace('login.html');
+                } else {
+                    /* ── Personalize welcome overlay ── */
+                    const _u = (typeof AuthAPI !== 'undefined') ? AuthAPI.currentUser() : null;
+                    const _name = (_u && _u.name) ? _u.name.split(' ')[0] : 'Agent';
+                    const _nameU = _name.toUpperCase();
+
+                    const wlcSub = document.getElementById('wlcSub');
+                    if (wlcSub) {
+                        setTimeout(() => {
+                            wlcSub.textContent = `WELCOME BACK, ${_nameU} — INITIALIZING AI CORE...`;
+                        }, 300);
+                    }
+
+                    /* ── Populate header names ──────── */
+                    const _hUserName = document.getElementById('headerUserName');
+                    const _hProfileName = document.getElementById('headerProfileName');
+                    const _hAvatar = document.getElementById('headerAvatar');
+                    if (_hUserName) _hUserName.textContent = _name;
+                    if (_hProfileName) _hProfileName.textContent = _name;
+                    if (_hAvatar && !_hAvatar.querySelector('img')) {
+                        _hAvatar.textContent = _name.charAt(0).toUpperCase();
+                    }
+
+                    /* ── Clock ── */
+                    if (typeof updateClock === 'undefined') {
+                        window.updateClock = function () {
+                            const now = new Date();
+                            const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+                            const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+                            const el = document.getElementById('liveDatetime');
+                            if (el) {
+                                const d = days[now.getDay()], dd = String(now.getDate()).padStart(2, '0'), mo = months[now.getMonth()];
+                                const yyyy = now.getFullYear(), hh = String(now.getHours()).padStart(2, '0'), mm = String(now.getMinutes()).padStart(2, '0'), ss = String(now.getSeconds()).padStart(2, '0');
+                                el.textContent = `${d} ${dd} ${mo} ${yyyy}  ·  ${hh}:${mm}:${ss} IST`;
+                            }
+                        };
+                        updateClock();
+                        setInterval(updateClock, 1000);
+                    }
+
+                    /* ── Welcome Overlay Cleanup ── */
+                    setTimeout(() => {
+                        const ov = document.getElementById('welcomeOverlay');
+                        if (ov) ov.remove();
+                    }, 3600);
+                }
+            </script>
+
+        </main><!-- end dash-main -->
+    </div><!-- end dashboard-layout -->
+
+    <!-- CHATBOT -->
+    <div class="chatbot-widget" id="chatbotWidget">
+        <div class="chatbot-window" id="chatbotWindow" style="display:none;">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">🤖</div>
+                <div><strong>ThiranMitraBot</strong><span class="chatbot-status">● Online</span></div>
+                <button class="chatbot-close" onclick="toggleChatbot()">✕</button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="chat-msg bot"><span>Namaste! 🙏 How can I help you today?</span></div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Ask ThiranMitraBot..." onkeypress="handleChatKey(event)" />
+                <button onclick="sendChat()" class="chat-send-btn">Send</button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" onclick="toggleChatbot()" id="chatToggleBtn"
+            aria-label="Open Chatbot">💬</button>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <!-- SPA Navigation Engine: smooth slide/fade transitions, no reload -->
+    <script src="js/page-transition.js"></script>
+</body>
+
+</html>

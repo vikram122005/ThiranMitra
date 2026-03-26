@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title id="pageTitle">Company Prep – ThiranMitra</title>
+    <meta name="description"
+        content="Company-specific placement preparation with tips, round breakdown and free course links." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        .hero-company {
+            background: linear-gradient(135deg, #0a0f1e 0%, #0f1629 60%, #1a0a2e 100%);
+            padding: 7rem 0 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-company::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(79, 70, 229, 0.18) 0%, transparent 70%);
+        }
+
+        .company-logo-big {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: pop .5s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(0);
+                opacity: 0
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        .company-name-big {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: .5rem;
+        }
+
+        .tag-row {
+            display: flex;
+            gap: .75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin: 2rem 0;
+        }
+
+        .info-box {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            text-align: center;
+            transition: .3s;
+        }
+
+        .info-box:hover {
+            transform: translateY(-4px);
+            border-color: rgba(79, 70, 229, .35);
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-val {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: .35rem;
+        }
+
+        .info-lbl {
+            font-size: .75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: .8px;
+        }
+
+        .section-h {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .round-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.25rem;
+            margin-bottom: .75rem;
+            transition: .3s;
+        }
+
+        .round-card:hover {
+            border-color: rgba(79, 70, 229, .3);
+            box-shadow: var(--shadow-md);
+        }
+
+        .round-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--grad-primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: .9rem;
+            flex-shrink: 0;
+        }
+
+        .tip-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.25rem;
+            transition: .3s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(16, 185, 129, .3);
+            box-shadow: var(--shadow-md);
+        }
+
+        .tip-icon {
+            font-size: 1.75rem;
+            margin-bottom: .625rem;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: .3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(239, 68, 68, .3);
+            box-shadow: 0 8px 30px rgba(239, 68, 68, .15);
+        }
+
+        .video-thumb {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .play-btn {
+            width: 56px;
+            height: 56px;
+            background: rgba(239, 68, 68, .9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: .3s;
+            text-decoration: none;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: #ef4444;
+        }
+
+        .video-body {
+            padding: 1rem;
+            flex: 1;
+        }
+
+        .video-title {
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: .375rem;
+            line-height: 1.4;
+        }
+
+        .video-meta {
+            font-size: .75rem;
+            color: var(--text-muted);
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: .75rem;
+            padding: .625rem 0;
+            border-bottom: 1px solid var(--bg-glass-border);
+            font-size: .875rem;
+            color: var(--text-secondary);
+        }
+
+        .checklist li:last-child {
+            border: none;
+        }
+
+        .check-ico {
+            flex-shrink: 0;
+            color: var(--accent);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: .875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary-light);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html"><span class="logo-icon">🌉</span><span class="logo-text">Thiran<span
+                        class="logo-accent">Mitra</span></span></a>
+            <ul class="nav-links">
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="interview.html" class="nav-link">Interview</a></li>
+                <li><a href="placement.html" class="nav-link active">Placement</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register Free</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-company">
+        <div class="container" style="position:relative;z-index:1;">
+            <div class="company-logo-big" id="heroLogo">🔵</div>
+            <div class="company-name-big" id="heroName">Company</div>
+            <p style="color:var(--text-secondary);font-size:1rem;" id="heroTagline">Loading...</p>
+            <div class="tag-row" id="heroTags"></div>
+        </div>
+    </div>
+
+    <div class="container" style="padding:2.5rem 0 5rem;">
+        <a class="back-btn" href="placement.html#company">← Back to Company List</a>
+
+        <!-- Info boxes -->
+        <div class="info-grid" id="infoGrid"></div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2.5rem;" class="two-col">
+            <!-- Rounds breakdown -->
+            <div>
+                <div class="section-h">📋 Interview Rounds</div>
+                <div id="roundsList"></div>
+            </div>
+            <!-- Tips -->
+            <div>
+                <div class="section-h">💡 Expert Tips</div>
+                <div style="display:grid;gap:.75rem;" id="tipsGrid"></div>
+            </div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="card" style="margin-bottom:2.5rem;">
+            <div class="section-h">✅ Preparation Checklist</div>
+            <ul class="checklist" id="checkList"></ul>
+        </div>
+
+        <!-- Free Course Videos -->
+        <div class="section-h">🎥 Free Course Videos</div>
+        <p style="color:var(--text-secondary);font-size:.875rem;margin-bottom:1.5rem;">Hand-picked free videos from
+            YouTube to ace this company's placement.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;"
+            id="videosGrid"></div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="text-align:center;padding:2rem 0;">
+                <p>© 2026 ThiranMitra. Made with ❤️ for India.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const COMPANY_DATA = {
+            TCS: {
+                logo: '🔵', tagline: 'Tata Consultancy Services — India\'s largest IT employer',
+                package: '₹3.5–4.5 LPA', difficulty: 'Medium', employees: '600K+', founded: '1968',
+                headquarter: 'Mumbai', category: 'IT Services',
+                rounds: [
+                    { name: 'Online Aptitude Test (NQT)', desc: 'Numerical, Verbal, Reasoning & Coding sections. 90 min. Attempted by lakhs.' },
+                    { name: 'Technical Interview', desc: 'Core subjects: DBMS, OS, OOPS, Data Structures. Basic coding in C/Java/Python.' },
+                    { name: 'Managerial Round (MR)', desc: 'Attitude, project discussion, situational questions. Tests communication.' },
+                    { name: 'HR Round', desc: 'Salary negotiation, company culture fit, availability & relocation willingness.' }
+                ],
+                tips: [
+                    { icon: '📐', title: 'Master Quant.', desc: 'Focus on Time & Work, Percentages, Speed-Distance. Aim 80%+ accuracy.' },
+                    { icon: '💻', title: 'Learn a Language', desc: 'Know at least C or Java basics. TCS NQT has a basic coding section.' },
+                    { icon: '🗣️', title: 'STAR Method', desc: 'Use Situation-Task-Action-Result for all MR answers.' },
+                    { icon: '📖', title: 'CS Fundamentals', desc: 'Revise DBMS (joins, normalization), OS (paging), OOPS (4 pillars).' }
+                ],
+                checklist: ['Complete TCS NQT mock tests (free on TCS iON portal)', 'Revise OS, DBMS, CN, OOPS basics', 'Practice HR questions with STAR framework', 'Know TCS services, recent acquisitions, and vision', 'Prepare 2-min self-introduction', 'Practice typing speed > 35 WPM for coding round', 'Keep all documents ready (10th, 12th, UG marksheets)'],
+                videos: [
+                    { title: 'TCS NQT Full Preparation 2024', channel: 'Placement Season', dur: '1h 45m', url: 'https://www.youtube.com/results?search_query=TCS+NQT+full+preparation+2024', thumb: '🎯' },
+                    { title: 'TCS Technical Interview Q&A', channel: 'CS Dojo India', dur: '42 min', url: 'https://www.youtube.com/results?search_query=TCS+technical+interview+questions+answers', thumb: '💻' },
+                    { title: 'Aptitude for TCS — Complete Course', channel: 'IndiaBix', dur: '2h 10m', url: 'https://www.youtube.com/results?search_query=aptitude+for+TCS+placement+complete', thumb: '📐' },
+                    { title: 'TCS HR Interview Masterclass', channel: 'PlacementPrep', dur: '55 min', url: 'https://www.youtube.com/results?search_query=TCS+HR+interview+questions+2024', thumb: '🎤' }
+                ]
+            },
+            Infosys: {
+                logo: '💜', tagline: 'Infosys — Powering a purpose-led culture of innovation',
+                package: '₹3.6–4.5 LPA', difficulty: 'Easy', employees: '335K+', founded: '1981',
+                headquarter: 'Bengaluru', category: 'IT Services',
+                rounds: [
+                    { name: 'Online Test (Infosys Lex)', desc: 'Quantitative, Verbal & Reasoning. Also includes Pseudo Code and Puzzle solving.' },
+                    { name: 'Pseudocode & Puzzle', desc: '10 pseudocode questions and 5 coding MCQs — focus on logic, not syntax.' },
+                    { name: 'Technical Interview', desc: 'OOPS, DBMS, basic data structures. 1–2 simple coding questions.' },
+                    { name: 'HR Interview', desc: 'Behavioral questions, relocation, company knowledge, salary discussion.' }
+                ],
+                tips: [
+                    { icon: '🧩', title: 'Pseudocode Focus', desc: 'Practice reading code without running it. Identify output for given inputs.' },
+                    { icon: '📘', title: 'Verbal Skills', desc: 'Improve reading comprehension and grammar. Infosys gives high weight to verbal.' },
+                    { icon: '🗄️', title: 'DBMS Deep Dive', desc: 'SQL queries, joins, normalization — Infosys interviewers love DBMS.' },
+                    { icon: '📋', title: 'Know Infosys', desc: 'Study Infosys\'s revenue model, top clients (Vanguard, Apple), and culture.' }
+                ],
+                checklist: ['Practice Infosys mock papers on PrepInsta or IndiaBix', 'Master SQL joins, subqueries, stored procedures', 'Solve at least 20 pseudocode problems', 'Prepare answers for "Why Infosys?" with specific reasons', 'Practice English comprehension daily (30 min)', 'Revise basic Java / Python OOP concepts', 'Prepare 5 projects/internship talking points'],
+                videos: [
+                    { title: 'Infosys Placement Full Course 2024', channel: 'Placement Wallah', dur: '1h 30m', url: 'https://www.youtube.com/results?search_query=Infosys+placement+preparation+2024', thumb: '💜' },
+                    { title: 'Pseudocode Questions — Infosys', channel: 'TechTarget', dur: '38 min', url: 'https://www.youtube.com/results?search_query=Infosys+pseudocode+questions+answers', thumb: '🧩' },
+                    { title: 'SQL for Infosys Interviews', channel: 'Data with Danny', dur: '1h 05m', url: 'https://www.youtube.com/results?search_query=SQL+for+Infosys+interview+complete', thumb: '🗄️' },
+                    { title: 'Infosys HR Interview Tips', channel: 'Career Ready', dur: '45 min', url: 'https://www.youtube.com/results?search_query=Infosys+HR+interview+questions+2024', thumb: '🎤' }
+                ]
+            },
+            Wipro: {
+                logo: '🟠', tagline: 'Wipro — Innovating for a better world',
+                package: '₹3.5–4 LPA', difficulty: 'Easy', employees: '250K+', founded: '1945',
+                headquarter: 'Bengaluru', category: 'IT Services',
+                rounds: [
+                    { name: 'WILP Online Test', desc: 'Aptitude + English + Logical Reasoning. 60 min total. Negative marking applies.' },
+                    { name: 'Written Communication Test', desc: 'Write an essay or email on a given topic. Tests grammar and coherent writing.' },
+                    { name: 'Technical Interview', desc: 'CS basics, any one programming language, simple DSA questions.' },
+                    { name: 'HR Interview', desc: 'Culture fit, career goals, team compatibility, relocation readiness.' }
+                ],
+                tips: [
+                    { icon: '✍️', title: 'Writing Skills', desc: 'Wipro\'s written test checks English writing — practice formal emails and essays.' },
+                    { icon: '🔢', title: 'No Negative Guessing', desc: 'Wipro has negative marking. Only attempt confident answers.' },
+                    { icon: '🌐', title: 'WILP vs Elite', desc: 'Wipro Elite NTH has harder coding. Identify your stream and prepare accordingly.' },
+                    { icon: '🤝', title: 'Teamwork Examples', desc: 'HR loves stories of collaboration. Prepare 2–3 team project stories.' }
+                ],
+                checklist: ['Practice WILP model test papers', 'Improve essay writing — formal tone, 250 words', 'Solve 50+ aptitude questions with strict time limit', 'Know Wipro\'s recent acquisitions and services', 'Practice typing speed for written test', 'Revise C/C++ basics for technical round', 'Prepare 3 strengths with examples'],
+                videos: [
+                    { title: 'Wipro WILP Complete Preparation', channel: 'Placement Adda', dur: '1h 20m', url: 'https://www.youtube.com/results?search_query=Wipro+WILP+preparation+2024', thumb: '🟠' },
+                    { title: 'Wipro Aptitude Full Course', channel: 'StudyIQ', dur: '1h 00m', url: 'https://www.youtube.com/results?search_query=Wipro+aptitude+test+preparation+complete', thumb: '📐' },
+                    { title: 'Wipro Technical Interview Prep', channel: 'Code Help', dur: '50 min', url: 'https://www.youtube.com/results?search_query=Wipro+technical+interview+questions+2024', thumb: '💻' },
+                    { title: 'English Writing for Wipro Test', channel: 'Grammar Hub', dur: '35 min', url: 'https://www.youtube.com/results?search_query=written+communication+test+Wipro+tips', thumb: '✍️' }
+                ]
+            },
+            Zoho: {
+                logo: '🔴', tagline: 'Zoho — Technology for the world to work',
+                package: '₹5–7 LPA', difficulty: 'Hard', employees: '12K+', founded: '1996',
+                headquarter: 'Chennai', category: 'SaaS / Product',
+                rounds: [
+                    { name: 'Written Aptitude Test', desc: 'Math & Logical Reasoning — higher level than service companies. 1.5 hours.' },
+                    { name: 'Programming Round', desc: 'Coding in any language — DSA problems, problem-solving focus. 2–3 problems.' },
+                    { name: 'Advanced Technical Round', desc: 'Deep CS theory + live coding. May include systems design basics.' },
+                    { name: 'HR / Culture Fit', desc: 'Zoho hires for long-term. HR evaluates passion, learning mindset, and self-drive.' }
+                ],
+                tips: [
+                    { icon: '💡', title: 'DS + Algorithms First', desc: 'Zoho expects solid DSA. Practice arrays, strings, linked lists, trees, recursion.' },
+                    { icon: '🧮', title: 'Math Matters', desc: 'Number theory, combinatorics, probability — Zoho tests math at depth.' },
+                    { icon: '🔥', title: 'Product Mindset', desc: 'Zoho values engineers who think like product builders. Study Zoho\'s 55+ products.' },
+                    { icon: '📝', title: 'Build Side Projects', desc: 'Zoho appreciates self-built projects. Mention them — ideally tools or products.' }
+                ],
+                checklist: ['Solve 100+ LeetCode medium problems before Zoho', 'Study Zoho\'s product lineup (CRM, Desk, Books, etc.)', 'Revise CS fundamentals: OS, DBMS, Networks in depth', 'Practice math puzzles and brain teasers', 'Do 2–3 full mock coding tests (timed)', 'Build at least 1 mini project to discuss', 'Read Zoho\'s culture blog and founding story'],
+                videos: [
+                    { title: 'Zoho Placement Complete Roadmap', channel: 'Coding Decoded', dur: '2h 15m', url: 'https://www.youtube.com/results?search_query=Zoho+placement+preparation+complete+2024', thumb: '🔴' },
+                    { title: 'Zoho DSA Interview Questions', channel: 'Take U Forward', dur: '1h 40m', url: 'https://www.youtube.com/results?search_query=Zoho+DSA+interview+questions+coding', thumb: '🌲' },
+                    { title: 'Zoho Aptitude Advanced Questions', channel: 'Math Wallah', dur: '1h 00m', url: 'https://www.youtube.com/results?search_query=Zoho+aptitude+questions+advanced', thumb: '🧮' },
+                    { title: 'Zoho HR Interview Questions', channel: 'Placement Season', dur: '40 min', url: 'https://www.youtube.com/results?search_query=Zoho+HR+interview+questions+answers', thumb: '🎤' }
+                ]
+            },
+            Accenture: {
+                logo: '🟡', tagline: 'Accenture — Innovation applied, every day',
+                package: '₹4.5–7 LPA', difficulty: 'Medium', employees: '700K+', founded: '1989',
+                headquarter: 'Dublin (India: Mumbai)', category: 'Consulting / IT',
+                rounds: [
+                    { name: 'Cognitive & Technical Assessment', desc: 'Aptitude + Communication + Coding (2 problems). Online proctored. 90 min.' },
+                    { name: 'Coding Assessment', desc: '2 coding problems in Java/Python/C++. Easy to medium difficulty.' },
+                    { name: 'Communication Assessment', desc: 'Versant-style spoken English test. Reads sentences, answers questions verbally.' },
+                    { name: 'Interview (Technical + HR)', desc: 'Combined round — project discussion, problem-solving, behavioral questions.' }
+                ],
+                tips: [
+                    { icon: '🎙️', title: 'Spoken English', desc: 'Accenture uses Versant test — practice speaking fluently with proper pronunciation.' },
+                    { icon: '🐍', title: 'Python or Java', desc: 'Coding round is manageable. Focus on sorting, searching, string manipulation.' },
+                    { icon: '🌍', title: 'Consulting Awareness', desc: 'Understand what consulting means. Be ready to discuss client impact and teamwork.' },
+                    { icon: '📈', title: 'Communication = Key', desc: 'More than coding, Accenture values clear communication and confidence.' }
+                ],
+                checklist: ['Practice spoken English daily (record yourself)', 'Solve 30+ coding problems on HackerRank', 'Take Accenture mock test on official portal', 'Revise sorting algorithms and string operations', 'Improve reading speed and comprehension', 'Study Accenture\'s service lines and recent news', 'Prepare 3 examples proving adaptability/teamwork'],
+                videos: [
+                    { title: 'Accenture Placement Complete 2024', channel: 'Placement Wallah', dur: '1h 35m', url: 'https://www.youtube.com/results?search_query=Accenture+placement+preparation+2024+complete', thumb: '🟡' },
+                    { title: 'Accenture Coding Test Questions', channel: 'Knowledge Gate', dur: '55 min', url: 'https://www.youtube.com/results?search_query=Accenture+coding+test+questions+2024', thumb: '💻' },
+                    { title: 'Versant Test Preparation Tips', channel: 'English Adda', dur: '40 min', url: 'https://www.youtube.com/results?search_query=Versant+test+preparation+tips+Accenture', thumb: '🎙️' },
+                    { title: 'Accenture HR Interview Q&A', channel: 'Career Vidya', dur: '45 min', url: 'https://www.youtube.com/results?search_query=Accenture+HR+interview+questions+answers+2024', thumb: '🎤' }
+                ]
+            },
+            Amazon: {
+                logo: '🔷', tagline: 'Amazon — Work hard. Have fun. Make history.',
+                package: '₹12–26 LPA', difficulty: 'Hard', employees: '1.5M+', founded: '1994',
+                headquarter: 'Seattle (India: Bengaluru)', category: 'FAANG / Product',
+                rounds: [
+                    { name: 'Online Assessment (OA)', desc: '2 Coding problems (60–90 min) + Debugging + Work Simulation. Very competitive.' },
+                    { name: 'Technical Round 1', desc: 'DSA-heavy: Trees, Graphs, DP, Sorting. LeetCode medium-hard level.' },
+                    { name: 'Technical Round 2', desc: 'System Design (SDE-2+) or more DSA + Code quality discussion.' },
+                    { name: 'Bar Raiser Round', desc: 'Culture + Leadership Principles. Tests character, conflict resolution, ownership.' },
+                    { name: 'Hiring Manager Round', desc: 'Final check — role fitment, 14 Leadership Principles deep dive.' }
+                ],
+                tips: [
+                    { icon: '🌲', title: 'DSA Daily', desc: 'Solve 3 LeetCode problems/day for 3 months. Focus on Trees, Graphs, DP.' },
+                    { icon: '🏛️', title: '14 LPs = Bible', desc: 'Amazon\'s 14 Leadership Principles MUST be memorized. Map stories to each.' },
+                    { icon: '🧱', title: 'System Design', desc: 'For SDE-2+: Learn URL shorteners, Instagram feed, distributed systems basics.' },
+                    { icon: '⭐', title: 'STAR Stories', desc: 'Prepare 8–10 STAR stories covering: ownership, conflict, failure, innovation.' }
+                ],
+                checklist: ['Solve 200+ LeetCode (60% medium, 30% hard)', 'Memorize and map examples to all 14 Amazon LPs', 'Practice System Design: scalability, load balancing, CAP theorem', 'Complete mock OA tests on LeetCode Premium', 'Study Big-O complexity for every solution', 'Practice coding on whiteboard / paper without IDE', 'Review Amazon\'s recent tech blog and AWS services'],
+                videos: [
+                    { title: 'Amazon SDE Interview Roadmap 2024', channel: 'Take U Forward', dur: '2h 30m', url: 'https://www.youtube.com/results?search_query=Amazon+SDE+interview+preparation+roadmap+2024', thumb: '🔷' },
+                    { title: 'Amazon 14 Leadership Principles Explained', channel: 'Exponent', dur: '1h 20m', url: 'https://www.youtube.com/results?search_query=Amazon+14+leadership+principles+interview+prep', thumb: '🏛️' },
+                    { title: 'System Design for Amazon Interviews', channel: 'Gaurav Sen', dur: '1h 50m', url: 'https://www.youtube.com/results?search_query=system+design+interview+Amazon+complete', thumb: '🧱' },
+                    { title: 'Amazon DSA Interview Questions LeetCode', channel: 'NeetCode', dur: '2h 00m', url: 'https://www.youtube.com/results?search_query=Amazon+DSA+interview+questions+LeetCode', thumb: '🌲' }
+                ]
+            },
+            HCL: {
+                logo: '🟢', tagline: 'HCL Technologies — Technology that touches lives',
+                package: '₹3.2–4 LPA', difficulty: 'Easy', employees: '225K+', founded: '1976',
+                headquarter: 'Noida', category: 'IT Services',
+                rounds: [
+                    { name: 'Online Aptitude Test', desc: 'Quantitative, Logical & Verbal Reasoning. Moderate difficulty. 60 min.' },
+                    { name: 'Group Discussion (sometimes)', desc: 'Topic-based GD. Communication and participation matter more than winning.' },
+                    { name: 'Technical Interview', desc: 'Basic programming, OOPS, DBMS, Data Structures. Fresher-friendly.' },
+                    { name: 'HR Interview', desc: 'Relocation, training readiness, attitude, basic salary negotiation.' }
+                ],
+                tips: [
+                    { icon: '🙋', title: 'Participate in GD', desc: 'In GD, quality over quantity. Give 2–3 strong points, don\'t dominate.' },
+                    { icon: '💬', title: 'Communication First', desc: 'HCL values English communication. Speak clearly and confidently.' },
+                    { icon: '🧑‍💻', title: 'Language Basics', desc: 'Know one language well — C, Java, or Python. Focus on syntax and basics.' },
+                    { icon: '📋', title: 'Attitude Check', desc: 'HCL HR focuses on trainability. Show enthusiasm and willingness to learn.' }
+                ],
+                checklist: ['Solve 50 basic aptitude questions daily', 'Practice GD topics: technology, economy, current affairs', 'Revise OOPS: inheritance, polymorphism, encapsulation', 'Know HCL\'s major clients and service areas', 'Practice introducing yourself in 90 seconds', 'Dress professionally and maintain eye contact', 'Have questions ready to ask the interviewer'],
+                videos: [
+                    { title: 'HCL Placement Preparation 2024', channel: 'Placement Adda', dur: '1h 10m', url: 'https://www.youtube.com/results?search_query=HCL+placement+preparation+2024', thumb: '🟢' },
+                    { title: 'HCL Technical Interview Questions', channel: 'CS Tutorials', dur: '50 min', url: 'https://www.youtube.com/results?search_query=HCL+technical+interview+questions+answers', thumb: '💻' },
+                    { title: 'Group Discussion Tips for IT Companies', channel: 'Communication Guru', dur: '35 min', url: 'https://www.youtube.com/results?search_query=group+discussion+tips+IT+placement', thumb: '🙋' },
+                    { title: 'HCL HR Interview Round Tips', channel: 'Career Ready', dur: '30 min', url: 'https://www.youtube.com/results?search_query=HCL+HR+interview+questions+fresher', thumb: '🎤' }
+                ]
+            },
+            Capgemini: {
+                logo: '🔶', tagline: 'Capgemini — Get the future you want',
+                package: '₹4–5 LPA', difficulty: 'Medium', employees: '350K+', founded: '1967',
+                headquarter: 'Paris (India: Mumbai)', category: 'IT Consulting',
+                rounds: [
+                    { name: 'Online Aptitude Round', desc: 'Quantitative, Logical & Analytical Reasoning. 75 questions in 75 min.' },
+                    { name: 'Pseudo Code Test', desc: 'Read code snippets and identify output. Logic-based — no actual coding.' },
+                    { name: 'Versant English Test', desc: 'Spoken English graded by AI. Reading aloud, sentence repetition, open Q&A.' },
+                    { name: 'Technical + HR Interview', desc: 'Combined interview: project discussion, CS basics, behavioral questions.' }
+                ],
+                tips: [
+                    { icon: '🎙️', title: 'Versant = Critical', desc: 'Many fail at Versant. Practice speaking full sentences, clear pronunciation daily.' },
+                    { icon: '🧩', title: 'Pseudo Code Logic', desc: 'Practice trace-through exercises. Understand loops, conditionals, recursion flow.' },
+                    { icon: '📊', title: 'Data Interpretation', desc: 'Capgemini includes DI (tables, graphs) in aptitude. Practice chart reading.' },
+                    { icon: '💼', title: 'French MNC Culture', desc: 'Capgemini values diversity, process, and teamwork. Align answers to these.' }
+                ],
+                checklist: ['Take Capgemini mock test (available on PrepInsta)', 'Practice Versant test daily — record and listen back', 'Trace 30 pseudo-code problems without IDE', 'Revise data interpretation: pie charts, bar graphs', 'Practice formal English email writing', 'Know Capgemini\'s top sectors: financial services, manufacturing', 'Prepare examples of process-following in team projects'],
+                videos: [
+                    { title: 'Capgemini Placement Full Preparation', channel: 'PrepInsta', dur: '1h 45m', url: 'https://www.youtube.com/results?search_query=Capgemini+placement+preparation+2024+complete', thumb: '🔶' },
+                    { title: 'Capgemini Pseudo Code Questions', channel: 'Tech Knowledge', dur: '45 min', url: 'https://www.youtube.com/results?search_query=Capgemini+pseudo+code+test+questions', thumb: '🧩' },
+                    { title: 'Versant Test — How to Clear It', channel: 'English Pro', dur: '40 min', url: 'https://www.youtube.com/results?search_query=Versant+test+how+to+clear+Capgemini', thumb: '🎙️' },
+                    { title: 'Capgemini Technical Interview 2024', channel: 'Placement Season', dur: '55 min', url: 'https://www.youtube.com/results?search_query=Capgemini+technical+interview+questions+2024', thumb: '💻' }
+                ]
+            },
+            Cognizant: {
+                logo: '🏦', tagline: 'Cognizant — Intuition engineered. Futures created.',
+                package: '₹4–7 LPA', difficulty: 'Medium', employees: '340K+', founded: '1994',
+                headquarter: 'Chennai / New Jersey', category: 'IT Services',
+                rounds: [
+                    { name: 'GenC Evolve Online Test', desc: 'Aptitude + Reasoning + Advanced English. GenC Evolve is for higher package (₹5–7 LPA).' },
+                    { name: 'Coding Round', desc: '2 programs in 45 min. Java / Python / C++ allowed. Medium-easy difficulty.' },
+                    { name: 'Technical Interview', desc: 'CS fundamentals, any project explanation, basic coding on paper.' },
+                    { name: 'HR Interview', desc: 'Company knowledge, long-term plans, relocation, behavioral fit questions.' }
+                ],
+                tips: [
+                    { icon: '🏆', title: 'Target GenC Evolve', desc: 'Apply for GenC Evolve (₹5–7 LPA) not basic GenC. Higher effort, higher reward.' },
+                    { icon: '🐍', title: 'Python Preferred', desc: 'Cognizant interviewers appreciate Python. Practice OOP and file handling.' },
+                    { icon: '📖', title: 'English Level Up', desc: 'Advanced English section is tricky. Read editorials from The Hindu daily.' },
+                    { icon: '📌', title: 'Project Story', desc: 'Your final year project should be well-rehearsed — Cognizant asks in depth.' }
+                ],
+                checklist: ['Register for GenC Evolve on Cognizant portal', 'Solve coding problems from AMCAT / CoCubes mock tests', 'Read The Hindu or Economist editorials for vocabulary', 'Prepare 5-min project explanation with tech decisions', 'Revise OOPS, DBMS, and basic algorithms', 'Practice typing 40+ WPM for online test', 'Know Cognizant\'s major service areas and recent deals'],
+                videos: [
+                    { title: 'Cognizant GenC Evolve Preparation', channel: 'Placement Wallah', dur: '1h 25m', url: 'https://www.youtube.com/results?search_query=Cognizant+GenC+Evolve+preparation+2024', thumb: '🏦' },
+                    { title: 'Cognizant Coding Test Questions 2024', channel: 'Code Bunk', dur: '50 min', url: 'https://www.youtube.com/results?search_query=Cognizant+coding+test+questions+2024', thumb: '💻' },
+                    { title: 'Cognizant Technical Interview Tips', channel: 'Tech with Tim', dur: '40 min', url: 'https://www.youtube.com/results?search_query=Cognizant+technical+interview+questions+fresher', thumb: '🛠️' },
+                    { title: 'Cognizant HR Interview Questions', channel: 'Career Guru', dur: '35 min', url: 'https://www.youtube.com/results?search_query=Cognizant+HR+interview+questions+answers+2024', thumb: '🎤' }
+                ]
+            }
+        };
+
+        function getParam(key) { return new URLSearchParams(window.location.search).get(key); }
+
+        function diffColor(d) { return d === 'Hard' ? 'var(--danger)' : d === 'Medium' ? 'var(--warning)' : 'var(--accent)'; }
+        function diffBg(d) { return d === 'Hard' ? 'rgba(239,68,68,.15)' : d === 'Medium' ? 'rgba(245,158,11,.15)' : 'rgba(16,185,129,.15)'; }
+
+        function build() {
+            const name = getParam('company') || 'TCS';
+            const d = COMPANY_DATA[name];
+            if (!d) { document.body.innerHTML = '<div style="text-align:center;padding:5rem;color:var(--text-muted);">Company not found. <a href="placement.html" style="color:var(--primary-light);">Go back</a></div>'; return; }
+
+            document.title = name + ' Placement Prep – ThiranMitra';
+            document.getElementById('pageTitle').textContent = name + ' Placement Prep – ThiranMitra';
+
+            // Real Logo logic
+            const domainMap = {
+                'TCS': 'tcs.com',
+                'Infosys': 'infosys.com',
+                'Wipro': 'wipro.com',
+                'Zoho': 'zoho.com',
+                'Accenture': 'accenture.com',
+                'Amazon': 'amazon.com',
+                'HCL': 'hcltech.com',
+                'Capgemini': 'capgemini.com',
+                'Cognizant': 'cognizant.com'
+            };
+            const domain = domainMap[name] || (name.toLowerCase().replace(/\s+/g, '') + '.com');
+            const logoUrl = `https://logo.clearbit.com/${domain}`;
+            const fallbackUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+
+            const logoHtml = `<div style="width:120px; height:120px; background:white; border-radius:24px; margin:0 auto; display:flex; align-items:center; justify-content:center; overflow:hidden; border:4px solid rgba(255,255,255,0.1); box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+                <img src="${logoUrl}" onerror="this.onerror=null; this.src='${fallbackUrl}';" style="width:70%; height:70%; object-fit:contain;">
+            </div>`;
+
+            document.getElementById('heroLogo').innerHTML = logoHtml;
+            document.getElementById('heroName').textContent = name;
+            document.getElementById('heroTagline').textContent = d.tagline;
+
+            // Tags
+            const tags = document.getElementById('heroTags');
+            const tArr = [
+                { txt: d.difficulty, bg: diffBg(d.difficulty), col: diffColor(d.difficulty) },
+                { txt: d.category, bg: 'rgba(79,70,229,.15)', col: 'var(--primary-light)' },
+                { txt: 'Est. ' + d.founded, bg: 'rgba(249,115,22,.15)', col: 'var(--secondary)' }
+            ];
+            tags.innerHTML = tArr.map(t => `<span style="background:${t.bg};color:${t.col};padding:.35rem 1rem;border-radius:999px;font-size:.8rem;font-weight:700;">${t.txt}</span>`).join('');
+
+            // Info boxes
+            const infos = [
+                { val: d.package, lbl: 'Package Range', col: 'var(--accent)' },
+                { val: d.employees, lbl: 'Employees', col: 'var(--primary-light)' },
+                { val: d.rounds.length + ' Rounds', lbl: 'Interview Stages', col: 'var(--secondary)' },
+                { val: d.headquarter, lbl: 'Headquarters', col: 'var(--warning)' }
+            ];
+            document.getElementById('infoGrid').innerHTML = infos.map(i => `
+    <div class="info-box">
+      <div class="info-val" style="color:${i.col};">${i.val}</div>
+      <div class="info-lbl">${i.lbl}</div>
+    </div>`).join('');
+
+            // Rounds
+            document.getElementById('roundsList').innerHTML = d.rounds.map((r, i) => `
+    <div class="round-card">
+      <div class="round-num">${i + 1}</div>
+      <div>
+        <div style="font-weight:700;color:var(--text-primary);margin-bottom:.3rem;">${r.name}</div>
+        <div style="font-size:.82rem;color:var(--text-secondary);line-height:1.6;">${r.desc}</div>
+      </div>
+    </div>`).join('');
+
+            // Tips
+            document.getElementById('tipsGrid').innerHTML = d.tips.map(t => `
+    <div class="tip-card">
+      <div class="tip-icon">${t.icon}</div>
+      <div style="font-weight:700;color:var(--text-primary);margin-bottom:.3rem;font-size:.9rem;">${t.title}</div>
+      <div style="font-size:.8rem;color:var(--text-secondary);line-height:1.5;">${t.desc}</div>
+    </div>`).join('');
+
+            // Checklist
+            document.getElementById('checkList').innerHTML = d.checklist.map(c => `
+    <li><span class="check-ico">✅</span><span>${c}</span></li>`).join('');
+
+            // Videos
+            document.getElementById('videosGrid').innerHTML = d.videos.map(v => `
+    <div class="video-card">
+      <div class="video-thumb">
+        <span style="font-size:3.5rem;position:absolute;opacity:.2;">${v.thumb}</span>
+        <a class="play-btn" href="${v.url}" target="_blank" rel="noopener" title="Watch on YouTube">▶</a>
+      </div>
+      <div class="video-body">
+        <div class="video-title">${v.title}</div>
+        <div class="video-meta">📺 ${v.channel} &nbsp;·&nbsp; ⏱ ${v.dur}</div>
+        <a href="${v.url}" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:.4rem;margin-top:.75rem;font-size:.78rem;font-weight:700;color:var(--danger);">
+          Watch Free on YouTube ↗
+        </a>
+      </div>
+    </div>`).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', build);
+    </script>
+    <style>
+        @media(max-width:768px) {
+            .two-col {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found – ThiranMitra</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Return to ThiranMitra homepage." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Outfit:wght@700;800;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg-dark: #0a0f1e;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #475569;
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --accent: #10b981;
+            --grad-primary: linear-gradient(135deg, #4f46e5, #7c3aed);
+            --grad-text: linear-gradient(135deg, #818cf8, #c084fc, #f472b6);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bg-blob-1 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.15), transparent 70%);
+            top: -100px;
+            left: -100px;
+            pointer-events: none;
+        }
+
+        .bg-blob-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1), transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .error-num {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(6rem, 20vw, 12rem);
+            font-weight: 900;
+            line-height: 1;
+            background: var(--grad-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 3s ease infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .error-emoji {
+            font-size: 5rem;
+            margin: 1rem 0;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            border-radius: 9999px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--grad-primary);
+            color: white;
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(79, 70, 229, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(79, 70, 229, 0.4);
+            color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .quick-links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .quick-link {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.35rem 0.875rem;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 9999px;
+            transition: all 0.2s;
+            backdrop-filter: blur(10px);
+        }
+
+        .quick-link:hover {
+            color: var(--primary-light);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .timer-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-accent {
+            color: #fb923c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-blob-1"></div>
+    <div class="bg-blob-2"></div>
+    <div class="content">
+        <a href="index.html" class="logo">🌉 Thiran<span class="logo-accent">Mitra</span></a>
+        <div class="error-num">404</div>
+        <div class="error-emoji">🔍</div>
+        <h1>Page Not Found</h1>
+        <p>Looks like this page went on leave! The page you're looking for doesn't exist or may have moved to a new
+            location.</p>
+        <div class="btn-group">
+            <a href="index.html" class="btn btn-primary">🏠 Go to Homepage</a>
+            <a href="jobs.html" class="btn btn-outline">🔍 Browse Jobs</a>
+        </div>
+        <div class="quick-links">
+            <span style="font-size:0.78rem;color:var(--text-muted);margin-right:0.25rem;">Quick Links:</span>
+            <a href="resume.html" class="quick-link">📄 Resume</a>
+            <a href="skills.html" class="quick-link">📊 Skills</a>
+            <a href="interview.html" class="quick-link">🎤 Interview</a>
+            <a href="schemes.html" class="quick-link">🏛️ Schemes</a>
+            <a href="dashboard.html" class="quick-link">📈 Dashboard</a>
+        </div>
+        <p class="timer-text" id="timerText">Redirecting to homepage in <strong id="countdown">10</strong> seconds...
+        </p>
+    </div>
+    <script>
+        let count = 10;
+        const timer = setInterval(() => {
+            count--;
+            const el = document.getElementById('countdown');
+            if (el) el.textContent = count;
+            if (count <= 0) { clearInterval(timer); window.location.href = 'index.html'; }
+        }, 1000);
+    </script>
+</body>
+
+</html>

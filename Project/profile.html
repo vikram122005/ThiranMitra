@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile – ThiranMitra | Career Dashboard</title>
+    <meta name="description" content="Manage your ThiranMitra profile, skills, resume, and career preferences." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        body {
+            background: var(--bg-dark);
+        }
+
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5.5rem 2rem 3rem;
+        }
+
+        .profile-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .profile-avatar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .avatar-circle {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: var(--grad-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            margin: 0 auto 1rem;
+            box-shadow: var(--shadow-glow);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-base);
+        }
+
+        .avatar-circle:hover .avatar-overlay {
+            opacity: 1;
+        }
+
+        .avatar-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: var(--transition-base);
+        }
+
+        .profile-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-email {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .profile-completion-ring {
+            margin: 1rem 0;
+        }
+
+        .profile-nav {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+        }
+
+        .profile-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition-base);
+            border-left: 3px solid transparent;
+        }
+
+        .profile-nav-item:hover {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+        }
+
+        .profile-nav-item.active {
+            background: rgba(79, 70, 229, 0.08);
+            color: var(--primary-light);
+            border-left-color: var(--primary);
+        }
+
+        .profile-main {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .profile-section {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.75rem;
+            display: none;
+        }
+
+        .profile-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section-title-sm {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+
+        .skills-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-pill {
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid rgba(79, 70, 229, 0.25);
+            color: var(--primary-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 0.875rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .skill-pill-remove {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.85rem;
+            padding: 0;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .skill-pill-remove:hover {
+            color: var(--danger);
+        }
+
+        .stat-badge {
+            background: var(--bg-surface);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-lg);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-badge-num {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--text-primary);
+        }
+
+        .stat-badge-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        @media (max-width: 900px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html"><span class="logo-icon">🌉</span><span class="logo-text">Thiran<span
+                        class="logo-accent">Mitra</span></span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="profile.html" class="btn btn-primary btn-sm">👤 My Profile</a>
+                <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="profile-layout">
+        <!-- SIDEBAR -->
+        <div class="profile-sidebar">
+            <div class="profile-avatar-card">
+                <div class="avatar-circle" id="avatarCircle">
+                    <span id="avatarInitial">U</span>
+                </div>
+                <div class="profile-name" id="profileName">Loading...</div>
+                <div class="profile-email" id="profileEmail"></div>
+                <div style="display:flex;gap:0.5rem;justify-content:center;margin-bottom:1rem;">
+                    <span class="badge badge-primary">🟢 Active</span>
+                    <span class="badge badge-success">✅ Verified</span>
+                </div>
+                <!-- Completion ring -->
+                <div class="profile-completion-ring">
+                    <div
+                        style="display:flex;justify-content:space-between;font-size:0.78rem;color:var(--text-muted);margin-bottom:0.375rem;">
+                        <span>Profile Strength</span>
+                        <span id="completionPct" style="color:var(--accent);font-weight:700;">72%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill progress-fill-accent" id="completionBar" style="width:72%;"></div>
+                    </div>
+                    <p style="font-size:0.72rem;color:var(--text-muted);margin-top:0.5rem;">Add work experience to reach
+                        90%</p>
+                </div>
+                <a href="resume.html" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">📄
+                    Analyze Resume</a>
+            </div>
+
+            <!-- STATS ROW -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                <div class="stat-badge">
+                    <div class="stat-badge-num" id="savedJobsCount">7</div>
+                    <div class="stat-badge-label">Saved Jobs</div>
+                </div>
+                <div class="stat-badge">
+                    <div class="stat-badge-num" id="appliedCount">3</div>
+                    <div class="stat-badge-label">Applied</div>
+                </div>
+                <div class="stat-badge">
+                    <div class="stat-badge-num" id="interviewScore">68%</div>
+                    <div class="stat-badge-label">Interview Score</div>
+                </div>
+                <div class="stat-badge">
+                    <div class="stat-badge-num" id="resumeScore">74</div>
+                    <div class="stat-badge-label">Resume ATS</div>
+                </div>
+            </div>
+
+            <!-- NAV -->
+            <nav class="profile-nav">
+                <div class="profile-nav-item active" onclick="switchSection(this,'overview')">👤 Overview</div>
+                <div class="profile-nav-item" onclick="switchSection(this,'personal')">📝 Personal Info</div>
+                <div class="profile-nav-item" onclick="switchSection(this,'education')">🎓 Education</div>
+                <div class="profile-nav-item" onclick="switchSection(this,'experience')">💼 Experience</div>
+                <div class="profile-nav-item" onclick="switchSection(this,'skills')">🔧 Skills</div>
+                <div class="profile-nav-item" onclick="switchSection(this,'preferences')">⚙️ Job Preferences</div>
+                <div class="profile-nav-item" onclick="switchSection(this,'certificates')">🏆 Certificates</div>
+                <div class="profile-nav-item" onclick="switchSection(this,'resumes')">📄 My Resumes</div>
+                <div class="profile-nav-item" onclick="switchSection(this,'security')">🔐 Security</div>
+            </nav>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="profile-main">
+
+            <!-- OVERVIEW -->
+            <div class="profile-section active" id="sec-overview">
+                <div class="section-title-sm">👤 Career Overview</div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;">
+                    <div
+                        style="background:linear-gradient(135deg,rgba(79,70,229,0.1),rgba(124,58,237,0.05));border:1px solid rgba(79,70,229,0.2);border-radius:var(--radius-lg);padding:1.25rem;text-align:center;">
+                        <div
+                            style="font-size:1.75rem;font-weight:900;font-family:'Outfit',sans-serif;color:var(--primary-light);">
+                            82%</div>
+                        <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem;">Placement Readiness
+                        </div>
+                    </div>
+                    <div
+                        style="background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(5,150,105,0.05));border:1px solid rgba(16,185,129,0.2);border-radius:var(--radius-lg);padding:1.25rem;text-align:center;">
+                        <div
+                            style="font-size:1.75rem;font-weight:900;font-family:'Outfit',sans-serif;color:var(--accent);">
+                            74</div>
+                        <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem;">Resume ATS Score
+                        </div>
+                    </div>
+                    <div
+                        style="background:linear-gradient(135deg,rgba(249,115,22,0.1),rgba(239,68,68,0.05));border:1px solid rgba(249,115,22,0.2);border-radius:var(--radius-lg);padding:1.25rem;text-align:center;">
+                        <div
+                            style="font-size:1.75rem;font-weight:900;font-family:'Outfit',sans-serif;color:var(--secondary);">
+                            68%</div>
+                        <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem;">Interview Score</div>
+                    </div>
+                </div>
+                <!-- AI Career Prediction -->
+                <div
+                    style="background:linear-gradient(135deg,rgba(79,70,229,0.08),transparent);border:1px solid rgba(79,70,229,0.2);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1.25rem;">
+                    <div style="font-size:0.9rem;font-weight:700;color:var(--text-primary);margin-bottom:0.75rem;">🤖 AI
+                        Career Predictions for You</div>
+                    <div style="display:flex;flex-direction:column;gap:0.625rem;">
+                        <div
+                            style="display:flex;align-items:center;gap:1rem;padding:0.75rem;background:var(--bg-card);border-radius:var(--radius-md);">
+                            <span style="font-size:1.5rem;">💻</span>
+                            <div style="flex:1;">
+                                <div style="font-size:0.875rem;font-weight:700;color:var(--text-primary);">Full Stack
+                                    Developer</div>
+                                <div style="font-size:0.75rem;color:var(--text-muted);">Based on your skills &amp;
+                                    location</div>
+                            </div>
+                            <span style="font-weight:800;color:var(--primary-light);font-size:1rem;">87%</span>
+                        </div>
+                        <div
+                            style="display:flex;align-items:center;gap:1rem;padding:0.75rem;background:var(--bg-card);border-radius:var(--radius-md);">
+                            <span style="font-size:1.5rem;">📊</span>
+                            <div style="flex:1;">
+                                <div style="font-size:0.875rem;font-weight:700;color:var(--text-primary);">Data Analyst
+                                </div>
+                                <div style="font-size:0.75rem;color:var(--text-muted);">High demand in your state</div>
+                            </div>
+                            <span style="font-weight:800;color:var(--accent);font-size:1rem;">74%</span>
+                        </div>
+                        <div
+                            style="display:flex;align-items:center;gap:1rem;padding:0.75rem;background:var(--bg-card);border-radius:var(--radius-md);">
+                            <span style="font-size:1.5rem;">🏛️</span>
+                            <div style="flex:1;">
+                                <div style="font-size:0.875rem;font-weight:700;color:var(--text-primary);">SSC/Banking
+                                    Officer</div>
+                                <div style="font-size:0.75rem;color:var(--text-muted);">Based on aptitude scores</div>
+                            </div>
+                            <span style="font-weight:800;color:var(--secondary);font-size:1rem;">61%</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Recommended next actions -->
+                <div style="font-size:0.9rem;font-weight:700;color:var(--text-primary);margin-bottom:0.75rem;">✅
+                    Recommended Next Steps</div>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;" id="nextSteps"></div>
+            </div>
+
+            <!-- PERSONAL INFO -->
+            <div class="profile-section" id="sec-personal">
+                <div class="section-title-sm">📝 Personal Information</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                    <div class="form-group"><label class="form-label">Full Name</label><input type="text"
+                            class="form-input" id="pName" value="Vikram Singh" /></div>
+                    <div class="form-group"><label class="form-label">Date of Birth</label><input type="date"
+                            class="form-input" id="pDob" value="2000-06-15" /></div>
+                    <div class="form-group"><label class="form-label">Phone Number</label><input type="tel"
+                            class="form-input" id="pPhone" value="+91 98765 43210" /></div>
+                    <div class="form-group"><label class="form-label">Email Address</label><input type="email"
+                            class="form-input" id="pEmail" value="vikram@example.com" /></div>
+                    <div class="form-group"><label class="form-label">Gender</label>
+                        <select class="form-input form-select" id="pGender">
+                            <option selected>Male</option>
+                            <option>Female</option>
+                            <option>Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label class="form-label">Category</label>
+                        <select class="form-input form-select" id="pCategory">
+                            <option>General</option>
+                            <option>OBC</option>
+                            <option selected>SC/ST</option>
+                            <option>EWS</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="grid-column:span 2;"><label class="form-label">Current
+                            Address</label>
+                        <textarea class="form-input form-textarea" id="pAddress"
+                            style="min-height:70px;">45, Gandhi Nagar, Sector 5, Jaipur - 302017, Rajasthan</textarea>
+                    </div>
+                    <div class="form-group"><label class="form-label">City / District</label><input type="text"
+                            class="form-input" id="pCity" value="Jaipur" /></div>
+                    <div class="form-group"><label class="form-label">State</label>
+                        <select class="form-input form-select" id="pState">
+                            <option>Tamil Nadu</option>
+                            <option selected>Rajasthan</option>
+                            <option>Maharashtra</option>
+                            <option>Karnataka</option>
+                            <option>Uttar Pradesh</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="saveSection('personal')">💾 Save Personal Info</button>
+            </div>
+
+            <!-- EDUCATION -->
+            <div class="profile-section" id="sec-education">
+                <div class="section-title-sm">🎓 Education History</div>
+                <div id="educationList" style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.25rem;">
+                </div>
+                <button class="btn btn-outline" onclick="addEducation()">+ Add Education</button>
+            </div>
+
+            <!-- EXPERIENCE -->
+            <div class="profile-section" id="sec-experience">
+                <div class="section-title-sm">💼 Work Experience</div>
+                <div id="experienceList" style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.25rem;">
+                </div>
+                <button class="btn btn-outline" onclick="addExperience()">+ Add Work Experience</button>
+            </div>
+
+            <!-- SKILLS -->
+            <div class="profile-section" id="sec-skills">
+                <div class="section-title-sm">🔧 My Skills</div>
+                <div style="display:flex;gap:0.75rem;margin-bottom:1.25rem;">
+                    <input type="text" class="form-input" id="skillInput"
+                        placeholder="Add a skill (e.g. Python, Photoshop)..." style="flex:1;"
+                        onkeypress="if(event.key==='Enter')addSkill()" />
+                    <button class="btn btn-primary" onclick="addSkill()">Add Skill</button>
+                </div>
+                <div class="skills-pills" id="skillsPills"></div>
+                <div style="margin-top:1.25rem;">
+                    <div style="font-size:0.85rem;font-weight:700;color:var(--text-muted);margin-bottom:0.75rem;">
+                        SUGGESTED SKILLS FOR YOUR PROFILE</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;" id="suggestedSkills"></div>
+                </div>
+                <button class="btn btn-primary" style="margin-top:1.25rem;" onclick="saveSection('skills')">💾 Save
+                    Skills</button>
+            </div>
+
+            <!-- JOB PREFERENCES -->
+            <div class="profile-section" id="sec-preferences">
+                <div class="section-title-sm">⚙️ Job Preferences</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                    <div class="form-group"><label class="form-label">Preferred Job Role</label><input type="text"
+                            class="form-input" value="Software Developer" id="prefRole" /></div>
+                    <div class="form-group"><label class="form-label">Preferred Location</label><input type="text"
+                            class="form-input" value="Jaipur, Bengaluru" id="prefLocation" /></div>
+                    <div class="form-group"><label class="form-label">Expected Salary (LPA)</label>
+                        <select class="form-input form-select" id="prefSalary">
+                            <option>Under 3 LPA</option>
+                            <option>3–5 LPA</option>
+                            <option selected>5–8 LPA</option>
+                            <option>8–12 LPA</option>
+                            <option>12+ LPA</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label class="form-label">Job Type</label>
+                        <select class="form-input form-select" id="prefType">
+                            <option selected>Full-time</option>
+                            <option>Part-time</option>
+                            <option>Freelance</option>
+                            <option>Internship</option>
+                            <option>Government</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label class="form-label">Work Mode</label>
+                        <select class="form-input form-select" id="prefWork">
+                            <option>On-site</option>
+                            <option selected>Hybrid</option>
+                            <option>Remote / WFH</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label class="form-label">Notice Period</label>
+                        <select class="form-input form-select" id="prefNotice">
+                            <option selected>Immediately Available</option>
+                            <option>15 days</option>
+                            <option>30 days</option>
+                            <option>60 days</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="saveSection('preferences')">💾 Save Preferences</button>
+            </div>
+
+            <!-- CERTIFICATES -->
+            <div class="profile-section" id="sec-certificates">
+                <div class="section-title-sm">🏆 Certificates &amp; Achievements</div>
+                <div id="certsList" style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.25rem;"></div>
+                <button class="btn btn-outline" onclick="addCertificate()">+ Add Certificate</button>
+            </div>
+
+            <!-- RESUMES -->
+            <div class="profile-section" id="sec-resumes">
+                <div class="section-title-sm" style="display:flex; justify-content:space-between; align-items:center;">
+                    <span>📄 Stored Resumes & Analysis</span>
+                    <button class="btn btn-outline btn-sm"
+                        onclick="document.getElementById('quickResumeUpload').click()">+ Upload File</button>
+                    <input type="file" id="quickResumeUpload" style="display:none;"
+                        onchange="handleQuickResumeUpload(this)" accept=".pdf,.doc,.docx,.txt">
+                </div>
+                <div id="profileResumesList" style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
+                    <!-- Dynamic resumes here -->
+                </div>
+                <div
+                    style="background:rgba(79,70,229,0.05); border:1px solid rgba(79,70,229,0.1); border-radius:var(--radius-lg); padding:1.5rem; text-align:center;">
+                    <h4 style="color:var(--text-primary); margin-bottom:0.5rem;">Need a fresh analysis?</h4>
+                    <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1.5rem;">Upload a new version or
+                        re-run the ATS scan to improve your score.</p>
+                    <a href="resume.html" class="btn btn-primary">🤖 Open AI Resume Analyzer</a>
+                </div>
+            </div>
+
+            <!-- SECURITY -->
+            <div class="profile-section" id="sec-security">
+                <div class="section-title-sm">🔐 Account Security</div>
+                <div style="display:flex;flex-direction:column;gap:1rem;">
+                    <div
+                        style="background:var(--bg-surface);border-radius:var(--radius-lg);padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+                        <span style="font-size:1.5rem;">🔑</span>
+                        <div style="flex:1;">
+                            <div style="font-size:0.9rem;font-weight:700;color:var(--text-primary);">Change Password
+                            </div>
+                            <div style="font-size:0.78rem;color:var(--text-muted);">Last changed: Never</div>
+                        </div>
+                        <button class="btn btn-outline btn-sm"
+                            onclick="showToast('Password change feature coming soon!','info')">Change</button>
+                    </div>
+                    <div
+                        style="background:var(--bg-surface);border-radius:var(--radius-lg);padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+                        <span style="font-size:1.5rem;">📱</span>
+                        <div style="flex:1;">
+                            <div style="font-size:0.9rem;font-weight:700;color:var(--text-primary);">Two-Factor
+                                Authentication</div>
+                            <div style="font-size:0.78rem;color:var(--text-muted);">Not enabled</div>
+                        </div>
+                        <button class="btn btn-outline btn-sm"
+                            onclick="showToast('2FA feature coming soon!','info')">Enable</button>
+                    </div>
+                    <div
+                        style="background:var(--bg-surface);border-radius:var(--radius-lg);padding:1.25rem;display:flex;align-items:center;gap:1rem;">
+                        <span style="font-size:1.5rem;">📧</span>
+                        <div style="flex:1;">
+                            <div style="font-size:0.9rem;font-weight:700;color:var(--text-primary);">Email Notifications
+                            </div>
+                            <div style="font-size:0.78rem;color:var(--text-muted);">Job alerts &amp; updates</div>
+                        </div>
+                        <label style="cursor:pointer;position:relative;display:inline-block;width:44px;height:24px;">
+                            <input type="checkbox" checked style="opacity:0;width:0;height:0;" id="emailToggle" />
+                            <span id="toggleSpan" onclick="toggleNotif()"
+                                style="position:absolute;inset:0;background:var(--primary);border-radius:12px;transition:0.3s;"></span>
+                        </label>
+                    </div>
+                    <div style="border-top:1px solid var(--bg-glass-border);padding-top:1rem;margin-top:0.5rem;">
+                        <button class="btn btn-outline btn-sm"
+                            style="border-color:rgba(239,68,68,0.3);color:var(--danger);"
+                            onclick="if(confirm('Are you sure you want to delete your account? This cannot be undone.'))showToast('Account deletion request submitted.','warning');">⚠️
+                            Delete Account</button>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end profile-main -->
+    </div><!-- end profile-layout -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="nav-logo" href="index.html" style="display:inline-flex;margin-bottom:1rem;">
+                        <span class="logo-icon">🌉</span>
+                        <span class="logo-text">Thiran<span class="logo-accent">Mitra</span></span>
+                    </a>
+                    <!-- Branding description removed as per user request -->
+                    <div class="footer-social">
+                        <a href="#" class="social-btn"
+                            onclick="showToast('Facebook coming soon!','info');return false;">📘 Facebook</a>
+                        <a href="#" class="social-btn"
+                            onclick="showToast('Twitter coming soon!','info');return false;">🐦 Twitter</a>
+                        <a href="#" class="social-btn"
+                            onclick="showToast('LinkedIn coming soon!','info');return false;">💼 LinkedIn</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="jobs.html">Job Search</a></li>
+                        <li><a href="resume.html">Resume Analyzer</a></li>
+                        <li><a href="skills.html">Skill Gap Tool</a></li>
+                        <li><a href="interview.html">Interview Training</a></li>
+                        <li><a href="placement.html">Placement Prep</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="schemes.html">Gov Schemes</a></li>
+                        <li><a href="rural.html">Rural Mode</a></li>
+                        <li><a href="women.html">Women Employment</a></li>
+                        <li><a href="entrepreneurship.html">Entrepreneurship</a></li>
+                        <li><a href="dashboard.html">Career AI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="#"
+                                onclick="showToast('Report scam via job card Report button.','info');return false;">Report
+                                Scam</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 ThiranMitra. Made with ❤️ for India. &nbsp;|&nbsp; Inspired by NCS, Skill India, PMKVY</p>
+                <p>🇮🇳 Empowering Every Indian, Every District, Every Dream</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CHATBOT -->
+    <div class="chatbot-widget">
+        <div class="chatbot-window" id="chatbotWindow" style="display:none;">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">🤖</div>
+                <div><strong>ThiranMitraBot</strong><span class="chatbot-status">● Online</span></div>
+                <button class="chatbot-close" onclick="toggleChatbot()">✕</button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="chat-msg bot"><span>Hi! I can help you complete your profile. A complete profile gets 5x
+                        more job matches! 💪</span></div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Ask me anything..." onkeypress="handleChatKey(event)" />
+                <button onclick="sendChat()" class="chat-send-btn">Send</button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" onclick="toggleChatbot()" id="chatToggleBtn">💬</button>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Section switching
+        function switchSection(btn, sectionId) {
+            document.querySelectorAll('.profile-nav-item').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.profile-section').forEach(s => s.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('sec-' + sectionId).classList.add('active');
+        }
+
+        // Save section
+        function saveSection(name) {
+            showLoadingOverlay('Saving...');
+            setTimeout(() => {
+                hideLoadingOverlay();
+                showToast('✅ ' + name.charAt(0).toUpperCase() + name.slice(1) + ' information saved!', 'success');
+                updateCompletion(5);
+            }, 900);
+        }
+
+        // Completion tracker
+        let completionVal = 72;
+        function updateCompletion(delta) {
+            completionVal = Math.min(100, completionVal + delta);
+            document.getElementById('completionPct').textContent = completionVal + '%';
+            document.getElementById('completionBar').style.width = completionVal + '%';
+        }
+
+        // NEXT STEPS
+        const steps = [
+            { done: true, icon: '✅', text: 'Create account & verify email' },
+            { done: true, icon: '✅', text: 'Fill in personal information' },
+            { done: false, icon: '⭕', text: 'Add work experience', action: () => switchSection(document.querySelector('[onclick*="experience"]'), 'experience') },
+            { done: false, icon: '⭕', text: 'Upload & analyze your resume', action: () => window.location.href = 'resume.html' },
+            { done: false, icon: '⭕', text: 'Complete AI interview training', action: () => window.location.href = 'interview.html' },
+        ];
+        const stepsEl = document.getElementById('nextSteps');
+        steps.forEach(s => {
+            const div = document.createElement('div');
+            div.style.cssText = 'display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--bg-surface);border-radius:var(--radius-md);cursor:pointer;transition:background 0.2s;';
+            div.innerHTML = `<span style="font-size:1.1rem;">${s.icon}</span><span style="font-size:0.875rem;color:${s.done ? 'var(--text-muted)' : 'var(--text-primary)'};${s.done ? 'text-decoration:line-through;' : ''}">${s.text}</span>${!s.done ? '<span style="margin-left:auto;font-size:0.8rem;color:var(--primary-light);font-weight:600;">Start →</span>' : ''}`;
+            if (s.action && !s.done) div.addEventListener('click', s.action);
+            stepsEl.appendChild(div);
+        });
+
+        // EDUCATION
+        const educationData = [
+            { degree: 'Bachelor of Technology (B.Tech CSE)', inst: 'Rajasthan Technical University', yr: '2018 – 2022', grade: '7.4 CGPA' },
+        ];
+        function renderEducation() {
+            const list = document.getElementById('educationList');
+            list.innerHTML = '';
+            educationData.forEach((e, i) => {
+                const card = document.createElement('div');
+                card.style.cssText = 'background:var(--bg-surface);border-radius:var(--radius-lg);padding:1.25rem;display:flex;align-items:flex-start;gap:1rem;';
+                card.innerHTML = `
+          <span style="font-size:1.75rem;">🎓</span>
+          <div style="flex:1;">
+            <div style="font-size:0.95rem;font-weight:700;color:var(--text-primary);">${e.degree}</div>
+            <div style="font-size:0.82rem;color:var(--text-muted);">${e.inst} · ${e.yr}</div>
+            <div style="font-size:0.8rem;color:var(--accent);margin-top:0.25rem;">${e.grade}</div>
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="educationData.splice(${i},1);renderEducation();">Remove</button>
+        `;
+                list.appendChild(card);
+            });
+        }
+        function addEducation() {
+            const degree = prompt('Enter degree name (e.g. B.Tech CSE):');
+            if (!degree) return;
+            const inst = prompt('Enter institution name:') || '';
+            const yr = prompt('Enter years (e.g. 2020-2024):') || '';
+            educationData.push({ degree, inst, yr, grade: '' });
+            renderEducation();
+            showToast('Education added!', 'success');
+        }
+        renderEducation();
+
+        // EXPERIENCE
+        const expData = [
+            { title: 'Junior Developer Intern', company: 'TechCorp Pvt. Ltd.', period: 'Jun 2021 – Oct 2021', desc: 'Built frontend features using React.js, participated in code reviews and agile meetings.' },
+        ];
+        function renderExperience() {
+            const list = document.getElementById('experienceList');
+            list.innerHTML = '';
+            if (!expData.length) {
+                list.innerHTML = `<p style="color:var(--text-muted);font-size:0.875rem;text-align:center;padding:1.5rem;">No experience added yet. Even internships and freelance work count!</p>`;
+                return;
+            }
+            expData.forEach((e, i) => {
+                const card = document.createElement('div');
+                card.style.cssText = 'background:var(--bg-surface);border-radius:var(--radius-lg);padding:1.25rem;';
+                card.innerHTML = `
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;margin-bottom:0.5rem;">
+            <span style="font-size:1.5rem;">💼</span>
+            <div style="flex:1;">
+              <div style="font-size:0.95rem;font-weight:700;color:var(--text-primary);">${e.title}</div>
+              <div style="font-size:0.82rem;color:var(--text-muted);">${e.company} · ${e.period}</div>
+            </div>
+            <button class="btn btn-ghost btn-sm" onclick="expData.splice(${i},1);renderExperience();">Remove</button>
+          </div>
+          <p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.6;">${e.desc}</p>
+        `;
+                list.appendChild(card);
+            });
+        }
+        function addExperience() {
+            const title = prompt('Job title (e.g. Software Developer):');
+            if (!title) return;
+            const company = prompt('Company name:') || '';
+            const period = prompt('Period (e.g. Jan 2023 – Present):') || '';
+            const desc = prompt('Brief description of work:') || '';
+            expData.push({ title, company, period, desc });
+            renderExperience();
+            showToast('Work experience added!', 'success');
+            updateCompletion(10);
+        }
+        renderExperience();
+
+        // SKILLS
+        let userSkills = ['JavaScript', 'React.js', 'Python', 'SQL', 'HTML/CSS', 'Git', 'Node.js'];
+        const suggestedSkillsList = ['TypeScript', 'Docker', 'AWS', 'MongoDB', 'Figma', 'Data Analysis', 'Machine Learning', 'Power BI', 'Agile/Scrum', 'REST API', 'Redux', 'GraphQL'];
+
+        function renderSkills() {
+            const pills = document.getElementById('skillsPills');
+            pills.innerHTML = userSkills.map((s, i) => `
+        <div class="skill-pill">
+          ${s}
+          <button class="skill-pill-remove" onclick="removeSkill(${i})">✕</button>
+        </div>
+      `).join('');
+        }
+        function removeSkill(i) { userSkills.splice(i, 1); renderSkills(); }
+        function addSkill() {
+            const val = document.getElementById('skillInput').value.trim();
+            if (!val) return;
+            if (userSkills.includes(val)) { showToast('Skill already added!', 'warning'); return; }
+            userSkills.push(val);
+            document.getElementById('skillInput').value = '';
+            renderSkills();
+        }
+        function addSuggestedSkill(skill, btn) {
+            if (!userSkills.includes(skill)) { userSkills.push(skill); renderSkills(); showToast(`${skill} added to your skills!`, 'success'); }
+            btn.disabled = true; btn.style.opacity = '0.4';
+        }
+        const suggestEl = document.getElementById('suggestedSkills');
+        suggestedSkillsList.forEach(s => {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-ghost btn-sm';
+            btn.style.cssText = 'border:1px solid var(--bg-glass-border);border-radius:9999px;';
+            btn.textContent = '+ ' + s;
+            btn.onclick = () => addSuggestedSkill(s, btn);
+            suggestEl.appendChild(btn);
+        });
+        renderSkills();
+
+        // CERTIFICATES
+        const certsData = [
+            { name: 'Google Data Analytics Certificate', org: 'Coursera / Google', yr: '2023', icon: '🏅' },
+            { name: 'PMKVY Web Development Certificate', org: 'NSDC / Skill India', yr: '2022', icon: '🎓' },
+        ];
+        function renderCerts() {
+            const list = document.getElementById('certsList');
+            list.innerHTML = '';
+            certsData.forEach((c, i) => {
+                const div = document.createElement('div');
+                div.style.cssText = 'background:var(--bg-surface);border-radius:var(--radius-lg);padding:1rem;display:flex;align-items:center;gap:0.875rem;';
+                div.innerHTML = `
+          <span style="font-size:1.75rem;">${c.icon}</span>
+          <div style="flex:1;"><div style="font-size:0.9rem;font-weight:700;color:var(--text-primary);">${c.name}</div><div style="font-size:0.78rem;color:var(--text-muted);">${c.org} · ${c.yr}</div></div>
+          <button class="btn btn-ghost btn-sm" onclick="certsData.splice(${i},1);renderCerts();">Remove</button>
+        `;
+                list.appendChild(div);
+            });
+        }
+        function addCertificate() {
+            const name = prompt('Certificate name:');
+            if (!name) return;
+            const org = prompt('Issuing organization:') || '';
+            const yr = prompt('Year earned:') || '2024';
+            certsData.push({ name, org, yr, icon: '🏆' });
+            renderCerts();
+            showToast('Certificate added!', 'success');
+        }
+        renderCerts();
+
+        function toggleNotif() {
+            const chk = document.getElementById('emailToggle');
+            const span = document.getElementById('toggleSpan');
+            span.style.background = chk.checked ? 'var(--primary)' : 'var(--bg-glass-border)';
+            showToast(chk.checked ? 'Email notifications enabled!' : 'Email notifications disabled.', 'info', 2000);
+        }
+
+        // Redirect if not logged in
+        if (!AuthAPI.isLoggedIn()) { window.location.href = 'login.html'; }
+    </script>
+
+    <!-- SPA Navigation Engine -->
+    <script src="js/page-transition.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThiranMitra – AI Powered Career Readiness Ecosystem for India</title>
+  <meta name="description"
+    content="Empowering every Indian with AI-powered career tools, job matching, and skill development. The bridge between your potential and your dream career." />
+  <!-- Step 1: Instant check (Soft redirect) — only if coming to root and already logged in -->
+  <script>
+    (function () {
+      // Only redirect if arriving at the root directly (not via a back button or explicit link)
+      // but for simplicity, the user wants Home to be accessible, so we let them stay if they want.
+      // However, a simple auto-login is good UX if they land on index.html without intent.
+      // But the user said "Home should not open Dashboard", so we disable auto-redirect here.
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&family=Orbitron:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    .hero-section {
+      background: linear-gradient(135deg, #050818 0%, #0a0f1e 50%, #0d1b2a 100%);
+      padding: 10rem 0 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    }
+
+    .hero-blob {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.15), transparent 70%);
+      top: -200px;
+      left: -100px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <a class="nav-logo" href="index.html">
+        <span class="logo-icon">🌉</span>
+        <span class="logo-text">Thiran<span class="logo-accent">Mitra</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+        <li><a href="skills.html" class="nav-link">Skills</a></li>
+        <li><a href="schemes.html" class="nav-link">Schemes</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <!-- <li><a href="dashboard.html" class="nav-link" id="navDashLink" style="display:none; color:var(--accent); font-weight:800;">Dashboard</a></li> -->
+      </ul>
+      <div class="nav-actions">
+        <div id="authGuestActions" style="display:flex; gap:1rem;">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Register Free</a>
+        </div>
+        <div id="authUserActions" style="display:none; gap:1rem;">
+          <a href="dashboard.html" class="btn btn-accent btn-sm">🚀 Go to Dashboard</a>
+        </div>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="hero-section">
+      <div class="hero-blob"></div>
+      <div class="container" style="position:relative; z-index:1;">
+        <div class="section-badge">🇮🇳 India's #1 Career Ecosystem</div>
+        <h1
+          style="font-family:'Outfit',sans-serif; font-size:clamp(3rem, 8vw, 5rem); font-weight:900; line-height:1.1; margin-bottom:1.5rem;">
+          Empowering Your <span class="gradient-text">Future</span><br />With AI Brilliance
+        </h1>
+        <p
+          style="font-size:1.25rem; color:var(--text-secondary); max-width:800px; margin:0 auto 3rem; line-height:1.8;">
+          Connect to jobs, master new skills, and get AI-powered career coaching.
+          The definitive bridge between your potential and professional success.
+        </p>
+        <div style="display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap;">
+          <a href="register.html" class="btn btn-primary"
+            style="padding:1.25rem 2.5rem; font-size:1.1rem; font-weight:800;">Get Started for Free</a>
+          <a href="jobs.html" class="btn btn-outline"
+            style="padding:1.25rem 2.5rem; font-size:1.1rem; font-weight:700;">Explore Jobs →</a>
+        </div>
+      </div>
+    </div>
+
+    <section style="padding:5rem 0; background:var(--bg-dark);">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem;">
+          <div class="card reveal" style="text-align:center; padding:2.5rem;">
+            <div style="font-size:3rem; margin-bottom:1rem;">🤖</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-size:1.4rem; font-weight:800; margin-bottom:1rem;">AI
+              Career Coaching</h3>
+            <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Get personalized roadmaps, resume
+              analysis, and interview prep powered by cutting-edge AI.</p>
+          </div>
+          <div class="card reveal" style="text-align:center; padding:2.5rem;">
+            <div style="font-size:3rem; margin-bottom:1rem;">🔍</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-size:1.4rem; font-weight:800; margin-bottom:1rem;">Smart
+              Job Matching</h3>
+            <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Our algorithm finds the best
+              roles for you based on your unique skills and career aspirations.</p>
+          </div>
+          <div class="card reveal" style="text-align:center; padding:2.5rem;">
+            <div style="font-size:3rem; margin-bottom:1rem;">🏛️</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-size:1.4rem; font-weight:800; margin-bottom:1rem;">Gov
+              Schemes Access</h3>
+            <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.7;">Explore and apply for PMKVY,
+              Skill India, and Mudra loans directly through ThiranMitra.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="text-align:center; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.05);">
+      <p style="color:var(--text-muted); font-size:0.875rem;">© 2026 ThiranMitra. All Rights Reserved. 🇮🇳</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script>
+    // Simple auth check to toggle buttons
+    (function () {
+      const token = localStorage.getItem('wm_token');
+      if (token) {
+        document.getElementById('authGuestActions').style.display = 'none';
+        document.getElementById('authUserActions').style.display = 'flex';
+        // const dl = document.getElementById('navDashLink');
+        // if (dl) dl.style.display = 'block';
+      }
+    })();
+  </script>
+  <script src="js/main.js"></script>
+  <script src="js/page-transition.js"></script>
+</body>
+
+</html>

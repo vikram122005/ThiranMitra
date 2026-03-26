@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Job – ThiranMitra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        :root {
+            --glass-bg: rgba(15, 23, 42, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-glow: rgba(79, 70, 229, 0.4);
+            --bg-dark: #0f172a;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: #f1f5f9;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .apply-wrapper {
+            padding: 120px 0 60px;
+            background: radial-gradient(circle at top right, var(--accent-glow), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(124, 58, 237, 0.1), transparent 30%);
+        }
+
+        .apply-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .apply-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 2.5rem;
+            padding: 3.5rem;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .job-label {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.15);
+            color: #a5b4fc;
+            padding: 0.5rem 1.25rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        .title-h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        .label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+
+        .input-box {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 1.2rem;
+            border-radius: 1.2rem;
+            color: #fff;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .input-box:focus {
+            outline: none;
+            border-color: #4f46e5;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2);
+        }
+
+        .check-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 1.5rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .check-container:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #4f46e5;
+            border-radius: 6px;
+            appearance: none;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .checkbox:checked {
+            background: #4f46e5;
+        }
+
+        .checkbox:checked::after {
+            content: '✓';
+            color: white;
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .check-text {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            border: none;
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .confirm-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(79, 70, 229, 0.6);
+        }
+
+        .confirm-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .confirm-btn:disabled {
+            background: #334155;
+            color: #64748b;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success State */
+        .success-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.95);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .success-content {
+            padding: 4rem;
+            max-width: 500px;
+        }
+
+        .success-icon {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            animation: bounceIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .apply-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html">
+                <span class="logo-icon">🌉</span>
+                <span class="logo-text">Thiran<span class="logo-accent">Mitra</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="apply-wrapper">
+        <div class="apply-container">
+            <div class="apply-card">
+                <div class="header-section">
+                    <span class="job-label" id="jobTitleLabel">Job Application</span>
+                    <h1 class="title-h1">Complete Your Application</h1>
+                    <p class="subtitle">Please review and confirm your details below</p>
+                </div>
+
+                <form id="applyForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="label">Full Name</label>
+                            <input type="text" id="fullName" class="input-box" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="label">Email Address</label>
+                            <input type="email" id="email" class="input-box" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="label">Phone Number</label>
+                            <input type="tel" id="phone" class="input-box" placeholder="+91 XXXXX XXXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="label">Expected Salary (LPA)</label>
+                            <input type="number" id="salary" class="input-box" placeholder="e.g. 5.5" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group full">
+                        <label class="label">Cover Note (Optional)</label>
+                        <textarea id="coverNote" class="input-box" style="height: 120px; resize: none;"
+                            placeholder="Tell us why you are a good fit..."></textarea>
+                    </div>
+
+                    <div class="check-container" onclick="toggleCheck()">
+                        <input type="checkbox" id="confirmCheck" class="checkbox" required>
+                        <span class="check-text">
+                            Above details are Correct and I authorize ThiranMitra to share my profile with the employer
+                            for this job application.
+                        </span>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="confirm-btn">
+                        <span>Final Confirm & Apply</span>
+                        <span style="font-size: 1.4rem;">🚀</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message Overlay -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-content">
+            <div class="success-icon">🎉</div>
+            <h1
+                style="font-family:'Outfit',sans-serif; font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(to right, #4f46e5, #10b981); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                Application Submitted Succesfully !</h1>
+            <p style="color: #94a3b8; font-size: 1.25rem; line-height: 1.6; margin-bottom: 3rem;" id="successMessage">
+                A Cnfirmation Has Been Send To Your Registered E-Mail.
+            </p>
+            <button class="confirm-btn" onclick="window.location.href='dashboard.html'"
+                style="max-width: 300px; margin: 0 auto;">
+                Back to Dashboard
+            </button>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let currentJobId = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            currentJobId = params.get('jobId');
+
+            if (!currentJobId) {
+                alert('Invalid Job ID');
+                window.location.href = 'jobs.html';
+                return;
+            }
+
+            // Pre-fill user data
+            const user = AuthAPI.currentUser();
+            if (user) {
+                document.getElementById('fullName').value = user.name || '';
+                document.getElementById('email').value = user.email || '';
+                document.getElementById('phone').value = user.phone || '';
+            }
+
+            // Fetch job info for label
+            try {
+                const data = await JobsAPI.detail(currentJobId);
+                if (data.job) {
+                    document.getElementById('jobTitleLabel').textContent = "Application for: " + data.job.title;
+                }
+            } catch (e) { }
+        });
+
+        function toggleCheck() {
+            const cb = document.getElementById('confirmCheck');
+            cb.checked = !cb.checked;
+        }
+
+        document.getElementById('applyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!document.getElementById('confirmCheck').checked) {
+                showToast('Please check the confirmation box!', 'warning');
+                return;
+            }
+
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+
+            try {
+                // Collect and send application
+                const coverNote = document.getElementById('coverNote').value;
+                await JobsAPI.apply(currentJobId, coverNote);
+
+                // Show success
+                document.getElementById('successOverlay').style.display = 'flex';
+                showToast('Applied successfully! 🚀', 'success');
+            } catch (err) {
+                handleApiError(err);
+                btn.disabled = false;
+                btn.textContent = 'Final Confirm & Apply 🚀';
+            }
+        });
+    </script>
+</body>
+
+</html>

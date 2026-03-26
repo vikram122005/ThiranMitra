@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Company Preparation Hub – ThiranMitra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        @media(max-width:700px) {
+            .cat-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .cat-card {
+            background: var(--bg-card);
+            border: 1.5px solid var(--bg-glass-border);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all .3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cat-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--grad);
+            opacity: 0;
+            transition: opacity .3s;
+            border-radius: 20px;
+        }
+
+        .cat-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(79, 70, 229, .4);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .3);
+        }
+
+        .cat-card:hover::before {
+            opacity: .07;
+        }
+
+        .cat-emoji {
+            font-size: 3rem;
+            margin-bottom: .875rem;
+            display: block;
+        }
+
+        .cat-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: .4rem;
+        }
+
+        .cat-sub {
+            font-size: .78rem;
+            color: var(--text-muted);
+        }
+
+        .cat-count {
+            display: inline-block;
+            margin-top: .75rem;
+            background: rgba(79, 70, 229, .15);
+            color: var(--primary-light);
+            border-radius: 12px;
+            padding: .2rem .75rem;
+            font-size: .72rem;
+            font-weight: 700;
+        }
+
+        /* Company grid */
+        #companySection {
+            display: none;
+            animation: fadeUp .4s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .co-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        @media(max-width:900px) {
+            .co-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .co-card {
+            background: var(--bg-card);
+            border: 1.5px solid var(--bg-glass-border);
+            border-radius: 18px;
+            padding: 1.5rem 1.25rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .co-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(79, 70, 229, .4);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
+        }
+
+        .co-logo-img {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            object-fit: contain;
+            background: #fff;
+            padding: 6px;
+            margin: 0 auto .875rem;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+        }
+
+        .co-logo-fallback {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: var(--grad-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin: 0 auto .875rem;
+        }
+
+        .co-name {
+            font-size: .95rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: .25rem;
+        }
+
+        .co-tagline {
+            font-size: .72rem;
+            color: var(--text-muted);
+            margin-bottom: .75rem;
+        }
+
+        .co-diff {
+            font-size: .65rem;
+            font-weight: 700;
+            border-radius: 8px;
+            padding: .2rem .6rem;
+        }
+
+        .diff-hard {
+            background: rgba(239, 68, 68, .15);
+            color: #ef4444;
+        }
+
+        .diff-med {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+
+        .diff-easy {
+            background: rgba(16, 185, 129, .15);
+            color: #10b981;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 90px;
+            left: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(15, 23, 55, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 50%;
+            padding: 0;
+            color: #e8f4ff;
+            cursor: pointer;
+            z-index: 50;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: rgba(0, 212, 255, 0.6);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.3s ease;
+        }
+
+        .back-btn:hover svg {
+            transform: translateX(-3px);
+        }
+
+        .section-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: .35rem;
+        }
+
+        .search-bar {
+            width: 100%;
+            background: rgba(15, 23, 55, .8);
+            border: 1.5px solid var(--bg-glass-border);
+            border-radius: 12px;
+            padding: .75rem 1rem;
+            color: var(--text-primary);
+            font-size: .9rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            margin-bottom: 1.25rem;
+            transition: border-color .2s;
+        }
+
+        .search-bar:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, .15);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html"><span class="logo-icon">🌉</span><span class="logo-text">Thiran<span
+                        class="logo-accent">Mitra</span></span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="placement.html" class="nav-link">Placement</a></li>
+                <li><a href="company-prep.html" class="nav-link active">Company Prep</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register Free</a>
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <div class="section-badge">New Module</div>
+            <h1>🏢 Company Preparation Hub</h1>
+            <p>Pick a company category → explore companies → get job openings, interview rounds & YouTube prep videos
+            </p>
+        </div>
+    </div>
+
+    <div class="container" style="padding:2rem 0 5rem;">
+
+        <!-- CATEGORY SCREEN -->
+        <div id="catScreen">
+            <h2 class="section-heading" style="text-align:center;margin-bottom:.5rem;">Choose a Category</h2>
+            <p style="text-align:center;color:var(--text-muted);font-size:.875rem;margin-bottom:2rem;">Select the type
+                of company you're targeting</p>
+            <div class="cat-grid">
+                <div class="cat-card" onclick="openCategory('faang')"
+                    style="--grad:linear-gradient(135deg,#4f46e5,#7c3aed)">
+                    <span class="cat-emoji">🌍</span>
+                    <div class="cat-title">FAANG / MNC</div>
+                    <div class="cat-sub">Google, Amazon, Microsoft, Meta & more</div>
+                    <span class="cat-count">6 Companies</span>
+                </div>
+                <div class="cat-card" onclick="openCategory('it')"
+                    style="--grad:linear-gradient(135deg,#059669,#0ea5e9)">
+                    <span class="cat-emoji">💻</span>
+                    <div class="cat-title">IT Services</div>
+                    <div class="cat-sub">TCS, Infosys, Wipro, HCL, Capgemini</div>
+                    <span class="cat-count">8 Companies</span>
+                </div>
+                <div class="cat-card" onclick="openCategory('product')"
+                    style="--grad:linear-gradient(135deg,#f97316,#ef4444)">
+                    <span class="cat-emoji">🔵</span>
+                    <div class="cat-title">Indian Product</div>
+                    <div class="cat-sub">Zoho, Freshworks, Razorpay, CRED</div>
+                    <span class="cat-count">6 Companies</span>
+                </div>
+                <div class="cat-card" onclick="openCategory('startup')"
+                    style="--grad:linear-gradient(135deg,#f59e0b,#f97316)">
+                    <span class="cat-emoji">🚀</span>
+                    <div class="cat-title">Startups / Unicorns</div>
+                    <div class="cat-sub">Flipkart, Swiggy, Zomato, Paytm, Ola</div>
+                    <span class="cat-count">7 Companies</span>
+                </div>
+                <div class="cat-card" onclick="openCategory('consulting')"
+                    style="--grad:linear-gradient(135deg,#7c3aed,#ec4899)">
+                    <span class="cat-emoji">🟡</span>
+                    <div class="cat-title">Consulting</div>
+                    <div class="cat-sub">Accenture, Deloitte, IBM, EY, McKinsey</div>
+                    <span class="cat-count">5 Companies</span>
+                </div>
+                <div class="cat-card" onclick="openCategory('banking')"
+                    style="--grad:linear-gradient(135deg,#0ea5e9,#059669)">
+                    <span class="cat-emoji">🏦</span>
+                    <div class="cat-title">Banking & Finance</div>
+                    <div class="cat-sub">HDFC, SBI, ICICI, Axis, Kotak</div>
+                    <span class="cat-count">5 Companies</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPANY GRID SCREEN -->
+        <div id="companySection">
+            <button class="back-btn" onclick="goBack()" title="Go Back">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <h2 class="section-heading" id="catTitle">FAANG Companies</h2>
+            <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:1.25rem;" id="catDesc">Click any company to
+                see jobs, rounds & prep resources</p>
+            <input type="text" class="search-bar" id="coSearch" placeholder="🔍  Search company..."
+                oninput="searchCo()" />
+            <div class="co-grid" id="coGrid"></div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 ThiranMitra. Made with ❤️ for India.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const CATEGORIES = {
+            faang: {
+                title: '🌍 FAANG & Global MNC',
+                desc: 'Top global product companies — highest packages, toughest interviews',
+                companies: ['google', 'amazon', 'microsoft', 'meta', 'apple', 'netflix']
+            },
+            it: {
+                title: '💻 IT Services Companies',
+                desc: 'India\'s largest IT employers — great for freshers & experienced professionals',
+                companies: ['tcs', 'infosys', 'wipro', 'hcl', 'capgemini', 'cognizant', 'techmahindra', 'ltimindtree']
+            },
+            product: {
+                title: '🔵 Indian Product Companies',
+                desc: 'India-built SaaS & product companies with global impact',
+                companies: ['zoho', 'freshworks', 'razorpay', 'cred', 'browserstack', 'postman']
+            },
+            startup: {
+                title: '🚀 Startups & Unicorns',
+                desc: 'High-growth Indian startups offering exciting roles & equity',
+                companies: ['flipkart', 'swiggy', 'zomato', 'paytm', 'ola', 'meesho', 'groww']
+            },
+            consulting: {
+                title: '🟡 Consulting & Big4',
+                desc: 'Strategy, technology & management consulting firms',
+                companies: ['accenture', 'deloitte', 'ibm', 'ey', 'mckinsey']
+            },
+            banking: {
+                title: '🏦 Banking & Finance',
+                desc: 'India\'s top banks and financial institutions',
+                companies: ['hdfc', 'sbi', 'icici', 'axis', 'kotak']
+            }
+        };
+
+        const COMPANY_DATA = {
+            google: { name: 'Google', logo: 'https://logo.clearbit.com/google.com', tagline: 'Search, Cloud, AI', diff: 'hard', hq: 'Bengaluru, India', founded: 1998 },
+            amazon: { name: 'Amazon', logo: 'https://logo.clearbit.com/amazon.com', tagline: 'E-Commerce, AWS, AI', diff: 'hard', hq: 'Bengaluru, India', founded: 1994 },
+            microsoft: { name: 'Microsoft', logo: 'https://logo.clearbit.com/microsoft.com', tagline: 'Cloud, Office, Azure', diff: 'hard', hq: 'Hyderabad, India', founded: 1975 },
+            meta: { name: 'Meta', logo: 'https://logo.clearbit.com/meta.com', tagline: 'Social Media, VR', diff: 'hard', hq: 'Bengaluru, India', founded: 2004 },
+            apple: { name: 'Apple', logo: 'https://logo.clearbit.com/apple.com', tagline: 'Hardware, iOS, SaaS', diff: 'hard', hq: 'Bengaluru, India', founded: 1976 },
+            netflix: { name: 'Netflix', logo: 'https://logo.clearbit.com/netflix.com', tagline: 'Streaming, Big Data', diff: 'hard', hq: 'Bengaluru, India', founded: 1997 },
+            tcs: { name: 'TCS', logo: 'https://logo.clearbit.com/tcs.com', tagline: 'IT Services, Digital', diff: 'med', hq: 'Mumbai, India', founded: 1968 },
+            infosys: { name: 'Infosys', logo: 'https://logo.clearbit.com/infosys.com', tagline: 'IT Consulting, BPO', diff: 'easy', hq: 'Bengaluru, India', founded: 1981 },
+            wipro: { name: 'Wipro', logo: 'https://logo.clearbit.com/wipro.com', tagline: 'IT Services, Cloud', diff: 'easy', hq: 'Bengaluru, India', founded: 1945 },
+            hcl: { name: 'HCL Tech', logo: 'https://logo.clearbit.com/hcltech.com', tagline: 'IT, Engineering, R&D', diff: 'easy', hq: 'Noida, India', founded: 1976 },
+            capgemini: { name: 'Capgemini', logo: 'https://logo.clearbit.com/capgemini.com', tagline: 'IT, Cloud, Consulting', diff: 'med', hq: 'Mumbai, India', founded: 1967 },
+            cognizant: { name: 'Cognizant', logo: 'https://logo.clearbit.com/cognizant.com', tagline: 'Digital, IT Services', diff: 'med', hq: 'Chennai, India', founded: 1994 },
+            techmahindra: { name: 'Tech Mahindra', logo: 'https://logo.clearbit.com/techmahindra.com', tagline: 'Telecom, IT Services', diff: 'med', hq: 'Pune, India', founded: 1986 },
+            ltimindtree: { name: 'LTIMindtree', logo: 'https://logo.clearbit.com/ltimindtree.com', tagline: 'IT Services, Data', diff: 'med', hq: 'Mumbai, India', founded: 2023 },
+            zoho: { name: 'Zoho Corp', logo: 'https://logo.clearbit.com/zoho.com', tagline: 'SaaS, 50+ Products', diff: 'hard', hq: 'Chennai, India', founded: 1996 },
+            freshworks: { name: 'Freshworks', logo: 'https://logo.clearbit.com/freshworks.com', tagline: 'CRM, SaaS, Cloud', diff: 'hard', hq: 'Chennai, India', founded: 2010 },
+            razorpay: { name: 'Razorpay', logo: 'https://logo.clearbit.com/razorpay.com', tagline: 'Fintech, Payments', diff: 'hard', hq: 'Bengaluru, India', founded: 2014 },
+            cred: { name: 'CRED', logo: 'https://logo.clearbit.com/cred.club', tagline: 'Fintech, Lifestyle', diff: 'hard', hq: 'Bengaluru, India', founded: 2018 },
+            browserstack: { name: 'BrowserStack', logo: 'https://logo.clearbit.com/browserstack.com', tagline: 'Dev Tools, Testing', diff: 'hard', hq: 'Mumbai, India', founded: 2011 },
+            postman: { name: 'Postman', logo: 'https://logo.clearbit.com/postman.com', tagline: 'API Platform, DevTools', diff: 'hard', hq: 'San Francisco', founded: 2014 },
+            flipkart: { name: 'Flipkart', logo: 'https://logo.clearbit.com/flipkart.com', tagline: 'E-Commerce, Logistics', diff: 'hard', hq: 'Bengaluru, India', founded: 2007 },
+            swiggy: { name: 'Swiggy', logo: 'https://logo.clearbit.com/swiggy.com', tagline: 'Food Tech, Quick Commerce', diff: 'hard', hq: 'Bengaluru, India', founded: 2014 },
+            zomato: { name: 'Zomato', logo: 'https://logo.clearbit.com/zomato.com', tagline: 'Food Delivery, Hyperpure', diff: 'hard', hq: 'Gurgaon, India', founded: 2008 },
+            paytm: { name: 'Paytm', logo: 'https://logo.clearbit.com/paytm.com', tagline: 'Fintech, Payments, Banking', diff: 'med', hq: 'Noida, India', founded: 2010 },
+            ola: { name: 'Ola', logo: 'https://logo.clearbit.com/olacabs.com', tagline: 'Mobility, EVs, Fintech', diff: 'med', hq: 'Bengaluru, India', founded: 2010 },
+            meesho: { name: 'Meesho', logo: 'https://logo.clearbit.com/meesho.com', tagline: 'Social Commerce', diff: 'hard', hq: 'Bengaluru, India', founded: 2015 },
+            groww: { name: 'Groww', logo: 'https://logo.clearbit.com/groww.in', tagline: 'Fintech, Investments', diff: 'hard', hq: 'Bengaluru, India', founded: 2016 },
+            accenture: { name: 'Accenture', logo: 'https://logo.clearbit.com/accenture.com', tagline: 'Consulting, Technology', diff: 'med', hq: 'Mumbai, India', founded: 1989 },
+            deloitte: { name: 'Deloitte', logo: 'https://logo.clearbit.com/deloitte.com', tagline: 'Audit, Consulting, Tax', diff: 'med', hq: 'Mumbai, India', founded: 1845 },
+            ibm: { name: 'IBM', logo: 'https://logo.clearbit.com/ibm.com', tagline: 'AI, Cloud, Services', diff: 'med', hq: 'Bengaluru, India', founded: 1911 },
+            ey: { name: 'EY', logo: 'https://logo.clearbit.com/ey.com', tagline: 'Consulting, Assurance', diff: 'med', hq: 'Mumbai, India', founded: 1989 },
+            mckinsey: { name: 'McKinsey', logo: 'https://logo.clearbit.com/mckinsey.com', tagline: 'Strategy Consulting', diff: 'hard', hq: 'Mumbai, India', founded: 1926 },
+            hdfc: { name: 'HDFC Bank', logo: 'https://logo.clearbit.com/hdfcbank.com', tagline: 'Private Banking, Fintech', diff: 'med', hq: 'Mumbai, India', founded: 1994 },
+            sbi: { name: 'SBI', logo: 'https://logo.clearbit.com/sbi.co.in', tagline: 'Public Sector Bank', diff: 'med', hq: 'Mumbai, India', founded: 1806 },
+            icici: { name: 'ICICI Bank', logo: 'https://logo.clearbit.com/icicibank.com', tagline: 'Private Banking, Digital', diff: 'med', hq: 'Mumbai, India', founded: 1994 },
+            axis: { name: 'Axis Bank', logo: 'https://logo.clearbit.com/axisbank.com', tagline: 'Banking, Wealth Mgmt', diff: 'med', hq: 'Mumbai, India', founded: 1993 },
+            kotak: { name: 'Kotak Mahindra', logo: 'https://logo.clearbit.com/kotak.com', tagline: 'Banking, Insurance', diff: 'med', hq: 'Mumbai, India', founded: 1985 },
+        };
+
+        let currentCat = '', allCos = [];
+
+        function openCategory(cat) {
+            const catData = CATEGORIES[cat];
+            currentCat = cat;
+            allCos = catData.companies;
+            document.getElementById('catTitle').textContent = catData.title;
+            document.getElementById('catDesc').textContent = catData.desc;
+            document.getElementById('catScreen').style.display = 'none';
+            document.getElementById('companySection').style.display = 'block';
+            document.getElementById('coSearch').value = '';
+            renderCoGrid(allCos);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderCoGrid(ids) {
+            const grid = document.getElementById('coGrid'); grid.innerHTML = '';
+            ids.forEach(id => {
+                const c = COMPANY_DATA[id]; if (!c) return;
+                const diffClass = c.diff === 'hard' ? 'diff-hard' : c.diff === 'med' ? 'diff-med' : 'diff-easy';
+                const diffLabel = c.diff === 'hard' ? '🔥 Hard' : c.diff === 'med' ? '⚡ Medium' : '✅ Easy';
+                const div = document.createElement('div'); div.className = 'co-card';
+                div.innerHTML = `
+      <div style="width:64px;height:64px;background:white;border-radius:14px;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--bg-glass-border);padding:8px;box-shadow:0 8px 18px rgba(0,0,0,0.3);">
+        <img src="${c.logo}" alt="${c.name}" style="width:75%;height:75%;object-fit:contain;" onerror="this.onerror=null; this.src='https://www.google.com/s2/favicons?domain=' + '${c.logo}'.split('/').pop() + '&sz=128';"/>
+      </div>
+      <div class="co-name" style="display:flex;align-items:center;justify-content:center;gap:0.35rem;">${c.name} <svg viewBox="0 0 24 24" aria-label="Verified" role="img" fill="#1d9bf0" style="width: 1.15em; height: 1.15em; flex-shrink:0;"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.918-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.337 2.25c-.416-.165-.866-.25-1.336-.25-2.21 0-3.918 1.79-3.918 4 0 .495.084.965.238 1.4-1.273.65-2.148 2.02-2.148 3.6 0 1.46.78 2.73 1.942 3.332-.08.47-.122.95-.122 1.442 0 2.21 1.71 4 3.918 4 .58 0 1.14-.14 1.636-.39 1.05 1.13 2.52 1.83 4.124 1.83s3.074-.7 4.124-1.83c.496.25 1.056.39 1.636.39 2.21 0 3.918-1.79 3.918-4 0-.492-.042-.972-.122-1.442 1.16-.602 1.942-1.872 1.942-3.332zm-12.91 4.54l-3.3-3.3 1.5-1.5 1.8 1.8 4.3-4.3 1.5 1.5-5.8 5.8z" /></svg></div>
+      <div class="co-tagline">${c.tagline}</div>
+      <div class="co-tagline" style="margin-bottom:.5rem">📍 ${c.hq}</div>
+      <span class="co-diff ${diffClass}">${diffLabel}</span>`;
+                div.addEventListener('click', () => { window.location.href = `company-info.html?id=${id}`; });
+                grid.appendChild(div);
+            });
+        }
+
+        function searchCo() {
+            const q = document.getElementById('coSearch').value.toLowerCase();
+            const filtered = allCos.filter(id => COMPANY_DATA[id]?.name.toLowerCase().includes(q));
+            renderCoGrid(filtered);
+        }
+
+        function goBack() {
+            document.getElementById('companySection').style.display = 'none';
+            document.getElementById('catScreen').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    <script src="js/page-transition.js"></script>
+</body>
+
+</html>

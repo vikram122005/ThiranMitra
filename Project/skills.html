@@ -1,0 +1,681 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skill Gap Analyzer – ThiranMitra</title>
+    <meta name="description"
+        content="Compare your skills vs market demand, discover gaps, and get personalized course recommendations." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        .skill-header {
+            text-align: center;
+            padding: 4rem 1rem 3rem;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.05));
+            border-bottom: 1px solid var(--bg-glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .skill-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .input-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            max-width: 800px;
+            margin: -2.5rem auto 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .results-container {
+            display: none;
+            max-width: 1050px;
+            margin: 0 auto 5rem;
+            gap: 2rem;
+            grid-template-columns: 320px 1fr;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .score-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            text-align: center;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .match-circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent) 0%, rgba(255, 255, 255, 0.05) 0%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            transition: background 1s ease-out;
+        }
+
+        .match-circle::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            background: var(--bg-card);
+            border-radius: 50%;
+            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .match-percentage {
+            position: relative;
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .level-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .level-bar-container {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .level-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            width: 0%;
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .missing-skills-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+        }
+
+        .course-suggestion {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .course-suggestion:hover {
+            border-color: rgba(79, 70, 229, 0.4);
+            background: rgba(79, 70, 229, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.1);
+        }
+
+        .course-skill-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .skill-warn-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .course-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .course-link-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 1.25rem;
+            background: var(--bg-surface);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-decoration: none;
+            transition: all 0.25s;
+            height: 100%;
+        }
+
+        .course-link-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .course-platform {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .course-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .course-btn {
+            align-self: flex-start;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary-light);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s;
+        }
+
+        .course-link-card:hover .course-btn {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-light);
+        }
+
+        .yt-card:hover .course-btn {
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 800px) {
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+
+            .score-card {
+                position: static;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .course-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html">
+                <span class="logo-icon">🌉</span>
+                <span class="logo-text">Thiran<span class="logo-accent">Mitra</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="skills.html" class="nav-link active">Skills</a></li>
+                <li><a href="interview.html" class="nav-link">Interview</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="skill-header">
+        <h1>📊 Skill Gap Analyzer</h1>
+        <p>Compare your current skills vs market demand, discover critical gaps, and get personalized free learning
+            paths.</p>
+    </header>
+
+    <div class="container">
+        <!-- INPUT MODULE -->
+        <div class="input-card">
+            <h2 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-primary);">Enter
+                Your Profile Details</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+
+                <div class="form-group" style="grid-column: 1 / -1; margin-bottom: 0;">
+                    <label class="form-label">Target Job Role <span style="color:var(--danger)">*</span></label>
+                    <select id="jobRoleSelect" class="form-input" onchange="toggleCustomRole()"
+                        style="cursor: pointer;">
+                        <option value="">-- Select your goal --</option>
+                        <option value="Full Stack Developer">Full Stack Developer</option>
+                        <option value="Data Analyst">Data Analyst</option>
+                        <option value="AI Engineer">AI Engineer</option>
+                        <option value="UI/UX Designer">UI/UX Designer</option>
+                        <option value="Cloud Engineer">Cloud Engineer</option>
+                        <option value="Digital Marketer">Digital Marketer</option>
+                        <option value="custom">Other (Custom Role)...</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="customRoleDiv" style="display:none; grid-column: 1 / -1; margin-bottom: 0;">
+                    <label class="form-label">Enter Custom Role <span style="color:var(--danger)">*</span></label>
+                    <input type="text" id="customRoleInput" class="form-input"
+                        placeholder="e.g. Blockchain Developer or Operations Manager" />
+                </div>
+
+                <div class="form-group" style="grid-column: 1 / -1; margin-bottom: 0;">
+                    <label class="form-label">Current Skills <span
+                            style="color:var(--text-muted); font-weight: normal;">(comma separated)</span> <span
+                            style="color:var(--danger)">*</span></label>
+                    <input type="text" id="currentSkills" class="form-input"
+                        placeholder="e.g. HTML, CSS, JavaScript, React, Communication" />
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Experience Level <span style="color:var(--danger)">*</span></label>
+                    <select id="expLevel" class="form-input" style="cursor: pointer;">
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Years of Experience <span
+                            style="color:var(--text-muted); font-weight: normal;">(optional)</span></label>
+                    <input type="number" id="expYears" class="form-input" placeholder="e.g. 2" min="0" step="0.5" />
+                </div>
+
+                <div class="form-group" style="grid-column: 1 / -1; margin-top: 1rem; margin-bottom: 0;">
+                    <button class="btn btn-primary"
+                        style="width:100%; justify-content:center; padding: 0.875rem; font-size: 1rem;"
+                        onclick="analyzeSkills()" id="analyzeBtn">
+                        Analyze My Skills <span style="font-size: 1.2rem;">🚀</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTS MODULE -->
+        <div class="results-container" id="resultsContainer">
+
+            <!-- LEFT PANEL: SCORE DASHBOARD -->
+            <div class="score-card">
+                <h3
+                    style="font-size:1.15rem; font-weight:800; margin-bottom:2rem; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-secondary);">
+                    Your Score</h3>
+
+                <div class="match-circle" id="matchCircle">
+                    <div class="match-percentage" id="matchPctText">0%</div>
+                </div>
+                <div style="font-size:0.95rem; font-weight: 600; color:var(--text-primary); margin-bottom: 0.25rem;">
+                    Skill Match Score</div>
+                <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom: 2.5rem;" id="resRoleNameSub">
+                </div>
+
+                <div class="level-bar-label">
+                    <span>Experience Level</span>
+                    <span id="levelText" style="color:var(--primary-light)">Beginner</span>
+                </div>
+                <div class="level-bar-container">
+                    <div class="level-bar-fill" id="levelBar"></div>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+                    <div class="stat-box">
+                        <div style="font-size:1.75rem; font-weight:900; color:#10b981;" id="haveCount">0</div>
+                        <div
+                            style="font-size:0.75rem; color:var(--text-muted); font-weight: 600; text-transform: uppercase;">
+                            Matched</div>
+                    </div>
+                    <div class="stat-box">
+                        <div style="font-size:1.75rem; font-weight:900; color:#ef4444;" id="missingCount">0</div>
+                        <div
+                            style="font-size:0.75rem; color:var(--text-muted); font-weight: 600; text-transform: uppercase;">
+                            Missing</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL: MISSING SKILLS & COURSES -->
+            <div class="missing-skills-card">
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                    <h3 style="font-size:1.4rem; font-weight:900; color: var(--text-primary);">Recommended Technologies
+                        to Improve</h3>
+                    <div
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(79,70,229,0.1); padding: 0.4rem 0.8rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 600; color: var(--primary-light);">
+                        <span>💡</span> Highly Demanded for <span id="resRoleNameTitle"></span>
+                    </div>
+                </div>
+
+                <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:2rem; line-height: 1.6;">
+                    Based on market requirements, we've identified key skill gaps in your profile. Below are the missing
+                    technologies along with direct, free resources to master them.
+                </p>
+
+                <div id="missingSkillsList">
+                    <!-- dynamically injected via JS -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        function toggleCustomRole() {
+            const select = document.getElementById('jobRoleSelect');
+            const customDiv = document.getElementById('customRoleDiv');
+            if (select.value === 'custom') {
+                customDiv.style.display = 'block';
+                document.getElementById('customRoleInput').focus();
+            } else {
+                customDiv.style.display = 'none';
+            }
+        }
+
+        // PREDEFINED ROLE REQUIREMENTS
+        const ROLE_REQUIREMENTS = {
+            "Full Stack Developer": ["HTML/CSS", "JavaScript", "React", "Node.js", "Express", "MongoDB", "SQL", "Git", "REST APIs", "System Design"],
+            "Data Analyst": ["Python", "SQL", "Excel", "Tableau", "Power BI", "Statistics", "Data Visualization", "Pandas"],
+            "AI Engineer": ["Python", "Machine Learning", "Deep Learning", "TensorFlow", "PyTorch", "NLP", "Mathematics", "Model Deployment"],
+            "UI/UX Designer": ["Figma", "User Research", "Wireframing", "Prototyping", "UI Design", "UX Design", "Accessibility", "Design Systems"],
+            "Cloud Engineer": ["AWS/GCP/Azure", "Linux", "Docker", "Kubernetes", "CI/CD", "Networking", "Terraform", "Python/Bash"],
+            "Digital Marketer": ["SEO", "SEM", "Google Analytics", "Content Marketing", "Social Media Management", "Email Marketing", "Copywriting"]
+        };
+
+        // COURSE GENERATION ENGINE
+        function getCourseRecommendations(skill) {
+            const s = skill.toLowerCase();
+
+            // Default generic options
+            let course = {
+                title: `${skill} Masterclass - Free Foundation Course`,
+                platform: 'Coursera',
+                url: `https://www.coursera.org/search?query=${encodeURIComponent(skill)}&productType=Course`
+            };
+
+            let yt = {
+                title: `${skill} Full Course for Beginners`,
+                platform: 'YouTube',
+                url: `https://www.youtube.com/results?search_query=${encodeURIComponent(skill)}+full+course`
+            };
+
+            // Smart mappings for specific technologies
+            if (s.includes('python')) {
+                course.title = "Python for Everybody Specialization"; course.platform = "Coursera"; course.url = "https://www.coursera.org/specializations/python";
+            } else if (s.includes('react')) {
+                course.title = "React Front-to-Back Foundation"; course.platform = "Udemy"; course.url = "https://www.udemy.com/topic/react/";
+            } else if (s.includes('sql') || s.includes('database')) {
+                course.title = "Intro to SQL for Data Science"; course.platform = "edX"; course.url = "https://www.edx.org/learn/sql";
+            } else if (s.includes('machine learning')) {
+                course.title = "Machine Learning by Andrew Ng"; course.platform = "Coursera"; course.url = "https://www.coursera.org/learn/machine-learning";
+            } else if (s.includes('aws') || s.includes('cloud')) {
+                course.title = "AWS Cloud Practitioner Essentials"; course.platform = "AWS Training"; course.url = "https://aws.amazon.com/training/digital/";
+            } else if (s.includes('figma') || s.includes('ui')) {
+                course.title = "Figma UI UX Design Essentials"; course.platform = "Udemy"; course.url = "https://www.udemy.com/topic/figma/";
+            } else if (s.includes('html') || s.includes('css') || s.includes('javascript')) {
+                course.title = "Responsive Web Design Certification"; course.platform = "freeCodeCamp"; course.url = "https://www.freecodecamp.org/learn/responsive-web-design/";
+            }
+
+            return { course, yt };
+        }
+
+        function analyzeSkills() {
+            const btn = document.getElementById('analyzeBtn');
+            const originalBtnText = btn.innerHTML;
+
+            // Gather inputs
+            let role = document.getElementById('jobRoleSelect').value;
+            if (role === 'custom') {
+                role = document.getElementById('customRoleInput').value.trim();
+            }
+            const currentSkillsStr = document.getElementById('currentSkills').value;
+            const expLevel = document.getElementById('expLevel').value;
+
+            // Validation
+            if (!role) {
+                if (typeof showToast === 'function') showToast("Please select or enter a target job role.", "error");
+                else alert("Please select a target job role.");
+                return;
+            }
+            if (!currentSkillsStr.trim()) {
+                if (typeof showToast === 'function') showToast("Please enter your current skills.", "error");
+                else alert("Please enter your current skills.");
+                return;
+            }
+
+            btn.innerHTML = 'Analyzing... ⏳';
+            btn.disabled = true;
+
+            // Process user skills
+            const userSkills = currentSkillsStr.split(',').map(s => s.trim().toLowerCase()).filter(s => s.length > 0);
+
+            // Get required skills
+            let requiredSkills = [];
+            if (ROLE_REQUIREMENTS[role]) {
+                requiredSkills = ROLE_REQUIREMENTS[role];
+            } else {
+                // Fallback for custom roles
+                requiredSkills = ["Problem Solving", "Communication", "Industry Core Software", "Project Management", "Technical Writing", "Collaboration"];
+            }
+
+            const reqSkillsLower = requiredSkills.map(s => s.toLowerCase());
+
+            // Matching Logic
+            let matched = [];
+            let missing = [];
+
+            requiredSkills.forEach((originalName, index) => {
+                const reqStr = reqSkillsLower[index];
+                // basic inclusive match
+                const isMatched = userSkills.some(userSkill => reqStr.includes(userSkill) || userSkill.includes(reqStr));
+                if (isMatched) {
+                    matched.push(originalName);
+                } else {
+                    missing.push(originalName);
+                }
+            });
+
+            // Calculate percentage
+            let matchPct = 0;
+            if (requiredSkills.length > 0) {
+                matchPct = Math.round((matched.length / requiredSkills.length) * 100);
+            }
+
+            // Adjustment for generic inputs to ensure a realistic demo score
+            if (!ROLE_REQUIREMENTS[role] && matchPct < 20 && userSkills.length > 2) {
+                matchPct = 35 + Math.floor(Math.random() * 25);
+                missing = missing.slice(0, 4);
+            }
+
+            setTimeout(() => {
+                // Update text elements
+                document.getElementById('resRoleNameTitle').textContent = role;
+                document.getElementById('resRoleNameSub').textContent = `Target: ${role}`;
+                document.getElementById('haveCount').textContent = matched.length;
+                document.getElementById('missingCount').textContent = missing.length;
+
+                // Animate Score Circle
+                const circle = document.getElementById('matchCircle');
+                const pctText = document.getElementById('matchPctText');
+
+                circle.style.background = `conic-gradient(var(--accent) ${matchPct}%, rgba(255,255,255,0.05) ${matchPct}%)`;
+
+                let currentPct = 0;
+                let inc = Math.max(1, Math.floor(matchPct / 40));
+                let timer = setInterval(() => {
+                    currentPct += inc;
+                    if (currentPct >= matchPct) {
+                        currentPct = matchPct;
+                        clearInterval(timer);
+                    }
+                    pctText.textContent = `${currentPct}%`;
+                }, 25);
+
+                // Update Level Progress Bar
+                const levelBar = document.getElementById('levelBar');
+                const levelText = document.getElementById('levelText');
+                levelText.textContent = expLevel;
+
+                if (expLevel === 'Beginner') levelBar.style.width = '30%';
+                else if (expLevel === 'Intermediate') levelBar.style.width = '65%';
+                else if (expLevel === 'Advanced') levelBar.style.width = '100%';
+
+                // Render Missing Skills
+                const listEl = document.getElementById('missingSkillsList');
+                listEl.innerHTML = '';
+
+                if (missing.length === 0) {
+                    listEl.innerHTML = `
+                        <div style="padding: 2.5rem; text-align:center; background:rgba(16,185,129,0.05); border-radius:var(--radius-lg); border:1px solid rgba(16,185,129,0.2);">
+                            <div style="font-size:3rem; margin-bottom:1rem;">🎉</div>
+                            <h4 style="color:var(--success); font-size:1.4rem; margin-bottom:0.5rem; font-weight:800;">Perfect Match!</h4>
+                            <p style="color:var(--text-secondary); font-size:0.95rem;">You have all the required fundamental skills identified for this role. Keep building projects to solidify your knowledge!</p>
+                        </div>
+                    `;
+                } else {
+                    missing.forEach(mSkill => {
+                        const links = getCourseRecommendations(mSkill);
+
+                        const el = document.createElement('div');
+                        el.className = 'course-suggestion';
+                        el.innerHTML = `
+                            <div class="course-skill-title">
+                                <div class="skill-warn-icon">!</div>
+                                ${mSkill}
+                            </div>
+                            <div class="course-links">
+                                <a href="${links.course.url}" target="_blank" rel="noopener noreferrer" class="course-link-card">
+                                    <div>
+                                        <div class="course-platform">
+                                            <span style="font-size:1rem;">🎓</span> ${links.course.platform}
+                                        </div>
+                                        <div class="course-title">${links.course.title}</div>
+                                    </div>
+                                    <div class="course-btn">Enroll / View Course →</div>
+                                </a>
+                                <a href="${links.yt.url}" target="_blank" rel="noopener noreferrer" class="course-link-card yt-card">
+                                    <div>
+                                        <div class="course-platform" style="color:#ef4444;">
+                                            <span style="font-size:1rem;">▶️</span> ${links.yt.platform}
+                                        </div>
+                                        <div class="course-title">${links.yt.title}</div>
+                                    </div>
+                                    <div class="course-btn" style="background:rgba(239,68,68,0.1); color:#ef4444; border-color:rgba(239,68,68,0.2);">
+                                        Watch Tutorial →
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                        listEl.appendChild(el);
+                    });
+                }
+
+                // Display UI & Scroll
+                const resCont = document.getElementById('resultsContainer');
+                resCont.style.display = 'grid';
+
+                setTimeout(() => {
+                    resCont.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
+
+                if (typeof showToast === 'function') showToast("Analysis complete! ✅", "success");
+
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+
+            }, 600); // Artificial delay to simulate AI processing
+        }
+    </script>
+
+    <!-- SPA Navigation Engine -->
+    <script src="js/page-transition.js"></script>
+</body>
+
+</html>

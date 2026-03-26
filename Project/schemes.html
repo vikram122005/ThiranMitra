@@ -1,0 +1,501 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Government Schemes – ThiranMitra | PMKVY, Skill India, PMMY &amp; More</title>
+    <meta name="description"
+        content="All central and state government employment and skill development schemes in one place — PMKVY, Skill India, PMMY, Startup India, MGNREGA and more." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        .scheme-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scheme-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .scheme-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.875rem;
+        }
+
+        .scheme-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            line-height: 1.3;
+        }
+
+        .scheme-min {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-bottom: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .scheme-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            flex: 1;
+            margin-bottom: 1rem;
+        }
+
+        .scheme-benefit {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--accent);
+            padding: 0.5rem 0.75rem;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: var(--radius-md);
+            margin-bottom: 0.875rem;
+        }
+
+        .schemes-tabs {
+            display: flex;
+            gap: 0.625rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .scheme-tab {
+            padding: 0.5rem 1.125rem;
+            border-radius: var(--radius-full);
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: transparent;
+            border: 1.5px solid var(--bg-glass-border);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition-spring);
+            white-space: nowrap;
+        }
+
+        .scheme-tab.active {
+            background: var(--grad-primary);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .scheme-tab:hover:not(.active) {
+            border-color: rgba(79, 70, 229, 0.3);
+            color: var(--primary-light);
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.875rem;
+            padding: 1rem;
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border-left: 3px solid var(--primary);
+            margin-bottom: 0.75rem;
+            transition: background 0.2s;
+        }
+
+        .alert-item:hover {
+            background: var(--bg-card2);
+        }
+
+        .alert-new {
+            border-left-color: var(--accent);
+        }
+
+        .alert-urgent {
+            border-left-color: var(--danger);
+        }
+
+        .eligibility-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.875rem;
+            padding: 0.75rem;
+            background: var(--bg-surface);
+            border-radius: var(--radius-md);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html"><span class="logo-icon">🌉</span><span class="logo-text">Thiran<span
+                        class="logo-accent">Mitra</span></span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="schemes.html" class="nav-link active">Schemes</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register Free</a>
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <div class="section-badge">🇮🇳 Central + State Government</div>
+            <h1>🏛️ Government Schemes Hub</h1>
+            <p>All employment, skill development, and entrepreneurship schemes in one place — find what you qualify for
+            </p>
+        </div>
+    </div>
+
+    <div class="container" style="padding:2rem 0 4rem;">
+
+        <!-- ELIGIBILITY CHECKER -->
+        <div class="card"
+            style="margin-bottom:2rem;background:linear-gradient(135deg,rgba(79,70,229,0.08),rgba(124,58,237,0.04));border-color:rgba(79,70,229,0.2);">
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;">
+                <span style="font-size:1.75rem;">🎯</span>
+                <div>
+                    <h3 style="font-size:1rem;font-weight:800;color:var(--text-primary);margin-bottom:0.25rem;">Quick
+                        Eligibility Checker</h3>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">Answer 2 questions to find schemes you qualify
+                        for</p>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:1rem;align-items:flex-end;flex-wrap:wrap;">
+                <div class="form-group" style="margin-bottom:0;">
+                    <label class="form-label">Category</label>
+                    <select class="form-input form-select" id="eligCat">
+                        <option>Youth (18-35 yrs)</option>
+                        <option>Women</option>
+                        <option>SC/ST</option>
+                        <option>Rural / BPL</option>
+                        <option>Differently Abled</option>
+                        <option>Ex-Serviceman</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label class="form-label">I'm Looking For</label>
+                    <select class="form-input form-select" id="eligGoal">
+                        <option>Skill Training / Certification</option>
+                        <option>Employment / Job</option>
+                        <option>Business Loan</option>
+                        <option>Higher Education Support</option>
+                        <option>Self-Employment Support</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="checkEligibility()">Find Schemes →</button>
+            </div>
+            <div id="eligResults" style="margin-top:1.25rem;display:none;"></div>
+        </div>
+
+        <!-- TABS -->
+        <div class="schemes-tabs">
+            <button class="scheme-tab active" onclick="filterSchemes('all',this)">🌐 All Schemes</button>
+            <button class="scheme-tab" onclick="filterSchemes('skill',this)">🎓 Skill Development</button>
+            <button class="scheme-tab" onclick="filterSchemes('employment',this)">💼 Employment</button>
+            <button class="scheme-tab" onclick="filterSchemes('loan',this)">💰 Business Loans</button>
+            <button class="scheme-tab" onclick="filterSchemes('women',this)">👩 Women</button>
+            <button class="scheme-tab" onclick="filterSchemes('rural',this)">🌾 Rural</button>
+            <button class="scheme-tab" onclick="filterSchemes('student',this)">📚 Students</button>
+            <button class="scheme-tab" onclick="showAlerts()">🔔 Job Alerts</button>
+        </div>
+
+        <!-- SCHEMES GRID -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2rem;" id="schemesGrid">
+        </div>
+
+        <!-- JOB ALERTS -->
+        <div id="alertsPanel" style="display:none;">
+            <div
+                style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.75rem;">
+                <h3 style="font-size:1rem;font-weight:800;color:var(--text-primary);">🔔 Latest Government Job Alerts
+                </h3>
+                <button class="btn btn-outline btn-sm"
+                    onclick="showToast('Subscribed to daily job alerts!','success')">🔔 Subscribe to Alerts</button>
+            </div>
+            <div id="alertsList"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="nav-logo" href="index.html" style="display:inline-flex;margin-bottom:1rem;">
+                        <span class="logo-icon">🌉</span>
+                        <span class="logo-text">Thiran<span class="logo-accent">Mitra</span></span>
+                    </a>
+                    <!-- Branding description removed as per user request -->
+                    <div class="footer-social">
+                        <a href="#" class="social-btn"
+                            onclick="showToast('Facebook coming soon!','info');return false;">📘 Facebook</a>
+                        <a href="#" class="social-btn"
+                            onclick="showToast('Twitter coming soon!','info');return false;">🐦 Twitter</a>
+                        <a href="#" class="social-btn"
+                            onclick="showToast('LinkedIn coming soon!','info');return false;">💼 LinkedIn</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="jobs.html">Job Search</a></li>
+                        <li><a href="resume.html">Resume Analyzer</a></li>
+                        <li><a href="skills.html">Skill Gap Tool</a></li>
+                        <li><a href="interview.html">Interview Training</a></li>
+                        <li><a href="placement.html">Placement Prep</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="schemes.html">Gov Schemes</a></li>
+                        <li><a href="rural.html">Rural Mode</a></li>
+                        <li><a href="women.html">Women Employment</a></li>
+                        <li><a href="entrepreneurship.html">Entrepreneurship</a></li>
+                        <li><a href="dashboard.html">Career AI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="privacy.html">Privacy
+                                Policy</a></li>
+                        <li><a href="terms.html">Terms of
+                                Service</a></li>
+                        <li><a href="#"
+                                onclick="showToast('Use Report button on job cards to report scam.','info');return false;">Report
+                                Scam</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 ThiranMitra. Made with ❤️ for India. &nbsp;|&nbsp; Inspired by NCS, Skill India, PMKVY</p>
+                <p>🇮🇳 Empowering Every Indian, Every District, Every Dream</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CHATBOT -->
+    <div class="chatbot-widget">
+        <div class="chatbot-window" id="chatbotWindow" style="display:none;">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">🤖</div>
+                <div><strong>ThiranMitraBot</strong><span class="chatbot-status">● Online</span></div>
+                <button class="chatbot-close" onclick="toggleChatbot()">✕</button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="chat-msg bot"><span>I can help you find government schemes you qualify for! Tell me your
+                        state and category (General/OBC/SC/ST) 🏛️</span></div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Ask about schemes..."
+                    onkeypress="handleChatKey(event)" />
+                <button onclick="sendChat()" class="chat-send-btn">Send</button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" onclick="toggleChatbot()" id="chatToggleBtn">💬</button>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // ── Verified official government scheme URLs (fallback if backend is down) ──
+        const FALLBACK_SCHEMES = [
+            { id: 1, cat: 'skill', icon: '🎓', name: 'PMKVY 4.0', full: 'Pradhan Mantri Kaushal Vikas Yojana', ministry: 'Ministry of Skill Development', desc: 'Free skill training in 300+ trades with job placement support across India.', benefit: 'Free certificate + ₹8,000 stipend', tags: ['15–45 yrs, 10th pass'], link: 'https://skillindiadigital.gov.in' },
+            { id: 2, cat: 'loan', icon: '💰', name: 'Mudra Loan (PMMY)', full: 'Pradhan Mantri Mudra Yojana', ministry: 'Ministry of Finance', desc: 'Collateral-free micro loans up to ₹10 lakh for small businesses.', benefit: 'Loan ₹50K–₹10L at 7–9% interest', tags: ['Any entrepreneur'], link: 'https://www.mudra.org.in' },
+            { id: 3, cat: 'startup', icon: '🚀', name: 'Startup India', full: 'Startup India Initiative', ministry: 'DPIIT, Govt of India', desc: 'Tax holiday, fast-track registration & ₹10,000 Cr Fund of Funds for startups.', benefit: '3 yr tax holiday + seed funding', tags: ['DPIIT-registered startup'], link: 'https://www.startupindia.gov.in' },
+            { id: 4, cat: 'skill', icon: '🎓', name: 'Skill India Mission', full: 'National Skill Development Mission', ministry: 'NSDC', desc: 'Trains 40 crore Indians across 700+ partners in 30+ sectors.', benefit: 'Free & subsidised training', tags: ['Any Indian citizen'], link: 'https://www.skillindiadigital.gov.in' },
+            { id: 5, cat: 'women', icon: '👩‍💼', name: 'Stand Up India', full: 'Stand Up India Scheme', ministry: 'Ministry of Finance', desc: 'Loans for SC/ST and women entrepreneurs for setting up new enterprises.', benefit: 'Loan ₹10L–₹1Cr at low interest', tags: ['SC/ST or Women entrepreneur'], link: 'https://www.standupmitra.in' },
+            { id: 6, cat: 'skill', icon: '💼', name: 'NCS Portal', full: 'National Career Service Portal', ministry: 'Ministry of Labour & Employment', desc: 'Connects job seekers with employers, career centres, and PES offices across India.', benefit: 'Free job placement + career guidance', tags: ['Any job seeker'], link: 'https://www.ncs.gov.in' },
+            { id: 7, cat: 'loan', icon: '💰', name: 'PM SVANidhi', full: 'PM Street Vendor\'s AtmaNirbhar Nidhi', ministry: 'Ministry of Housing & Urban Affairs', desc: 'Working capital loans for street vendors to restart businesses.', benefit: '₹10,000–₹50,000 collateral-free loan', tags: ['Street vendors, hawkers'], link: 'https://pmsvanidhi.mohua.gov.in' },
+            { id: 8, cat: 'rural', icon: '🌾', name: 'NREGA (MGNREGS)', full: 'Mahatma Gandhi NREGS', ministry: 'Ministry of Rural Development', desc: '100 days guaranteed wage employment per year for rural households.', benefit: 'Min wage ₹255–₹332/day guaranteed', tags: ['Rural household adults'], link: 'https://nrega.nic.in' },
+            { id: 9, cat: 'women', icon: '👩‍💼', name: 'DAY-NRLM', full: 'Deendayal Antyodaya Yojana – NRLM', ministry: 'Ministry of Rural Development', desc: 'Self Help Groups for rural women with skill training and micro-credit support.', benefit: 'Subsidised credit + skill training', tags: ['Rural women, BPL families'], link: 'https://aajeevika.gov.in' },
+            { id: 10, cat: 'skill', icon: '🎓', name: 'PM Vishwakarma', full: 'PM Vishwakarma Yojana', ministry: 'Ministry of MSME', desc: 'Recognition, training and credit support for 18 traditional craftwork trades.', benefit: '₹15K skill support + ₹3L credit', tags: ['Artisans in 18 trades'], link: 'https://pmvishwakarma.gov.in' },
+            { id: 11, cat: 'student', icon: '📚', name: 'National Scholarship', full: 'National Scholarship Portal', ministry: 'Ministry of Education', desc: 'Central & state scholarship schemes for students at school and higher education.', benefit: '₹500–₹20,000/month scholarship', tags: ['Students all categories'], link: 'https://scholarships.gov.in' },
+            { id: 12, cat: 'employment', icon: '💼', name: 'PMAY Urban Housing', full: 'Pradhan Mantri Awas Yojana (Urban)', ministry: 'Ministry of Housing & Urban Affairs', desc: 'Affordable housing for urban poor through subsidy on home loans.', benefit: 'Up to ₹2.67L interest subsidy', tags: ['EWS/LIG/MIG families'], link: 'https://pmaymis.gov.in' },
+            { id: 13, cat: 'loan', icon: '💰', name: 'CGTMSE Scheme', full: 'Credit Guarantee Trust for Micro & Small Enterprises', ministry: 'Ministry of MSME', desc: 'Credit guarantee for collateral-free loans to micro and small enterprises.', benefit: 'Up to ₹5 Cr collateral-free loan', tags: ['MSME units'], link: 'https://www.cgtmse.in' },
+            { id: 14, cat: 'rural', icon: '🌾', name: 'PM Fasal Bima Yojana', full: 'PM Crop Insurance Scheme', ministry: 'Ministry of Agriculture', desc: 'Crop insurance scheme providing financial support to farmers suffering crop failure.', benefit: 'Full crop insurance at minimal premium', tags: ['Farmers across India'], link: 'https://pmfby.gov.in' },
+            { id: 15, cat: 'women', icon: '👩‍💼', name: 'Mahila E-Haat', full: 'Mahila e-Haat Scheme', ministry: 'Ministry of Women & Child Dev.', desc: 'Online marketing platform for women entrepreneurs to showcase and sell products.', benefit: 'Free digital marketplace access', tags: ['Women entrepreneurs'], link: 'https://mahilaehaat-rmk.gov.in' },
+        ];
+
+        let SCHEMES = [];
+
+        async function initSchemes() {
+            try {
+                if (typeof showLoadingOverlay === 'function') showLoadingOverlay('Loading schemes...');
+                const res = await SchemesAPI.list();
+                SCHEMES = res.schemes.map(s => {
+                    let icon = '🏛️';
+                    if (s.category === 'skill') icon = '🎓';
+                    else if (s.category === 'loan') icon = '💰';
+                    else if (s.category === 'women') icon = '👩‍💼';
+                    else if (s.category === 'rural') icon = '🌾';
+                    else if (s.category === 'startup') icon = '🚀';
+                    else if (s.category === 'employment') icon = '💼';
+                    else if (s.category === 'student') icon = '📚';
+
+                    // ── Ensure the URL is a valid full URL (not blank/fake) ──
+                    let link = s.apply_url || '';
+                    if (!link || link === '#' || !link.startsWith('http')) {
+                        // Find matching fallback URL
+                        const fb = FALLBACK_SCHEMES.find(f => f.name === s.name);
+                        link = fb ? fb.link : '#';
+                    }
+
+                    return {
+                        id: s.id,
+                        cat: s.category,
+                        icon: icon,
+                        name: s.name,
+                        full: s.name,
+                        ministry: s.ministry || 'Government of India',
+                        desc: s.description,
+                        benefit: s.benefit,
+                        tags: s.eligibility ? [s.eligibility] : ['All'],
+                        link: link
+                    };
+                });
+                renderSchemes('all');
+            } catch (err) {
+                console.warn('Backend unavailable — loading offline scheme data.');
+                SCHEMES = FALLBACK_SCHEMES;
+                renderSchemes('all');
+            } finally {
+                if (typeof hideLoadingOverlay === 'function') hideLoadingOverlay();
+            }
+        }
+
+        const GOV_ALERTS = [
+            { cat: 'URGENT', type: 'alert-urgent', icon: '⚡', title: 'SSC CGL 2026 Notification Released', body: 'Total vacancies: 17,727. Last date to apply: 31 March 2026. Age: 18–32 years. Qualification: Graduate.', posted: '2 days ago', link: 'https://ssc.nic.in' },
+            { cat: 'NEW', type: 'alert-new', icon: '🆕', title: 'IBPS PO 2026 Exam Notification', body: 'Bank PO vacancies in 11 public sector banks. Vacancies: 4,455. Online applications open now.', posted: '3 days ago', link: '#' },
+            { cat: 'HOT', type: 'alert-new', icon: '🔥', title: 'Indian Army Agniveer Recruitment 2026', body: 'Technical, General Duty, and Clerk/SKT trades. No written exam for some categories. Age: 17.5–23 yrs.', posted: '5 days ago', link: '#' },
+            { cat: 'STATE', type: '', icon: '📋', title: 'TNPSC Group 4 2026 Vacancies', body: '4,000+ vacancies for accounts, assistant, and junior officer posts in Tamil Nadu. Notification released.', posted: '1 week ago', link: '#' },
+            { cat: 'SKILL', type: '', icon: '🎓', title: 'PMKVY 4.0 New Batch Enrollment Open', body: 'Free skill training in 300+ job roles. Stipend + certificate provided. Apply via Skill India Portal.', posted: '1 week ago', link: 'https://skillindia.gov.in' },
+            { cat: 'BANK', type: '', icon: '🏦', title: 'RRB PO / Clerk 2026 Notification Imminent', body: 'Regional Rural Banks expected to announce vacancies for 6,000+ posts soon. Prepare now!', posted: '2 weeks ago', link: '#' },
+        ];
+
+        function renderSchemes(filter) {
+            const grid = document.getElementById('schemesGrid');
+            grid.innerHTML = '';
+            const toShow = filter === 'all' ? SCHEMES : SCHEMES.filter(s => s.cat === filter);
+            if (!toShow.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text-muted);">No schemes in this category. <button class="btn btn-outline btn-sm" onclick="filterSchemes(\'all\', document.querySelector(\'.scheme-tab\'))">Show All</button></div>'; return; }
+            toShow.forEach(s => {
+                const card = document.createElement('a');
+                card.href = s.link;
+                card.target = s.link !== '#' ? '_blank' : '_self';
+                card.rel = 'noopener';
+                card.className = 'scheme-card';
+                card.innerHTML = `
+        <div class="scheme-icon">${s.icon}</div>
+        <div class="scheme-name">${s.name}</div>
+        <div class="scheme-min">${s.full} · ${s.ministry}</div>
+        <div class="scheme-desc">${s.desc}</div>
+        <div class="scheme-benefit">✅ ${s.benefit}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:1rem;">${s.tags.map(t => `<span class="badge badge-primary" style="font-size:0.65rem;">${t}</span>`).join('')}</div>
+        <div style="margin-top:auto;"><button class="btn btn-outline btn-sm" style="width:100%;justify-content:center;" onclick="event.preventDefault();event.stopPropagation();window.open('${s.link}','_blank')">Learn More & Apply →</button></div>
+      `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterSchemes(cat, btn) {
+            document.querySelectorAll('.scheme-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('schemesGrid').style.display = 'grid';
+            document.getElementById('alertsPanel').style.display = 'none';
+            renderSchemes(cat);
+        }
+
+        function showAlerts() {
+            document.querySelectorAll('.scheme-tab').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('schemesGrid').style.display = 'none';
+            document.getElementById('alertsPanel').style.display = 'block';
+
+            const list = document.getElementById('alertsList');
+            if (list.children.length) return;
+            GOV_ALERTS.forEach(a => {
+                const div = document.createElement('div');
+                div.className = `alert-item ${a.type}`;
+                div.innerHTML = `
+        <span style="font-size:1.4rem;flex-shrink:0;">${a.icon}</span>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.25rem;">
+            <span class="badge ${a.cat === 'URGENT' ? 'badge-danger' : a.cat === 'NEW' ? 'badge-success' : 'badge-primary'}" style="font-size:0.65rem;">${a.cat}</span>
+            <strong style="font-size:0.875rem;color:var(--text-primary);">${a.title}</strong>
+          </div>
+          <p style="font-size:0.8rem;color:var(--text-secondary);line-height:1.6;margin-bottom:0.375rem;">${a.body}</p>
+          <span style="font-size:0.7rem;color:var(--text-muted);">🕐 ${a.posted}</span>
+        </div>
+        <a href="${a.link}" target="_blank" class="btn btn-outline btn-sm" style="flex-shrink:0;">Apply →</a>
+      `;
+                list.appendChild(div);
+            });
+        }
+
+        function checkEligibility() {
+            const cat = document.getElementById('eligCat').value;
+            const goal = document.getElementById('eligGoal').value;
+            showLoadingOverlay('Checking your eligibility...');
+            setTimeout(() => {
+                hideLoadingOverlay();
+                const matches = SCHEMES.filter(s => {
+                    if (goal.includes('Skill') && s.cat === 'skill') return true;
+                    if (goal.includes('Business') && s.cat === 'loan') return true;
+                    if (goal.includes('Employment') && s.cat === 'employment') return true;
+                    if (cat.includes('Women') && s.cat === 'women') return true;
+                    if (cat.includes('Rural') && s.cat === 'rural') return true;
+                    return false;
+                }).slice(0, 4);
+
+                const res = document.getElementById('eligResults');
+                res.style.display = 'block';
+                res.innerHTML = `
+        <div style="border-top:1px solid var(--bg-glass-border);padding-top:1rem;margin-top:0.25rem;">
+          <div style="font-size:0.82rem;font-weight:700;color:var(--accent);margin-bottom:0.75rem;">✅ You qualify for ${matches.length} schemes:</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+            ${matches.map(s => `<span class="badge badge-primary" style="cursor:pointer;" onclick="filterSchemes('${s.cat}',document.querySelectorAll('.scheme-tab')[1])">${s.icon} ${s.name}</span>`).join('')}
+          </div>
+        </div>
+      `;
+                showToast(`Found ${matches.length} schemes for you!`, 'success');
+            }, 1200);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => initSchemes());
+    </script>
+
+    <!-- SPA Navigation Engine -->
+    <script src="js/page-transition.js"></script>
+</body>
+
+</html>

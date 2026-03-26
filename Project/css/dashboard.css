@@ -1,0 +1,673 @@
+/* ============================================
+   DASHBOARD PAGE STYLES
+   ============================================ */
+
+/* ── Lock page scroll so only content area scrolls ── */
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* ── Scrollable content wrapper ── */
+.dash-scroll-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ── Main layout grid below header ── */
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    flex: 1;
+    height: calc(100vh - 70px);
+    margin-top: 70px;
+    overflow: hidden;
+}
+
+/* DASHBOARD SIDEBAR */
+.dash-sidebar {
+    background: var(--bg-card);
+    border-right: 1px solid var(--bg-glass-border);
+    padding: 1.5rem 0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Custom scrollbar for sidebar */
+.dash-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.dash-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dash-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(79, 70, 229, 0.35);
+    border-radius: 4px;
+}
+
+.dash-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(79, 70, 229, 0.6);
+}
+
+.dash-user-card {
+    padding: 0 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--bg-glass-border);
+    text-align: center;
+}
+
+.user-avatar-lg {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--grad-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 auto 0.75rem;
+    box-shadow: var(--shadow-glow);
+}
+
+.user-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+.user-subtitle {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.profile-completion {
+    margin-top: 0.875rem;
+}
+
+.profile-completion-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.375rem;
+}
+
+.dash-nav {
+    padding: 1rem 0.75rem;
+    flex: 1;
+}
+
+.dash-nav-group {
+    margin-bottom: 1.25rem;
+}
+
+.dash-nav-group-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dash-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition-base);
+    margin-bottom: 0.25rem;
+    text-decoration: none;
+}
+
+.dash-nav-item:hover {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+}
+
+.dash-nav-item.active {
+    background: rgba(79, 70, 229, 0.12);
+    color: var(--primary-light);
+    font-weight: 600;
+}
+
+.dash-nav-icon {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+}
+
+.nav-count {
+    margin-left: auto;
+    background: var(--primary);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: var(--radius-full);
+}
+
+/* DASHBOARD MAIN — only this region scrolls */
+.dash-main {
+    padding: 2rem;
+    background: var(--bg-dark);
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    /* Scroll shadow: subtle top shadow appears when content is below top */
+    background-image:
+        /* shadow at top when scrolled */
+        linear-gradient(rgba(0, 0, 0, 0.5) 0%, transparent 40px),
+        /* fade mask for smooth start */
+        linear-gradient(to bottom, var(--bg-dark) 0%, var(--bg-dark) 100%);
+    background-attachment: local, scroll;
+}
+
+/* Custom thin modern scrollbar for main content */
+.dash-main::-webkit-scrollbar {
+    width: 5px;
+}
+
+.dash-main::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.dash-main::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #4f46e5, #7c3aed);
+    border-radius: 3px;
+    transition: background 0.2s;
+}
+
+.dash-main::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #6366f1, #c084fc);
+}
+
+/* Content fade-in animation when dashboard loads */
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dash-main>* {
+    animation: contentFadeIn 0.55s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.dash-main>*:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.dash-main>*:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.dash-main>*:nth-child(3) {
+    animation-delay: 0.25s;
+}
+
+.dash-main>*:nth-child(4) {
+    animation-delay: 0.35s;
+}
+
+.dash-main>*:nth-child(5) {
+    animation-delay: 0.45s;
+}
+
+.dash-main-header {
+    margin-bottom: 1.75rem;
+}
+
+.dash-main-header h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.dash-main-header p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* SCORE CARDS ROW */
+.scores-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.score-card {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: var(--radius-xl);
+    padding: 1.25rem;
+    text-align: center;
+    transition: var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.score-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.score-card.resume-card::before {
+    background: var(--grad-primary);
+}
+
+.score-card.skill-card::before {
+    background: var(--grad-accent);
+}
+
+.score-card.placement-card::before {
+    background: var(--grad-secondary);
+}
+
+.score-card.interview-card::before {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.score-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.score-card-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.score-percentage {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.score-card-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.625rem;
+}
+
+.score-trend {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* DASHBOARD PANELS */
+.dash-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.dash-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+}
+
+.dash-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.dash-panel-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.dash-panel-link {
+    font-size: 0.8rem;
+    color: var(--primary-light);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-base);
+}
+
+.dash-panel-link:hover {
+    opacity: 0.8;
+}
+
+/* RECOMMENDED JOBS */
+.mini-job-card {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.875rem;
+    background: var(--bg-card2);
+    border-radius: var(--radius-md);
+    margin-bottom: 0.75rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: var(--transition-base);
+    text-decoration: none;
+}
+
+.mini-job-card:hover {
+    border-color: rgba(79, 70, 229, 0.3);
+    background: var(--bg-surface);
+}
+
+.mini-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.mini-job-info {
+    flex: 1;
+}
+
+.mini-job-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.15rem;
+}
+
+.mini-job-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.match-pct {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* SKILL GAP WIDGET */
+.skill-gap-item {
+    margin-bottom: 1rem;
+}
+
+.skill-gap-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.375rem;
+}
+
+.skill-gap-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.skill-gap-score {
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.skill-gap-score.low {
+    color: var(--danger);
+}
+
+.skill-gap-score.mid {
+    color: var(--warning);
+}
+
+.skill-gap-score.high {
+    color: var(--accent);
+}
+
+/* CAREER TIMELINE */
+.career-timeline {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.career-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--bg-glass-border);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 1.25rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 0.3rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.5);
+}
+
+.timeline-item.done::before {
+    background: var(--accent);
+}
+
+.timeline-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.15rem;
+}
+
+.timeline-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* NOTIFICATIONS BELL */
+.notif-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-card2);
+    margin-bottom: 0.625rem;
+    border: 1px solid transparent;
+    transition: var(--transition-base);
+}
+
+.notif-item.unread {
+    border-color: rgba(79, 70, 229, 0.2);
+    background: rgba(79, 70, 229, 0.05);
+}
+
+.notif-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.notif-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.notif-time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+/* AI CAREER PREDICTION */
+.career-prediction-card {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(124, 58, 237, 0.05));
+    border: 1px solid rgba(79, 70, 229, 0.25);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.career-prediction-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.prediction-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.prediction-item {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    text-align: center;
+    transition: var(--transition-base);
+}
+
+.prediction-item:hover {
+    border-color: rgba(79, 70, 229, 0.3);
+    transform: translateY(-2px);
+}
+
+.prediction-rank {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.prediction-career {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.375rem;
+}
+
+.prediction-probability {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--primary-light);
+}
+
+@media (max-width: 1200px) {
+    .scores-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .prediction-items {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+        height: calc(100vh - 70px);
+    }
+
+    .dash-sidebar {
+        display: none;
+    }
+
+    .dash-main {
+        padding: 1.25rem;
+        height: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .dash-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .scores-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .scores-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Sidebar show/hide on mobile ── */
+.dash-sidebar.show {
+    display: flex;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 260px;
+    height: calc(100vh - 70px);
+    z-index: 300;
+    box-shadow: 4px 0 30px rgba(0, 0, 0, 0.6);
+    animation: sidebarSlideIn 0.25s ease;
+}
+
+@keyframes sidebarSlideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

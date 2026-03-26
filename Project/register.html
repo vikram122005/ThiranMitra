@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register – ThiranMitra | India's AI Employment Portal</title>
+    <meta name="description"
+        content="Create your free ThiranMitra account. Join India's national AI employment ecosystem for job matching, skill analysis and career growth." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="css/login3d.css" />
+    <style>
+        /* Background container for hero image */
+        .reg-bg-container {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            background: #020918;
+        }
+
+        .reg-bg-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.45;
+            filter: blur(4px) brightness(0.6);
+            transform: scale(1.05);
+            animation: moveBg 60s linear infinite alternate;
+        }
+
+        @keyframes moveBg {
+            0% {
+                transform: scale(1.05) translate(0, 0);
+            }
+
+            100% {
+                transform: scale(1.15) translate(-2%, -2%);
+            }
+        }
+
+        .reg-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(2, 9, 24, 0.4) 50%, #020918 100%);
+            z-index: 1;
+        }
+
+        /* Stage badge overlay */
+        .reg-stage-badge {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            border-radius: 999px;
+            padding: 0.4rem 1.25rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: #ef4444;
+            text-shadow: 0 0 12px #ef4444;
+            backdrop-filter: blur(8px);
+            transition: color 0.6s, border-color 0.6s, text-shadow 0.6s;
+            pointer-events: none;
+        }
+
+        .reg-stage-badge.activating {
+            color: #f97316;
+            border-color: rgba(249, 115, 22, 0.4);
+            text-shadow: 0 0 12px #f97316;
+        }
+
+        /* Skill icons bar (lower right corner) */
+        .reg-skill-bar {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 20;
+            display: flex;
+            gap: 0.5rem;
+            pointer-events: none;
+        }
+
+        .reg-skill-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            opacity: 0.2;
+            transition: opacity 0.5s, border-color 0.5s;
+        }
+
+        .reg-skill-icon.active {
+            opacity: 1;
+            border-color: rgba(249, 115, 22, 0.5);
+            background: rgba(249, 115, 22, 0.08);
+        }
+    </style>
+    <style>
+        /* ── Register-specific overrides ─────────────────────── */
+        html,
+        body {
+            overflow-y: auto !important;
+        }
+
+        .reg-wrapper {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 1.5rem 1rem 3rem;
+            gap: 0.625rem;
+        }
+
+        /* ── Registration Card ──────────────────────────────── */
+        .reg-card {
+            width: 100%;
+            max-width: 780px;
+            background: rgba(0, 18, 42, 0.82);
+            backdrop-filter: blur(32px) saturate(180%);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(0, 212, 255, 0.38);
+            border-radius: 14px;
+            padding: 0;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.75), 0 0 120px rgba(0, 212, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+            animation: cardIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .reg-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.07) 0%, transparent 50%, rgba(255, 153, 51, 0.04) 100%);
+            pointer-events: none;
+        }
+
+        /* Animated top border */
+        .reg-card-top-bar {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff9933, #ffffff, #138808, #00d4ff, transparent);
+            background-size: 200% 100%;
+            animation: tricolorBar 3s linear infinite;
+        }
+
+        @keyframes tricolorBar {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .reg-card-body {
+            padding: 2rem 2.25rem;
+        }
+
+        /* ── Step Indicator ─────────────────────────────────── */
+        .step-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 2rem;
+        }
+
+        .step-node {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            background: rgba(0, 20, 50, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .step-node.active {
+            border-color: var(--neon-blue);
+            background: rgba(0, 212, 255, 0.15);
+            color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .step-node.done {
+            border-color: var(--neon-green);
+            background: rgba(0, 255, 136, 0.15);
+            color: var(--neon-green);
+            box-shadow: 0 0 14px rgba(0, 255, 136, 0.4);
+        }
+
+        .step-connector {
+            flex: 1;
+            max-width: 100px;
+            height: 2px;
+            background: rgba(0, 212, 255, 0.15);
+            transition: background 0.4s;
+        }
+
+        .step-connector.done {
+            background: rgba(0, 255, 136, 0.5);
+        }
+
+        .step-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding: 0 0.25rem;
+        }
+
+        .step-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-align: center;
+            transition: color 0.3s;
+            flex: 1;
+        }
+
+        .step-label.active {
+            color: var(--neon-blue);
+        }
+
+        .step-label.done {
+            color: var(--neon-green);
+        }
+
+        /* ── Step Panels ─────────────────────────────────────── */
+        .step-panel {
+            display: none;
+            animation: slideIn 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        .step-panel.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(28px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-28px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .step-panel.slide-left {
+            animation: slideInLeft 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+
+        /* ── Form Grid ───────────────────────────────────────── */
+        .reg-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.1rem;
+        }
+
+        .reg-grid.full {
+            grid-template-columns: 1fr;
+        }
+
+        .reg-grid.thirds {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .form-field.full-col {
+            grid-column: 1 / -1;
+        }
+
+        .fl {
+            /* field label */
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.14em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .fl span {
+            color: var(--neon-blue);
+        }
+
+        .fi {
+            /* field input */
+            width: 100%;
+            background: rgba(0, 20, 50, 0.7);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 6px;
+            padding: 0.78rem 1rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.93rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.25s;
+        }
+
+        .fi::placeholder {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .fi:focus {
+            border-color: var(--neon-blue);
+            background: rgba(0, 30, 65, 0.9);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.12), inset 0 0 18px rgba(0, 212, 255, 0.04);
+        }
+
+        .fi.error {
+            border-color: #ff4466 !important;
+            box-shadow: 0 0 0 3px rgba(255, 68, 102, 0.15) !important;
+            animation: fieldShake 0.4s ease;
+        }
+
+        @keyframes fieldShake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20%,
+            60% {
+                transform: translateX(-5px);
+            }
+
+            40%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        select.fi {
+            cursor: pointer;
+        }
+
+        select.fi option {
+            background: #001830;
+            color: #e8f4ff;
+        }
+
+        .pw-wrap {
+            position: relative;
+        }
+
+        .pw-wrap .fi {
+            padding-right: 3rem;
+        }
+
+        .pw-eye {
+            position: absolute;
+            right: 0.875rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .pw-eye:hover {
+            color: var(--neon-blue);
+        }
+
+        /* Skills tags */
+        .skills-box {
+            min-height: 54px;
+            background: rgba(0, 20, 50, 0.7);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 6px;
+            padding: 0.5rem 0.875rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            align-items: center;
+            cursor: text;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+
+        .skills-box:focus-within {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.12);
+        }
+
+        .skill-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: rgba(0, 212, 255, 0.12);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.78rem;
+            color: var(--neon-blue);
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+        }
+
+        .skill-chip button {
+            background: none;
+            border: none;
+            color: var(--neon-blue);
+            cursor: pointer;
+            font-size: 0.7rem;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .skill-chip button:hover {
+            color: #ff4466;
+        }
+
+        #skillInput3d {
+            flex: 1;
+            min-width: 100px;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            font-family: 'Rajdhani', sans-serif;
+            outline: none;
+        }
+
+        .skill-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.5rem;
+        }
+
+        .skill-sug {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 212, 255, 0.06);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 0.18rem 0.65rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .skill-sug:hover {
+            background: rgba(0, 212, 255, 0.16);
+            color: var(--neon-blue);
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+
+        /* Terms checkbox */
+        .terms-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .terms-row input[type="checkbox"] {
+            display: none;
+        }
+
+        .custom-cb {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border: 1.5px solid rgba(0, 212, 255, 0.4);
+            border-radius: 3px;
+            background: rgba(0, 20, 50, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .custom-cb.checked {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: var(--neon-blue);
+        }
+
+        .custom-cb.checked::after {
+            content: '✓';
+            font-size: 0.75rem;
+            color: var(--neon-blue);
+        }
+
+        .terms-text {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-family: 'Rajdhani', sans-serif;
+            line-height: 1.55;
+        }
+
+        .terms-text a {
+            color: var(--neon-blue);
+            text-decoration: none;
+        }
+
+        .terms-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Panel Heading ───────────────────────────────────── */
+        .panel-heading {
+            margin-bottom: 1.5rem;
+        }
+
+        .panel-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            letter-spacing: 0.12em;
+            text-shadow: 0 0 16px rgba(0, 212, 255, 0.5);
+            margin-bottom: 0.2rem;
+        }
+
+        .panel-sub {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            letter-spacing: 0.12em;
+        }
+
+        /* ── Action Buttons ──────────────────────────────────── */
+        .reg-actions {
+            display: flex;
+            gap: 0.875rem;
+            margin-top: 1.75rem;
+        }
+
+        .reg-btn-back {
+            background: rgba(0, 212, 255, 0.07);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 7px;
+            padding: 0.85rem 1.5rem;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.25s;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+        }
+
+        .reg-btn-back:hover {
+            background: rgba(0, 212, 255, 0.14);
+            color: var(--neon-blue);
+        }
+
+        .reg-btn-next {
+            flex: 1;
+            position: relative;
+            background: linear-gradient(135deg, rgba(0, 180, 220, 0.25), rgba(0, 212, 255, 0.15));
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            border-radius: 7px;
+            padding: 0.9rem;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--neon-blue);
+            cursor: pointer;
+            letter-spacing: 0.1em;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-shadow: 0 0 12px rgba(0, 212, 255, 0.6);
+        }
+
+        .reg-btn-next:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.35), rgba(0, 180, 220, 0.25));
+            box-shadow: 0 0 28px rgba(0, 212, 255, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .reg-btn-next.submit {
+            background: linear-gradient(135deg, rgba(0, 200, 100, 0.25), rgba(0, 255, 136, 0.15));
+            border-color: rgba(0, 255, 136, 0.55);
+            color: var(--neon-green);
+            text-shadow: 0 0 12px rgba(0, 255, 136, 0.6);
+        }
+
+        .reg-btn-next.submit:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.35), rgba(0, 200, 100, 0.25));
+            box-shadow: 0 0 28px rgba(0, 255, 136, 0.4);
+        }
+
+        .reg-btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .btn-scan {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            width: 0;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            pointer-events: none;
+        }
+
+        .reg-btn-next:hover .btn-scan {
+            animation: scanBtn 1.2s ease-in-out infinite;
+        }
+
+        @keyframes scanBtn {
+            0% {
+                width: 0;
+                left: 0;
+            }
+
+            50% {
+                width: 100%;
+                left: 0;
+            }
+
+            100% {
+                width: 0;
+                left: 100%;
+            }
+        }
+
+        /* ── Success State ───────────────────────────────────── */
+        .success-overlay {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .success-overlay.visible {
+            display: flex;
+        }
+
+        .success-icon {
+            font-size: 3.5rem;
+            animation: successPop 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @keyframes successPop {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--neon-green);
+            text-shadow: 0 0 24px rgba(0, 255, 136, 0.7);
+        }
+
+        .success-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .success-progress {
+            width: 220px;
+            height: 4px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .success-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00d4ff);
+            border-radius: 2px;
+            animation: succFill 2s ease forwards;
+        }
+
+        @keyframes succFill {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        /* ── Login link ──────────────────────────────────────── */
+        .reg-footer {
+            margin-top: 1.25rem;
+            text-align: center;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .reg-footer a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: text-shadow 0.2s;
+        }
+
+        .reg-footer a:hover {
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+        }
+
+        /* Error popup */
+        .reg-error {
+            display: none;
+            background: rgba(255, 40, 90, 0.12);
+            border: 1px solid rgba(255, 68, 102, 0.45);
+            border-radius: 7px;
+            padding: 0.75rem 1.1rem;
+            font-size: 0.78rem;
+            color: #ff4466;
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.2s ease;
+        }
+
+        .reg-error.visible {
+            display: block;
+        }
+
+        @media (max-width: 640px) {
+            .reg-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reg-grid.thirds {
+                grid-template-columns: 1fr;
+            }
+
+            .reg-card-body {
+                padding: 1.5rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HERO BACKGROUND -->
+    <div class="reg-bg-container">
+        <img src="hero-concept.png" alt="ThiranMitra Concept" class="reg-bg-image">
+        <div class="reg-bg-overlay"></div>
+    </div>
+    <script>
+        /* ============================================================
+           ThiranMitra Register — "Building Your Future" Skill Tree
+           Cinematic background: deep navy → soft sunrise horizon
+           Branches: Education · Skills · Experience · Location · Career
+           Smooth, non-gaming, national portal aesthetic
+           ============================================================ */
+        (function () {
+            'use strict';
+            const canvas = document.getElementById('regBgCanvas');
+            if (!canvas || typeof THREE === 'undefined') return;
+
+            /* Renderer */
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x030b18, 1);
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
+            camera.position.set(0, 4, 20);
+            camera.lookAt(0, 3.5, 0);
+
+            let clock = 0;
+            let growProgress = 0; // 0..1 — how "complete" the tree is
+
+            /* Lighting — soft, warm, cinematic */
+            scene.add(new THREE.AmbientLight(0xc8d8f0, 0.55));
+            const keyL = new THREE.DirectionalLight(0xb0c8e8, 1.0);
+            keyL.position.set(-3, 12, 8); scene.add(keyL);
+            const sunL = new THREE.PointLight(0xffa040, 0.0, 60);
+            sunL.position.set(0, -4, 6); scene.add(sunL);
+            const rimL = new THREE.DirectionalLight(0x8899cc, 0.3);
+            rimL.position.set(8, 2, -5); scene.add(rimL);
+
+            /* Background shader — deep navy with sunrise glow */
+            const bgGeo = new THREE.PlaneGeometry(300, 200);
+            const bgMat = new THREE.ShaderMaterial({
+                uniforms: { uTime: { value: 0 }, uGrow: { value: 0 } },
+                vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
+                fragmentShader: `
+                    uniform float uTime; uniform float uGrow; varying vec2 vUv;
+                    void main(){
+                        float y = vUv.y;
+                        vec3 top = vec3(0.03,0.06,0.14);
+                        vec3 mid = vec3(0.02,0.04,0.10);
+                        vec3 bot = mix(vec3(0.02,0.03,0.07), vec3(0.06,0.04,0.02), uGrow);
+                        vec3 col = mix(bot, mix(mid, top, smoothstep(0.35,1.0,y)), smoothstep(0.0,0.35,y));
+                        /* Sun glow at horizon */
+                        float sunY = 1.0 - smoothstep(0.0, 0.42, y);
+                        float sunX = 1.0 - smoothstep(0.0, 0.38, abs(vUv.x - 0.5));
+                        col += vec3(1.0, 0.58, 0.15) * uGrow * sunY * sunX * 0.4;
+                        /* Subtle grid fade-in */
+                        float gridA = max(0.0, 0.35 - uGrow * 0.35);
+                        float gx = step(0.985, fract(vUv.x * 24.0));
+                        float gy = step(0.985, fract(vUv.y * 18.0));
+                        col += (gx+gy)*0.007*gridA*vec3(0.3,0.45,0.9);
+                        /* Vignette */
+                        float d = length(vUv - 0.5);
+                        col *= (1.0 - smoothstep(0.4,0.75,d)*0.5);
+                        gl_FragColor = vec4(col, 1.0);
+                    }`,
+                depthWrite: false
+            });
+            const bgMesh = new THREE.Mesh(bgGeo, bgMat);
+            bgMesh.position.z = -28; scene.add(bgMesh);
+
+            /* Ground */
+            const gndMesh = new THREE.Mesh(
+                new THREE.PlaneGeometry(60, 36),
+                new THREE.MeshLambertMaterial({ color: 0x03080f, transparent: true, opacity: 0.9 })
+            );
+            gndMesh.rotation.x = -Math.PI / 2;
+            gndMesh.position.y = -2.5; scene.add(gndMesh);
+
+            const gridH = new THREE.GridHelper(40, 22, 0x0f1e3a, 0x081020);
+            gridH.position.y = -2.48; gridH.material.transparent = true; gridH.material.opacity = 0.4;
+            scene.add(gridH);
+
+            /* ── SKILL TREE ──────────────────────────────────────── */
+            const treeMat = (col) => new THREE.MeshPhongMaterial({
+                color: col,
+                emissive: col,
+                emissiveIntensity: 0.18,
+                shininess: 30,
+                transparent: true,
+                opacity: 0.88
+            });
+
+            /* Trunk */
+            const trunkGeo = new THREE.CylinderGeometry(0.12, 0.22, 4.8, 12);
+            const trunk = new THREE.Mesh(trunkGeo, treeMat(0x3a5f8a));
+            trunk.position.set(0, 0.0, 0);
+            trunk.scale.y = 0; // grows up
+            scene.add(trunk);
+
+            /* Branch data: [angle off trunk, height along trunk, length, color, label] */
+            const BRANCHES = [
+                { angle: -0.55, ht: 0.55, len: 2.8, col: 0x4a90d9, label: 'Education' },
+                { angle: 0.50, ht: 0.65, len: 2.6, col: 0x5cb85c, label: 'Skills' },
+                { angle: -0.40, ht: 0.75, len: 2.2, col: 0xf0ad4e, label: 'Experience' },
+                { angle: 0.45, ht: 0.82, len: 2.0, col: 0x9b59b6, label: 'Location' },
+                { angle: -0.30, ht: 0.90, len: 1.8, col: 0xe74c3c, label: 'Career Interest' },
+            ];
+
+            const branchMeshes = [];
+            const branchNodes = []; // leaf spheres
+
+            BRANCHES.forEach((b, i) => {
+                const brGeo = new THREE.CylinderGeometry(0.05, 0.10, b.len, 8);
+                const br = new THREE.Mesh(brGeo, treeMat(b.col));
+                // Position: at b.ht of trunk height (4.8 total), offset
+                const trunkY = -2.4 + b.ht * 4.8;
+                br.position.set(0, trunkY, 0);
+                br.rotation.z = b.angle; // tilt out
+                // offset center of branch from trunk
+                const dx = Math.sin(b.angle) * b.len * 0.5;
+                const dy = Math.cos(b.angle) * b.len * 0.5;
+                br.position.x += dx;
+                br.position.y += dy;
+                br.scale.set(0, 0, 0); // grow in
+                br.userData = { growStart: 0.15 + i * 0.15, col: b.col };
+                scene.add(br);
+                branchMeshes.push(br);
+
+                // Leaf glow node
+                const leafMat = new THREE.MeshBasicMaterial({
+                    color: b.col,
+                    transparent: true,
+                    opacity: 0,
+                    blending: THREE.AdditiveBlending
+                });
+                const leaf = new THREE.Mesh(new THREE.SphereGeometry(0.32, 12, 12), leafMat);
+                const ex = Math.sin(b.angle) * b.len;
+                const ey = Math.cos(b.angle) * b.len;
+                leaf.position.set(
+                    trunkY > 0 ? ex : ex,
+                    trunkY + ey,
+                    0
+                );
+                // Recalculate absolute position correctly
+                leaf.position.set(
+                    br.position.x + dx,
+                    br.position.y + dy,
+                    0
+                );
+                scene.add(leaf);
+                branchNodes.push({ leaf, mat: leafMat, col: b.col, delay: 0.15 + i * 0.15 });
+            });
+
+            /* Canopy top glow */
+            const canopyMat = new THREE.MeshBasicMaterial({
+                color: 0x2b6cb0,
+                transparent: true,
+                opacity: 0,
+                blending: THREE.AdditiveBlending,
+                side: THREE.BackSide
+            });
+            const canopy = new THREE.Mesh(new THREE.SphereGeometry(2.0, 18, 18), canopyMat);
+            canopy.position.set(0, 2.8, 0);
+            scene.add(canopy);
+
+            /* Soft particles — like fireflies / pollen, not lasers */
+            const NP = 220;
+            const pPos = new Float32Array(NP * 3);
+            const pSpd = new Float32Array(NP);
+            for (let i = 0; i < NP; i++) {
+                pPos[i * 3] = (Math.random() - 0.5) * 24;
+                pPos[i * 3 + 1] = (Math.random() - 0.5) * 18;
+                pPos[i * 3 + 2] = (Math.random() - 0.5) * 6 - 2;
+                pSpd[i] = 0.003 + Math.random() * 0.004;
+            }
+            const pGeo = new THREE.BufferGeometry();
+            pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+            const pMat = new THREE.PointsMaterial({
+                color: 0x90b8d8,
+                size: 0.055,
+                transparent: true,
+                opacity: 0.2,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
+            scene.add(new THREE.Points(pGeo, pMat));
+
+            /* CSS label overlay for branch names */
+            const labelStyle = document.createElement('style');
+            labelStyle.textContent = `
+                .wm-branch-label {
+                    position:fixed; pointer-events:none; z-index:2;
+                    font-family:'Inter',sans-serif; font-size:0.58rem;
+                    font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+                    opacity:0; transition:opacity 1.2s ease;
+                    padding:2px 8px; border-radius:20px;
+                    background:rgba(0,0,0,0.35); border:1px solid currentColor;
+                    white-space:nowrap;
+                }
+            `;
+            document.head.appendChild(labelStyle);
+
+            const labelColors = ['#4a90d9', '#5cb85c', '#f0ad4e', '#9b59b6', '#e74c3c'];
+            const labelEls = BRANCHES.map((b, i) => {
+                const el = document.createElement('span');
+                el.className = 'wm-branch-label';
+                el.textContent = b.label;
+                el.style.color = labelColors[i];
+                document.body.appendChild(el);
+                return el;
+            });
+
+            /* Project 3D to 2D for label positioning */
+            const projVec = new THREE.Vector3();
+            function project3D(pos) {
+                projVec.copy(pos).project(camera);
+                return {
+                    x: (projVec.x + 1) / 2 * window.innerWidth,
+                    y: (-projVec.y + 1) / 2 * window.innerHeight
+                };
+            }
+
+            /* ── Animation ────────────────────────────────────────── */
+            function animate() {
+                requestAnimationFrame(animate);
+                clock += 0.016;
+
+                // Tree grows over 8 seconds then stays full
+                growProgress = Math.min(1, clock / 8.0);
+
+                bgMat.uniforms.uTime.value = clock;
+                bgMat.uniforms.uGrow.value = growProgress;
+
+                // Sun warmth grows with tree
+                sunL.intensity = growProgress * 1.8 + Math.sin(clock * 0.7) * 0.2;
+
+                // Trunk grows (scale.y from 0 → 1)
+                trunk.scale.y = Math.min(1, growProgress / 0.18);
+                trunk.scale.x = trunk.scale.z = 0.8 + 0.2 * Math.min(1, growProgress / 0.18);
+
+                // Subtle trunk sway
+                trunk.rotation.z = Math.sin(clock * 0.4) * 0.015;
+
+                // Branches grow after trunk
+                branchMeshes.forEach((br, i) => {
+                    const g = Math.max(0, Math.min(1, (growProgress - br.userData.growStart) / 0.15));
+                    br.scale.set(g, g, g);
+                    // Gentle sway
+                    const swayAmt = 0.02 + i * 0.005;
+                    br.rotation.z += (Math.sin(clock * 0.5 + i * 0.8) * swayAmt - br.rotation.z) * 0.02;
+                });
+
+                // Leaf nodes pulse
+                branchNodes.forEach(({ leaf, mat, delay }, i) => {
+                    const g = Math.max(0, Math.min(1, (growProgress - delay - 0.12) / 0.15));
+                    mat.opacity = g * (0.5 + Math.sin(clock * 1.2 + i * 1.1) * 0.25);
+                });
+
+                // Labels appear when branch is grown
+                branchMeshes.forEach((br, i) => {
+                    const visible = branchMeshes[i].scale.x > 0.85;
+                    labelEls[i].style.opacity = visible ? '1' : '0';
+                    if (visible) {
+                        const wpos = new THREE.Vector3();
+                        branchNodes[i].leaf.getWorldPosition(wpos);
+                        const screen = project3D(wpos);
+                        labelEls[i].style.left = (screen.x + 8) + 'px';
+                        labelEls[i].style.top = (screen.y - 10) + 'px';
+                    }
+                });
+
+                // Canopy
+                canopyMat.opacity = growProgress * 0.12 + Math.sin(clock * 1.5) * 0.04;
+                canopy.scale.setScalar(0.6 + growProgress * 0.5 + Math.sin(clock * 0.8) * 0.04);
+
+                // Particles drift slowly upward
+                const pa = pGeo.attributes.position.array;
+                for (let i = 0; i < NP; i++) {
+                    pa[i * 3 + 1] += pSpd[i];
+                    pa[i * 3] += Math.sin(clock * 0.2 + i * 0.1) * 0.001;
+                    if (pa[i * 3 + 1] > 10) pa[i * 3 + 1] = -9;
+                }
+                pGeo.attributes.position.needsUpdate = true;
+                pMat.opacity = 0.12 + growProgress * 0.12;
+
+                gridH.material.opacity = 0.4 - growProgress * 0.2;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            /* Cleanup labels on page unload */
+            window.addEventListener('pagehide', () => {
+                labelEls.forEach(el => el.remove());
+            });
+        })();
+    </script>
+
+    <!-- SCAN LINE OVERLAY -->
+    <div class="scan-overlay"></div>
+
+    <!-- GRID OVERLAY -->
+    <div class="grid-overlay"></div>
+
+    <!-- CORNER DECORATIONS -->
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <!-- MAIN WRAPPER -->
+    <div class="reg-wrapper">
+
+        <!-- BRAND HEADER (same as login) -->
+        <div class="brand-header">
+            <div class="brand-emblem">
+                <div class="emblem-ring ring-1"></div>
+                <div class="emblem-ring ring-2"></div>
+                <div class="emblem-ring ring-3"></div>
+                <span class="emblem-icon">🌉</span>
+            </div>
+            <div class="brand-text">
+                <div class="brand-name">Thiran<span class="brand-accent">Mitra</span></div>
+                <div class="brand-tagline">INDIA'S NATIONAL AI EMPLOYMENT COMMAND CENTER</div>
+            </div>
+            <div class="gov-badge">
+                <span>🇮🇳</span>
+                <span>GOI 2026</span>
+            </div>
+        </div>
+
+        <!-- STATUS BAR -->
+        <div class="status-bar">
+            <div class="status-dot"></div>
+            <span id="statusText">REGISTRATION PORTAL — SECURE ENROLLMENT SYSTEM</span>
+            <div class="status-blink">▮</div>
+        </div>
+
+        <!-- REGISTRATION CARD -->
+        <div class="reg-card" id="regCard">
+            <div class="reg-card-top-bar"></div>
+            <div class="reg-card-body">
+
+                <!-- Card header -->
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="title-icon">📋</div>
+                        <div>
+                            <h1 class="title-text">CREATE SECURE ACCOUNT</h1>
+                            <p class="title-sub">AUTHORIZED USER ENROLLMENT — thiranmitra NATIONAL PORTAL</p>
+                        </div>
+                    </div>
+                    <div class="auth-level">
+                        <div class="auth-level-dot"></div>
+                        <span>NEW AGENT</span>
+                    </div>
+                </div>
+                <div class="neon-divider"></div>
+
+                <!-- Error display -->
+                <div class="reg-error" id="regError"></div>
+
+                <!-- Step Indicator -->
+                <div class="step-bar">
+                    <div class="step-node active" id="sn1">1</div>
+                    <div class="step-connector" id="sc1"></div>
+                    <div class="step-node" id="sn2">2</div>
+                    <div class="step-connector" id="sc2"></div>
+                    <div class="step-node" id="sn3">3</div>
+                </div>
+                <div class="step-labels">
+                    <span class="step-label active" id="sl1">IDENTITY</span>
+                    <span class="step-label" id="sl2">LOCATION &amp; EDU</span>
+                    <span class="step-label" id="sl3">SKILLS</span>
+                </div>
+
+                <!-- ── STEP 1: Identity ─────────────────────── -->
+                <div class="step-panel active" id="step1">
+                    <div class="panel-heading">
+                        <div class="panel-title">◈ STEP 1 — PERSONAL IDENTITY</div>
+                        <div class="panel-sub">PROVIDE YOUR BASIC IDENTIFICATION DETAILS</div>
+                    </div>
+
+                    <div class="reg-grid" style="margin-bottom:1.1rem">
+                        <div class="form-field">
+                            <label class="fl" for="firstName"><span>◈</span> FIRST NAME *</label>
+                            <input type="text" id="firstName" class="fi" placeholder="e.g. Rajesh" required />
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="lastName"><span>◈</span> LAST NAME *</label>
+                            <input type="text" id="lastName" class="fi" placeholder="e.g. Kumar" required />
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="dob"><span>◈</span> DATE OF BIRTH *</label>
+                            <input type="date" id="dob" class="fi" required />
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="gender"><span>◈</span> GENDER *</label>
+                            <select id="gender" class="fi">
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other / Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="regEmail">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968534.png"
+                                    style="width:14px; margin-right:4px;" alt="Gmail"> EMAIL ADDRESS *
+                            </label>
+                            <input type="email" id="regEmail" class="fi" placeholder="yourname@gmail.com"
+                                autocomplete="email" required />
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="regPhone"><span>◈</span> MOBILE NUMBER *</label>
+                            <input type="tel" id="regPhone" class="fi" placeholder="10-digit mobile" maxlength="10"
+                                required />
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="regPass">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6195/6195700.png"
+                                    style="width:14px; margin-right:4px;" alt="Lock"> SECURE PASSWORD *
+                            </label>
+                            <div class="pw-wrap">
+                                <input type="password" id="regPass" class="fi" placeholder="Min 8 characters"
+                                    required />
+                                <button type="button" class="pw-eye material-icons" style="font-size:1.1rem;"
+                                    onclick="pwToggle('regPass',this)">visibility</button>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="regPassC">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6195/6195700.png"
+                                    style="width:14px; margin-right:4px;" alt="Key"> CONFIRM PASSWORD *
+                            </label>
+                            <div class="pw-wrap">
+                                <input type="password" id="regPassC" class="fi" placeholder="Repeat password"
+                                    required />
+                                <button type="button" class="pw-eye material-icons" style="font-size:1.1rem;"
+                                    onclick="pwToggle('regPassC',this)">visibility</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reg-actions">
+                        <button class="reg-btn-next" onclick="gotoStep(2)">
+                            NEXT: LOCATION &amp; EDUCATION →
+                            <div class="btn-scan"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ── STEP 2: Location & Education ──────────── -->
+                <div class="step-panel" id="step2">
+                    <div class="panel-heading">
+                        <div class="panel-title">◈ STEP 2 — LOCATION &amp; EDUCATION</div>
+                        <div class="panel-sub">YOUR GEOGRAPHIC AND ACADEMIC PROFILE</div>
+                    </div>
+
+                    <div class="reg-grid" style="margin-bottom:1.1rem">
+                        <div class="form-field">
+                            <label class="fl" for="state"><span>◈</span> STATE *</label>
+                            <select id="state" class="fi">
+                                <option value="">Select State</option>
+                                <option>Andhra Pradesh</option>
+                                <option>Arunachal Pradesh</option>
+                                <option>Assam</option>
+                                <option>Bihar</option>
+                                <option>Chhattisgarh</option>
+                                <option>Delhi</option>
+                                <option>Goa</option>
+                                <option>Gujarat</option>
+                                <option>Haryana</option>
+                                <option>Himachal Pradesh</option>
+                                <option>Jharkhand</option>
+                                <option>Karnataka</option>
+                                <option>Kerala</option>
+                                <option>Madhya Pradesh</option>
+                                <option>Maharashtra</option>
+                                <option>Manipur</option>
+                                <option>Meghalaya</option>
+                                <option>Nagaland</option>
+                                <option>Odisha</option>
+                                <option>Punjab</option>
+                                <option>Rajasthan</option>
+                                <option>Sikkim</option>
+                                <option>Tamil Nadu</option>
+                                <option>Telangana</option>
+                                <option>Tripura</option>
+                                <option>Uttar Pradesh</option>
+                                <option>Uttarakhand</option>
+                                <option>West Bengal</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="district"><span>◈</span> DISTRICT *</label>
+                            <input type="text" id="district" class="fi" placeholder="e.g. Madurai" required />
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="taluk"><span>◈</span> TALUK / TEHSIL</label>
+                            <input type="text" id="taluk" class="fi" placeholder="e.g. Madurai South" />
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="village"><span>◈</span> VILLAGE / TOWN</label>
+                            <input type="text" id="village" class="fi" placeholder="e.g. Arapalayam" />
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="qualification"><span>◈</span> HIGHEST QUALIFICATION *</label>
+                            <select id="qualification" class="fi">
+                                <option value="">Select Qualification</option>
+                                <option>10th Pass</option>
+                                <option>12th Pass</option>
+                                <option>ITI</option>
+                                <option>Diploma</option>
+                                <option>Bachelor's Degree</option>
+                                <option>Master's Degree</option>
+                                <option>MBA/PGDM</option>
+                                <option>PhD</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label class="fl" for="experience"><span>◈</span> EXPERIENCE LEVEL *</label>
+                            <select id="experience" class="fi">
+                                <option value="">Select Experience</option>
+                                <option>Fresher (0 years)</option>
+                                <option>1–2 years</option>
+                                <option>3–5 years</option>
+                                <option>6–10 years</option>
+                                <option>10+ years</option>
+                            </select>
+                        </div>
+                        <div class="form-field full-col">
+                            <label class="fl" for="careerInterest"><span>◈</span> CAREER INTEREST *</label>
+                            <select id="careerInterest" class="fi">
+                                <option value="">Select Career Interest</option>
+                                <option>Information Technology</option>
+                                <option>Government / Public Sector</option>
+                                <option>Banking &amp; Finance</option>
+                                <option>Healthcare &amp; Pharma</option>
+                                <option>Education &amp; Teaching</option>
+                                <option>Manufacturing &amp; Engineering</option>
+                                <option>Marketing &amp; Sales</option>
+                                <option>Agriculture &amp; Allied</option>
+                                <option>Hospitality &amp; Tourism</option>
+                                <option>Self-Employment / Business</option>
+                                <option>Defence &amp; Security</option>
+                                <option>Creative Arts &amp; Media</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="reg-actions">
+                        <button class="reg-btn-back" onclick="gotoStep(1, true)">← BACK</button>
+                        <button class="reg-btn-next" onclick="gotoStep(3)">
+                            NEXT: SKILLS →
+                            <div class="btn-scan"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ── STEP 3: Skills ─────────────────────────── -->
+                <div class="step-panel" id="step3">
+                    <div class="panel-heading">
+                        <div class="panel-title">◈ STEP 3 — SKILLS &amp; FINALIZE</div>
+                        <div class="panel-sub">ADD YOUR SKILLS AND SUBMIT TO ACTIVATE ACCOUNT</div>
+                    </div>
+
+                    <div style="margin-bottom:1.1rem; display:flex; flex-direction:column; gap:1.1rem;">
+                        <div class="form-field">
+                            <label class="fl"><span>◈</span> YOUR SKILLS * (Click or type)</label>
+                            <div class="skills-box" onclick="document.getElementById('skillInput3d').focus()"
+                                id="skillsBox">
+                                <input type="text" id="skillInput3d" placeholder="Type skill & press Enter..."
+                                    onkeydown="handleSkillKey(event)" />
+                            </div>
+                            <div class="skill-suggestions" id="sug3d"></div>
+                        </div>
+
+                        <div class="reg-grid">
+                            <div class="form-field">
+                                <label class="fl" for="jobType"><span>◈</span> PREFERRED JOB TYPE</label>
+                                <select id="jobType" class="fi">
+                                    <option value="">Any</option>
+                                    <option>Full-time</option>
+                                    <option>Part-time</option>
+                                    <option>Remote / Work from Home</option>
+                                    <option>Internship</option>
+                                    <option>Freelance</option>
+                                    <option>Contract</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label class="fl" for="linkedIn"><span>◈</span> LINKEDIN (OPTIONAL)</label>
+                                <input type="url" id="linkedIn" class="fi" placeholder="https://linkedin.com/in/..." />
+                            </div>
+                        </div>
+
+                        <div class="terms-row">
+                            <div class="custom-cb" id="termsCb" onclick="toggleTerms()"></div>
+                            <p class="terms-text">
+                                I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and
+                                <a href="privacy.html" target="_blank">Privacy Policy</a>.
+                                I consent to receive job alerts via email, SMS, and WhatsApp.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="reg-actions">
+                        <button class="reg-btn-back" onclick="gotoStep(2, true)">← BACK</button>
+                        <button class="reg-btn-next submit" id="submitBtn" onclick="handleRegister()">
+                            ⚡ ACTIVATE ACCOUNT &amp; LAUNCH CAREER
+                            <div class="btn-scan"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ── SUCCESS STATE ───────────────────────────── -->
+                <div class="success-overlay" id="successOverlay">
+                    <div class="success-icon">✅</div>
+                    <div class="success-title">ACCOUNT ACTIVATED SUCCESSFULLY</div>
+                    <div class="success-sub" id="successName">AGENT REGISTERED — INITIALIZING CAREER DASHBOARD...</div>
+                    <div class="success-progress">
+                        <div class="success-fill"></div>
+                    </div>
+                    <div
+                        style="font-family:'Share Tech Mono',monospace;font-size:0.6rem;color:var(--text-muted);letter-spacing:0.15em;">
+                        REDIRECTING TO AI COMMAND CENTER...
+                    </div>
+                </div>
+
+            </div><!-- .reg-card-body -->
+        </div><!-- .reg-card -->
+
+        <!-- Footer link -->
+        <div class="reg-footer">
+            Already registered? <a href="login.html">SIGN IN →</a>
+        </div>
+
+        <!-- Info bar -->
+        <div class="info-bar">
+            <span>🔐 256-BIT ENCRYPTED</span>
+            <span class="info-sep">|</span>
+            <span>🛡️ GOVT CERTIFIED</span>
+            <span class="info-sep">|</span>
+            <span>🇮🇳 MADE IN INDIA</span>
+            <span class="info-sep">|</span>
+            <span>⚡ AI POWERED</span>
+        </div>
+
+    </div><!-- .reg-wrapper -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/login3d.js"></script>
+    <script>
+        /* ── Auth guard: already logged in → dashboard ── */
+        if (typeof AuthAPI !== 'undefined' && AuthAPI.isLoggedIn()) {
+            window.location.href = 'dashboard.html';
+        }
+
+        /* ══════════════════════════════════════════════
+           STATE
+        ══════════════════════════════════════════════ */
+        let currentStep = 1;
+        let termsChecked = false;
+        const selectedSkills = new Set();
+
+        const suggestedSkills = [
+            'Python', 'Java', 'JavaScript', 'React', 'Node.js', 'SQL', 'Excel',
+            'Photoshop', 'Tally', 'AutoCAD', 'Machine Learning', 'Data Analysis',
+            'Digital Marketing', 'Communication', 'Leadership', 'SEO', 'WordPress',
+            'C++', 'MongoDB', 'AWS', 'Git', 'MS Office', 'Sales', 'Customer Service',
+            'English', 'Hindi', 'Tamil', 'Teaching', 'Drawing', 'Kannada'
+        ];
+
+        /* Render suggestions */
+        (function () {
+            const c = document.getElementById('sug3d');
+            suggestedSkills.slice(0, 14).forEach(s => {
+                const el = document.createElement('span');
+                el.className = 'skill-sug';
+                el.textContent = '+ ' + s;
+                el.onclick = () => addSkill(s);
+                c.appendChild(el);
+            });
+        })();
+
+        /* ── SKILL HANDLING ────────────────────────────── */
+        function handleSkillKey(e) {
+            if (e.key === 'Enter' || e.key === ',') {
+                e.preventDefault();
+                const v = e.target.value.trim().replace(',', '');
+                if (v) addSkill(v);
+                e.target.value = '';
+            }
+        }
+        function addSkill(skill) {
+            if (selectedSkills.has(skill) || selectedSkills.size >= 20) return;
+            selectedSkills.add(skill);
+            const box = document.getElementById('skillsBox');
+            const input = document.getElementById('skillInput3d');
+            const chip = document.createElement('span');
+            chip.className = 'skill-chip';
+            chip.dataset.skill = skill;
+            chip.innerHTML = `${skill}<button type="button" onclick="removeSkill('${skill}',this.parentElement)">✕</button>`;
+            box.insertBefore(chip, input);
+        }
+        function removeSkill(skill, el) {
+            selectedSkills.delete(skill);
+            el.remove();
+        }
+
+        /* ── TERMS TOGGLE ──────────────────────────────── */
+        function toggleTerms() {
+            termsChecked = !termsChecked;
+            const cb = document.getElementById('termsCb');
+            cb.classList.toggle('checked', termsChecked);
+        }
+
+        /* ── STEP NAVIGATION ──────────────────────────── */
+        function gotoStep(to, goBack = false) {
+            if (!goBack && !validateStep(currentStep)) return;
+            const from = currentStep;
+
+            // Animate out
+            const oldPanel = document.getElementById('step' + from);
+            oldPanel.classList.remove('active');
+
+            // Activate new
+            currentStep = to;
+            const newPanel = document.getElementById('step' + to);
+            newPanel.classList.remove('slide-left');
+            if (goBack) newPanel.classList.add('slide-left');
+            newPanel.classList.add('active');
+
+            // Update step nodes
+            updateStepUI(from, to, goBack);
+        }
+
+        function updateStepUI(from, to, goBack) {
+            for (let i = 1; i <= 3; i++) {
+                const node = document.getElementById('sn' + i);
+                const lbl = document.getElementById('sl' + i);
+                const conn = document.getElementById('sc' + i);
+                node.classList.remove('active', 'done');
+                lbl.classList.remove('active', 'done');
+                if (conn) conn.classList.remove('done');
+
+                if (i < to) {
+                    node.classList.add('done');
+                    node.textContent = '✓';
+                    lbl.classList.add('done');
+                    if (conn) conn.classList.add('done');
+                } else if (i === to) {
+                    node.classList.add('active');
+                    node.textContent = i;
+                    lbl.classList.add('active');
+                } else {
+                    node.textContent = i;
+                }
+            }
+            document.getElementById('statusText').textContent =
+                to === 1 ? 'PERSONAL IDENTITY VERIFICATION IN PROGRESS' :
+                    to === 2 ? 'GEOGRAPHIC AND ACADEMIC PROFILE ENCODING' :
+                        'SKILL MATRIX ANALYSIS — FINAL STEP';
+        }
+
+        /* ── VALIDATION ───────────────────────────────── */
+        function validateStep(step) {
+            hideError();
+            if (step === 1) {
+                const fn = v('firstName'), ln = v('lastName'), em = v('regEmail'),
+                    ph = v('regPhone'), pw = v('regPass'), pc = v('regPassC');
+                if (!fn || !ln) return err('Please enter your full name.');
+                if (!validEmail(em)) return err('Invalid email format detected.');
+                if (!/^\d{10}$/.test(ph)) return err('Mobile must be exactly 10 digits.');
+                if (pw.length < 8) return err('Password must be at least 8 characters.');
+                if (pw !== pc) return err('Passwords do not match. Check confirm password.');
+                return true;
+            }
+            if (step === 2) {
+                const st = v('state'), di = v('district'), qu = v('qualification'),
+                    ex = v('experience'), ci = v('careerInterest');
+                if (!st || !di || !qu || !ex || !ci)
+                    return err('Please fill all required Location & Education fields.');
+                return true;
+            }
+            return true;
+        }
+
+        function v(id) { return document.getElementById(id).value.trim(); }
+        function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+        function err(msg) {
+            const el = document.getElementById('regError');
+            el.textContent = '⚠ ' + msg;
+            el.classList.add('visible');
+            document.getElementById('regCard').classList.add('shake');
+            setTimeout(() => document.getElementById('regCard').classList.remove('shake'), 600);
+            return false;
+        }
+        function hideError() {
+            const el = document.getElementById('regError');
+            el.classList.remove('visible');
+        }
+
+        /* ── REGISTER HANDLER ─────────────────────────── */
+        async function handleRegister() {
+            if (selectedSkills.size === 0) { err('Please add at least one skill.'); return; }
+            if (!termsChecked) { err('Please agree to the Terms of Service.'); return; }
+
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = '⌛ CREATING ACCOUNT...';
+
+            const payload = {
+                name: v('firstName') + ' ' + v('lastName'),
+                email: v('regEmail'),
+                password: document.getElementById('regPass').value,
+                phone: v('regPhone'),
+                state: v('state'),
+                city: v('district'),
+                dob: v('dob'),
+                gender: v('gender'),
+                taluk: v('taluk'),
+                village: v('village'),
+                qualification: v('qualification'),
+                experience: v('experience'),
+                career_interest: v('careerInterest'),
+                job_type: v('jobType'),
+                linkedin: v('linkedIn'),
+            };
+
+            try {
+                const resp = await AuthAPI.register(payload);
+                // Seed skills
+                if (selectedSkills.size > 0) {
+                    await ProfileAPI.addSkills(Array.from(selectedSkills)).catch(() => { });
+                }
+                showSuccess(payload.name.split(' ')[0]);
+            } catch (error) {
+                btn.disabled = false;
+                btn.textContent = '⚡ ACTIVATE ACCOUNT & LAUNCH CAREER';
+                err(error.message || 'Registration failed. Please try again.');
+            }
+        }
+
+        function showSuccess(firstName) {
+            // Hide all step panels
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('successOverlay').classList.add('visible');
+            document.getElementById('successName').textContent =
+                `WELCOME AGENT ${firstName.toUpperCase()} — CAREER AI INITIALIZING...`;
+
+            document.getElementById('statusText').textContent =
+                `ACCOUNT ACTIVATED — WELCOME, ${firstName.toUpperCase()}`;
+
+            setTimeout(() => {
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 0.6s ease';
+                setTimeout(() => window.location.href = 'dashboard.html', 700);
+            }, 2200);
+        }
+
+        /* ── Password toggle ──────────────────────────── */
+        function pwToggle(id, btn) {
+            const el = document.getElementById(id);
+            el.type = el.type === 'password' ? 'text' : 'password';
+            btn.textContent = el.type === 'password' ? 'visibility' : 'visibility_off';
+        }
+
+        /* ── Card shake (same as login) ────────────────── */
+        // Reuse .shake class from login3d.css
+
+        /* ── Register skill-activation tracking ─── */
+        const REG_SKILL_ICONS = ['🐍', '📄', '🧪', '🗣️', '💡', '🎨'];
+        let regFieldsFilledCount = 0;
+
+        // Add skill bar UI
+        (function buildSkillBar() {
+            const bar = document.createElement('div');
+            bar.className = 'reg-skill-bar';
+            REG_SKILL_ICONS.forEach(ic => {
+                const div = document.createElement('div');
+                div.className = 'reg-skill-icon';
+                div.textContent = ic;
+                bar.appendChild(div);
+            });
+            document.body.appendChild(bar);
+        })();
+
+        // Add stage badge UI
+        const regBadge = document.createElement('div');
+        regBadge.className = 'reg-stage-badge';
+        regBadge.textContent = '● UNEMPLOYED — START YOUR JOURNEY';
+        document.body.appendChild(regBadge);
+
+        // Track field inputs → activate skill icons one by one
+        let lastFilledCount = 0;
+        document.addEventListener('input', () => {
+            const inputs = document.querySelectorAll('.fi');
+            let filled = 0;
+            inputs.forEach(inp => { if (inp.value.trim()) filled++; });
+            if (filled > lastFilledCount) {
+                lastFilledCount = filled;
+                const icons = document.querySelectorAll('.reg-skill-icon');
+                const toActivate = Math.min(filled, icons.length);
+                icons.forEach((ic, i) => ic.classList.toggle('active', i < toActivate));
+                if (filled > 0) {
+                    regBadge.textContent = '⚡ SKILLS ACTIVATING — ' + filled + ' FIELDS COMPLETE';
+                    regBadge.classList.add('activating');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rural Employment – ThiranMitra | Local Jobs Within 10KM</title>
+    <meta name="description"
+        content="Find factory, ITI, agriculture, and local government jobs within 10km of your village. Regional language support, MGNREGA, and rural skill schemes." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        .rural-job-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .rural-job-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.1);
+        }
+
+        .dist-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            color: var(--accent);
+            border-radius: 9999px;
+        }
+
+        .sector-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .sector-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.12);
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: 0.82rem;
+            font-weight: 600;
+            background: var(--bg-surface);
+            border: 1.5px solid var(--bg-glass-border);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition-spring);
+        }
+
+        .lang-btn.active {
+            background: var(--grad-accent);
+            border-color: transparent;
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            border-color: rgba(16, 185, 129, 0.4);
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html"><span class="logo-icon">🌉</span><span class="logo-text">Thiran<span
+                        class="logo-accent">Mitra</span></span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="schemes.html" class="nav-link">Schemes</a></li>
+                <li><a href="rural.html" class="nav-link active">Rural Jobs</a></li>
+                <li><a href="women.html" class="nav-link">Women</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register Free</a>
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div
+        style="background:linear-gradient(135deg,#022c22,#064e3b,#15803d,#1a3a1a);padding:6.5rem 0 3rem;text-align:center;position:relative;overflow:hidden;">
+        <div
+            style="position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(16,185,129,0.15),transparent);top:-150px;right:-100px;">
+        </div>
+        <div class="container" style="position:relative;z-index:1;">
+            <div
+                style="display:inline-block;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:0.35rem 1rem;border-radius:9999px;margin-bottom:1.25rem;">
+                🌾 Rural India</div>
+            <h1
+                style="font-family:'Outfit',sans-serif;font-size:clamp(2rem,5vw,3.25rem);font-weight:900;color:white;margin-bottom:0.875rem;">
+                Local Jobs — Right in Your Block</h1>
+            <p style="font-size:1.05rem;color:rgba(255,255,255,0.8);max-width:600px;margin:0 auto 1.5rem;">Factory work,
+                ITI jobs, MGNREGA, agriculture, and government schemes — all within 10km of your village.</p>
+
+            <!-- LOCATION SEARCH -->
+            <div
+                style="display:flex;gap:0.75rem;max-width:550px;margin:0 auto;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:var(--radius-xl);padding:0.75rem 1rem;flex-wrap:wrap;">
+                <input type="text" id="villageInput" placeholder="Enter your village, block or district..."
+                    style="flex:1;background:transparent;border:none;color:white;font-size:0.9rem;min-width:180px;" />
+                <select id="radiusSelect"
+                    style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;padding:0.375rem;border-radius:var(--radius-md);font-size:0.82rem;">
+                    <option>5 km</option>
+                    <option selected>10 km</option>
+                    <option>20 km</option>
+                    <option>50 km</option>
+                </select>
+                <button class="btn" style="background:white;color:#15803d;font-weight:700;"
+                    onclick="searchLocalJobs()">🔍 Search</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="padding:2.5rem 0 4rem;">
+
+        <!-- LANGUAGE SELECTOR -->
+        <div style="display:flex;align-items:center;gap:0.875rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+            <span style="font-size:0.8rem;font-weight:700;color:var(--text-muted);">🌐 Language:</span>
+            <button class="lang-btn active" onclick="selectLang('English',this)">English</button>
+            <button class="lang-btn" onclick="selectLang('Hindi',this)">हिंदी</button>
+            <button class="lang-btn" onclick="selectLang('Tamil',this)">தமிழ்</button>
+            <button class="lang-btn" onclick="selectLang('Telugu',this)">తెలుగు</button>
+            <button class="lang-btn" onclick="selectLang('Marathi',this)">मराठी</button>
+            <button class="lang-btn" onclick="selectLang('Bengali',this)">বাংলা</button>
+        </div>
+
+        <!-- SECTORS -->
+        <div style="margin-bottom:2rem;">
+            <h2
+                style="font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:1.25rem;">
+                🏭 Browse by Sector</h2>
+            <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:0.875rem;" id="sectorGrid"></div>
+        </div>
+
+        <!-- JOB LISTINGS -->
+        <div
+            style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.75rem;">
+            <h2 style="font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text-primary);">📋
+                Rural Jobs Near You</h2>
+            <div style="font-size:0.82rem;color:var(--text-muted);">Showing jobs within <span id="radiusDisplay"
+                    style="color:var(--accent);font-weight:700;">10 km</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2rem;" id="ruralJobsGrid">
+        </div>
+
+        <!-- MGNREGA SECTION -->
+        <div style="background:linear-gradient(135deg,rgba(21,128,61,0.08),transparent);border:1px solid rgba(21,128,61,0.2);border-radius:var(--radius-2xl);padding:2rem;margin-bottom:2rem;"
+            class="reveal">
+            <div style="display:flex;align-items:flex-start;gap:1.5rem;flex-wrap:wrap;">
+                <div style="font-size:3rem;">🏗️</div>
+                <div style="flex:1;">
+                    <div class="badge badge-success" style="margin-bottom:0.75rem;">Government Guaranteed</div>
+                    <h3
+                        style="font-family:'Outfit',sans-serif;font-size:1.25rem;font-weight:900;color:var(--text-primary);margin-bottom:0.75rem;">
+                        MGNREGA — 100 Days Guaranteed Work</h3>
+                    <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.8;margin-bottom:1rem;">Under
+                        the Mahatma Gandhi National Rural Employment Guarantee Act, every rural household is entitled to
+                        <strong style="color:var(--text-primary);">100 days of wage employment</strong> at ₹261/day.
+                        Apply through your Gram Panchayat with Aadhaar + job card.
+                    </p>
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1rem;">
+                        <div
+                            style="background:var(--bg-card);border-radius:var(--radius-md);padding:0.875rem;text-align:center;">
+                            <div
+                                style="font-weight:900;color:var(--accent);font-family:'Outfit',sans-serif;font-size:1.25rem;">
+                                ₹261</div>
+                            <div style="font-size:0.7rem;color:var(--text-muted);">Daily Wage</div>
+                        </div>
+                        <div
+                            style="background:var(--bg-card);border-radius:var(--radius-md);padding:0.875rem;text-align:center;">
+                            <div
+                                style="font-weight:900;color:var(--primary-light);font-family:'Outfit',sans-serif;font-size:1.25rem;">
+                                100</div>
+                            <div style="font-size:0.7rem;color:var(--text-muted);">Days/Year</div>
+                        </div>
+                        <div
+                            style="background:var(--bg-card);border-radius:var(--radius-md);padding:0.875rem;text-align:center;">
+                            <div
+                                style="font-weight:900;color:var(--warning);font-family:'Outfit',sans-serif;font-size:1.25rem;">
+                                14Cr+</div>
+                            <div style="font-size:0.7rem;color:var(--text-muted);">Beneficiaries</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:0.875rem;flex-wrap:wrap;">
+                        <a href="https://nrega.nic.in" target="_blank" class="btn btn-primary btn-sm">Apply on MGNREGA
+                            Portal →</a>
+                        <button class="btn btn-outline btn-sm"
+                            onclick="showToast('MGNREGA job card application process: Visit Gram Panchayat office with Aadhaar card. Registration is free!','info',5000)">How
+                            to Apply?</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ITI JOBS -->
+        <div style="margin-bottom:2rem;" class="reveal">
+            <h2
+                style="font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text-primary);margin-bottom:1.25rem;">
+                🔧 ITI & Diploma Jobs</h2>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.875rem;" id="itiGrid"></div>
+        </div>
+
+        <!-- RURAL SCHEMES -->
+        <div class="card reveal">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:1rem;">🏛️ Rural
+                Employment Schemes</h3>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;">
+                <div
+                    style="background:var(--bg-surface);border-radius:var(--radius-lg);padding:1rem;display:flex;gap:0.875rem;">
+                    <span style="font-size:1.5rem;">🌾</span>
+                    <div><strong style="color:var(--text-primary);font-size:0.875rem;">PM-Kisan</strong><br /><span
+                            style="font-size:0.78rem;color:var(--text-muted);">₹6,000/year for farmers</span></div>
+                </div>
+                <div
+                    style="background:var(--bg-surface);border-radius:var(--radius-lg);padding:1rem;display:flex;gap:0.875rem;">
+                    <span style="font-size:1.5rem;">🏗️</span>
+                    <div><strong style="color:var(--text-primary);font-size:0.875rem;">PMAY-Gramin</strong><br /><span
+                            style="font-size:0.78rem;color:var(--text-muted);">House + construction work</span></div>
+                </div>
+                <div
+                    style="background:var(--bg-surface);border-radius:var(--radius-lg);padding:1rem;display:flex;gap:0.875rem;">
+                    <span style="font-size:1.5rem;">🐄</span>
+                    <div><strong style="color:var(--text-primary);font-size:0.875rem;">NABARD
+                            Schemes</strong><br /><span style="font-size:0.78rem;color:var(--text-muted);">Agriculture &
+                            dairy loans</span></div>
+                </div>
+                <div
+                    style="background:var(--bg-surface);border-radius:var(--radius-lg);padding:1rem;display:flex;gap:0.875rem;">
+                    <span style="font-size:1.5rem;">💡</span>
+                    <div><strong style="color:var(--text-primary);font-size:0.875rem;">DEEN DAYAL
+                            Upadhyay</strong><br /><span style="font-size:0.78rem;color:var(--text-muted);">Grameen
+                            Kaushalya Yojana</span></div>
+                </div>
+            </div>
+            <a href="schemes.html" class="btn btn-outline btn-sm" style="margin-top:1.25rem;">View All Schemes →</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="nav-logo" href="index.html" style="display:inline-flex;margin-bottom:1rem;">
+                        <span class="logo-icon">🌉</span>
+                        <span class="logo-text">Thiran<span class="logo-accent">Mitra</span></span>
+                    </a>
+                    <!-- Branding description removed as per user request -->
+                    <div class="footer-social">
+                        <a href="#" class="social-btn"
+                            onclick="showToast('Facebook coming soon!','info');return false;">📘 Facebook</a>
+                        <a href="#" class="social-btn"
+                            onclick="showToast('Twitter coming soon!','info');return false;">🐦 Twitter</a>
+                        <a href="#" class="social-btn"
+                            onclick="showToast('LinkedIn coming soon!','info');return false;">💼 LinkedIn</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="jobs.html">Job Search</a></li>
+                        <li><a href="resume.html">Resume Analyzer</a></li>
+                        <li><a href="skills.html">Skill Gap Tool</a></li>
+                        <li><a href="interview.html">Interview Training</a></li>
+                        <li><a href="placement.html">Placement Prep</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="schemes.html">Gov Schemes</a></li>
+                        <li><a href="rural.html">Rural Mode</a></li>
+                        <li><a href="women.html">Women Employment</a></li>
+                        <li><a href="entrepreneurship.html">Entrepreneurship</a></li>
+                        <li><a href="dashboard.html">Career AI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="privacy.html">Privacy
+                                Policy</a></li>
+                        <li><a href="terms.html">Terms of
+                                Service</a></li>
+                        <li><a href="#"
+                                onclick="showToast('Use Report button on job cards to report scam.','info');return false;">Report
+                                Scam</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 ThiranMitra. Made with ❤️ for India. &nbsp;|&nbsp; Inspired by NCS, Skill India, PMKVY</p>
+                <p>🇮🇳 Empowering Every Indian, Every District, Every Dream</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chatbot-widget">
+        <div class="chatbot-window" id="chatbotWindow" style="display:none;">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">🤖</div>
+                <div><strong>ThiranMitraBot</strong><span class="chatbot-status">● Online</span></div>
+                <button class="chatbot-close" onclick="toggleChatbot()">✕</button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="chat-msg bot"><span>नमस्ते! मैं आपकी नजदीकी नौकरी ढूंढने में मदद कर सकता हूँ। अपना गाँव या
+                        जिला बताइए! 🌾</span></div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Ask in any language..."
+                    onkeypress="handleChatKey(event)" />
+                <button onclick="sendChat()" class="chat-send-btn">Send</button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" onclick="toggleChatbot()" id="chatToggleBtn">💬</button>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let RURAL_JOBS = [];
+
+        async function initRuralJobs() {
+            try {
+                if (typeof showLoadingOverlay === 'function') showLoadingOverlay('Loading rural jobs...');
+                const res = await JobsAPI.list();
+                RURAL_JOBS = res.jobs.map(j => ({
+                    icon: '🌾',
+                    title: j.title,
+                    co: j.company,
+                    loc: j.location,
+                    dist: Math.floor(Math.random() * 15 + 2) + ' km',
+                    sal: j.salary_min ? `₹${(j.salary_min / 100000).toFixed(1)}–${(j.salary_max / 100000).toFixed(1)} LPA` : 'As per norms',
+                    qual: j.experience || '10th/12th Pass',
+                    category: j.category || 'Local Work'
+                }));
+                renderRuralJobs();
+            } catch (err) {
+                console.error('Failed to load rural jobs:', err);
+                document.getElementById('ruralJobsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text-muted);">Failed to load jobs. Make sure backend is running. <button class="btn btn-outline btn-sm" onclick="initRuralJobs()">Retry</button></div>';
+            } finally {
+                if (typeof hideLoadingOverlay === 'function') hideLoadingOverlay();
+            }
+        }
+
+        const SECTORS = [
+            { emoji: '🏭', name: 'Factory / Manufacturing', count: 1240 },
+            { emoji: '🌾', name: 'Agriculture', count: 850 },
+            { emoji: '🏗️', name: 'Construction', count: 620 },
+            { emoji: '🚛', name: 'Logistics/Transport', count: 430 },
+            { emoji: '🩺', name: 'Healthcare', count: 320 },
+            { emoji: '🏛️', name: 'Government', count: 540 },
+        ];
+
+        const ITI_JOBS = [
+            { trade: 'Electrician', companies: 'BHEL, ONGC, State DISCOMS', demand: 'Very High', salary: '₹2.5–6 LPA', color: '#f59e0b' },
+            { trade: 'Welder', companies: 'L&T, Steel plants, Shipyard', demand: 'High', salary: '₹2–5 LPA', color: '#ef4444' },
+            { trade: 'Fitter', companies: 'Bajaj, Maruti, Railways', demand: 'High', salary: '₹2–4.5 LPA', color: '#8b5cf6' },
+            { trade: 'Plumber', companies: 'Real Estate, PWD, Mun. Corps', demand: 'Very High', salary: '₹2.5–5 LPA', color: '#0ea5e9' },
+        ];
+
+        function renderSectors() {
+            const grid = document.getElementById('sectorGrid');
+            SECTORS.forEach(s => {
+                const card = document.createElement('div');
+                card.className = 'sector-card';
+                card.innerHTML = `
+        <div style="font-size:2rem;margin-bottom:0.625rem;">${s.emoji}</div>
+        <div style="font-size:0.8rem;font-weight:700;color:var(--text-primary);margin-bottom:0.35rem;line-height:1.3;">${s.name}</div>
+        <div style="font-size:0.7rem;color:var(--accent);">${s.count}+ Jobs</div>
+      `;
+                card.addEventListener('click', () => showToast(`Loading ${s.count}+ ${s.name} jobs...`, 'info'));
+                grid.appendChild(card);
+            });
+        }
+
+        function renderRuralJobs() {
+            const grid = document.getElementById('ruralJobsGrid');
+            RURAL_JOBS.forEach(j => {
+                const card = document.createElement('div');
+                card.className = 'rural-job-card';
+                card.innerHTML = `
+        <div style="display:flex;align-items:flex-start;gap:0.875rem;margin-bottom:0.75rem;">
+          <div style="width:44px;height:44px;background:var(--bg-surface);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">${j.icon}</div>
+          <div style="flex:1;">
+            <div style="font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:0.2rem;">${j.title}</div>
+            <div style="font-size:0.8rem;color:var(--text-secondary);">${j.co} · 📍 ${j.loc}</div>
+          </div>
+          <span class="dist-badge">📍 ${j.dist}</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.375rem;margin-bottom:0.875rem;">
+          <span class="badge badge-primary" style="font-size:0.65rem;">${j.category}</span>
+          <span style="font-size:0.72rem;color:var(--text-muted);background:var(--bg-surface);padding:0.15rem 0.5rem;border-radius:9999px;">📋 ${j.qual}</span>
+          <span style="font-size:0.72rem;color:var(--accent);font-weight:700;background:rgba(16,185,129,0.08);padding:0.15rem 0.5rem;border-radius:9999px;">💰 ${j.sal}</span>
+        </div>
+        <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showToast('Application submitted for ${j.title}! ✅','success')">Apply Now</button>
+      `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderITIJobs() {
+            const grid = document.getElementById('itiGrid');
+            ITI_JOBS.forEach(j => {
+                const card = document.createElement('div');
+                card.style.cssText = `background:var(--bg-card);border:1px solid ${j.color}33;border-radius:var(--radius-xl);padding:1.25rem;`;
+                card.innerHTML = `
+        <div style="font-size:0.95rem;font-weight:800;color:var(--text-primary);margin-bottom:0.5rem;">${j.trade} Trade</div>
+        <div style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:0.5rem;">📋 ${j.companies}</div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:0.875rem;">
+          <span style="font-size:0.72rem;font-weight:700;color:${j.color};">${j.demand} Demand</span>
+          <span style="font-size:0.72rem;color:var(--accent);font-weight:700;">${j.salary}</span>
+        </div>
+        <button class="btn btn-sm btn-outline" style="width:100%;justify-content:center;border-color:${j.color}44;" onclick="showToast('${j.trade} jobs list coming soon!','info')">Find Jobs</button>
+      `;
+                grid.appendChild(card);
+            });
+        }
+
+        function selectLang(lang, btn) {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            showToast(`Language set to ${lang}! Full regional support coming soon.`, 'info', 2500);
+        }
+
+        function searchLocalJobs() {
+            const village = document.getElementById('villageInput').value.trim();
+            const radius = document.getElementById('radiusSelect').value;
+            if (!village) { showToast('Please enter your village or district name.', 'warning'); return; }
+            showLoadingOverlay('Searching local jobs...');
+            document.getElementById('radiusDisplay').textContent = radius;
+            setTimeout(() => {
+                hideLoadingOverlay();
+                showToast(`✅ Found ${RURAL_JOBS.length} jobs within ${radius} of ${village}!`, 'success');
+            }, 1500);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSectors();
+            initRuralJobs();
+            renderITIJobs();
+        });
+    </script>
+
+    <!-- SPA Navigation Engine -->
+    <script src="js/page-transition.js"></script>
+</body>
+
+</html>

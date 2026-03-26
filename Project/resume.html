@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Resume Analyzer – ThiranMitra | ATS Score & Improvement</title>
+    <meta name="description"
+        content="Upload your resume and get an ATS compatibility score, grammar check, keyword analysis, skill-job match and an auto-improved resume version." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        .drop-zone {
+            border: 2px dashed var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .drop-zone:hover,
+        .drop-zone.drag-over {
+            border-color: var(--primary);
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        .drop-zone-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .drop-zone p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .drop-zone strong {
+            color: var(--primary-light);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .analysis-panel {
+            display: none;
+        }
+
+        .analysis-panel.visible {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .score-donut {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+        }
+
+        .score-donut svg {
+            transform: rotate(-90deg);
+        }
+
+        .score-donut .score-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .score-donut .score-big {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--text-primary);
+        }
+
+        .score-donut .score-lbl {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .analysis-metric {
+            background: var(--bg-card2);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .metric-val {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-lbl {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .keyword-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .keyword-found {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            color: var(--accent);
+        }
+
+        .keyword-missing {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: var(--danger);
+        }
+
+        .improvement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.875rem;
+            padding: 0.875rem;
+            background: var(--bg-card2);
+            border-radius: var(--radius-md);
+            margin-bottom: 0.625rem;
+        }
+
+        .improvement-item.good {
+            border-left: 3px solid var(--accent);
+        }
+
+        .improvement-item.bad {
+            border-left: 3px solid var(--danger);
+        }
+
+        .improvement-item.tip {
+            border-left: 3px solid var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html"><span class="logo-icon">🌉</span><span class="logo-text">Thiran<span
+                        class="logo-accent">Mitra</span></span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="resume.html" class="nav-link active">Resume</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="interview.html" class="nav-link">Interview</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <div class="section-badge">AI-Powered</div>
+            <h1>📄 AI Resume Analyzer</h1>
+            <p>Get ATS score, keyword analysis, grammar check, and an auto-improved resume. Analyzed 1.2M+ resumes.</p>
+        </div>
+    </div>
+
+    <div class="container" style="padding:2rem 0 4rem;">
+        <div style="max-width:900px;margin:0 auto;">
+
+            <div
+                style="display:flex; justify-content: space-between; align-items: center; background: rgba(79, 70, 229, 0.1); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: var(--radius-lg); padding: 1.5rem 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="font-size:1.15rem; font-weight:800; color:var(--text-primary); margin-bottom:0.25rem;">
+                        Don't have a Resume yet?</h3>
+                    <p style="color:var(--text-secondary); font-size:0.9rem;">Create a beautifully formatted,
+                        ATS-friendly resume from scratch in 5 minutes for free.</p>
+                </div>
+                <a href="builder.html" class="btn btn-primary" style="white-space:nowrap; flex-shrink: 0;">✨ Build
+                    Resume Free</a>
+            </div>
+
+            <div class="card" id="uploadCard">
+                <h2
+                    style="font-family:'Outfit',sans-serif;font-size:1.25rem;font-weight:800;color:var(--text-primary);margin-bottom:1.5rem;">
+                    Upload Your Resume</h2>
+                <div class="drop-zone" id="dropZone" onclick="document.getElementById('resumeFile').click()"
+                    ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+                    <span class="drop-zone-icon">📄</span>
+                    <h3 style="color:var(--text-primary);margin-bottom:0.75rem;">Drag & drop your resume here
+                    </h3>
+                    <p>or <strong onclick="event.stopPropagation();document.getElementById('resumeFile').click()">click
+                            to browse</strong></p>
+                    <p style="margin-top:0.5rem;font-size:0.8rem;">Supports PDF, DOC, DOCX, TXT — Max 5MB</p>
+                    <input type="file" id="resumeFile" accept=".pdf,.doc,.docx,.txt" style="display:none;"
+                        onchange="handleFileSelect(this)" />
+                </div>
+
+                <div style="margin-top:1.5rem;">
+                    <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;">Or paste
+                        your resume
+                        text directly:</p>
+                    <textarea id="resumeText" class="form-input form-textarea" style="min-height:150px;"
+                        placeholder="Paste your resume content here..."></textarea>
+                </div>
+
+                <div style="margin-top:1.25rem;">
+                    <label class="form-label">Target Job Role (optional — improves accuracy)</label>
+                    <div style="display:flex;gap:1rem;">
+                        <input type="text" id="targetRole" class="form-input" style="flex:1;"
+                            placeholder="e.g. Data Analyst, Software Engineer, HR Manager" />
+                        <button class="btn btn-primary" id="analyzeBtn" onclick="analyzeResume()">🤖 Analyze
+                            Resume</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOADING -->
+            <div id="loadingPanel" style="display:none;text-align:center;padding:3rem;">
+                <div style="font-size:3rem;animation:spin 1s linear infinite;display:inline-block;">⚙️</div>
+                <h3 style="color:var(--text-primary);margin-top:1rem;">Analyzing your resume...</h3>
+                <p style="color:var(--text-muted);">Running ATS scan, keyword analysis, grammar check...</p>
+                <div class="progress-bar" style="max-width:400px;margin:1.5rem auto 0;">
+                    <div class="progress-fill" id="analysisProgress" style="width:0%;transition:width 0.3s;">
+                    </div>
+                </div>
+                <p id="analysisStep" style="color:var(--text-muted);font-size:0.85rem;margin-top:0.75rem;">
+                    Starting...
+                </p>
+            </div>
+
+            <!-- RESULTS -->
+            <div class="analysis-panel" id="analysisPanel">
+                <!-- OVERALL SCORE -->
+                <div class="card" style="margin-bottom:1.5rem;text-align:center;">
+                    <h2
+                        style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1.25rem;color:var(--text-primary);margin-bottom:1.5rem;">
+                        📊 Resume Analysis Report</h2>
+                    <div class="score-donut">
+                        <svg width="160" height="160" viewBox="0 0 160 160">
+                            <circle cx="80" cy="80" r="65" fill="none" stroke="var(--bg-surface)" stroke-width="12" />
+                            <circle cx="80" cy="80" r="65" fill="none" stroke="url(#scoreGrad)" stroke-width="12"
+                                stroke-linecap="round" id="scoreArc" stroke-dasharray="408" stroke-dashoffset="408" />
+                            <defs>
+                                <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#4f46e5" />
+                                    <stop offset="100%" style="stop-color:#7c3aed" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="score-center">
+                            <div class="score-big" id="overallScore">—</div>
+                            <div class="score-lbl">/ 100</div>
+                        </div>
+                    </div>
+                    <div id="scoreGrade" style="margin-top:1rem;font-size:1.1rem;font-weight:700;"></div>
+                    <div id="scoreMsg" style="color:var(--text-secondary);font-size:0.9rem;margin-top:0.5rem;">
+                    </div>
+                </div>
+
+                <!-- METRICS GRID -->
+                <div class="analysis-grid" id="metricsGrid" style="margin-bottom:1.5rem;"></div>
+
+                <!-- KEYWORDS -->
+                <div class="card" style="margin-bottom:1.5rem;">
+                    <h3 style="font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:1rem;">🔑
+                        Keyword
+                        Analysis</h3>
+                    <div style="margin-bottom:0.75rem;">
+                        <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.5rem;">✅
+                            Keywords Found
+                            in Your Resume:</p>
+                        <div class="keyword-cloud" id="keywordsFound"></div>
+                    </div>
+                    <div>
+                        <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:0.5rem;">❌ Missing
+                            High-Impact Keywords:</p>
+                        <div class="keyword-cloud" id="keywordsMissing"></div>
+                    </div>
+                </div>
+
+                <!-- IMPROVEMENTS -->
+                <div class="card" style="margin-bottom:1.5rem;">
+                    <h3 style="font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:1rem;">📝
+                        AI
+                        Improvement Suggestions</h3>
+                    <div id="improvementsList"></div>
+                </div>
+
+                <!-- ACTIONS -->
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-lg" onclick="downloadImprovedResume()">⬇️ Download
+                        Improved
+                        Resume</button>
+                    <button class="btn btn-outline btn-lg" onclick="analyzeAgain()">🔄 Analyze Again</button>
+                    <a href="jobs.html" class="btn btn-secondary btn-lg">🔍 Find Matching Jobs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="nav-logo" href="index.html" style="display:inline-flex;margin-bottom:1rem;">
+                        <span class="logo-icon">🌉</span>
+                        <span class="logo-text">Thiran<span class="logo-accent">Mitra</span></span>
+                    </a>
+                    <!-- Branding description removed as per user request -->
+                    <div class="footer-social">
+                        <a href="#" class="social-btn"
+                            onclick="showToast('Facebook coming soon!','info');return false;">📘 Facebook</a>
+                        <a href="#" class="social-btn"
+                            onclick="showToast('Twitter coming soon!','info');return false;">🐦 Twitter</a>
+                        <a href="#" class="social-btn"
+                            onclick="showToast('LinkedIn coming soon!','info');return false;">💼 LinkedIn</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="jobs.html">Job Search</a></li>
+                        <li><a href="resume.html">Resume Analyzer</a></li>
+                        <li><a href="skills.html">Skill Gap Tool</a></li>
+                        <li><a href="interview.html">Interview Training</a></li>
+                        <li><a href="placement.html">Placement Prep</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="schemes.html">Gov Schemes</a></li>
+                        <li><a href="rural.html">Rural Mode</a></li>
+                        <li><a href="women.html">Women Employment</a></li>
+                        <li><a href="entrepreneurship.html">Entrepreneurship</a></li>
+                        <li><a href="dashboard.html">Career AI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="#"
+                                onclick="showToast('Report scam via job card Report button.','info');return false;">Report
+                                Scam</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 ThiranMitra. Made with ❤️ for India. &nbsp;|&nbsp; Inspired by NCS, Skill India, PMKVY</p>
+                <p>🇮🇳 Empowering Every Indian, Every District, Every Dream</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CHATBOT -->
+    <div class="chatbot-widget">
+        <div class="chatbot-window" id="chatbotWindow" style="display:none;">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">🤖</div>
+                <div><strong>ThiranMitraBot</strong><span class="chatbot-status">● Online</span></div>
+                <button class="chatbot-close" onclick="toggleChatbot()">✕</button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="chat-msg bot"><span>Need resume tips? Upload your resume and I'll help! 📄</span>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Ask about resumes..."
+                    onkeypress="handleChatKey(event)" />
+                <button onclick="sendChat()" class="chat-send-btn">Send</button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" onclick="toggleChatbot()" id="chatToggleBtn">💬</button>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/resume.js"></script>
+
+    <!-- SPA Navigation Engine -->
+    <script src="js/page-transition.js"></script>
+</body>
+
+</html>

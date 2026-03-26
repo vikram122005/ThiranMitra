@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Details – ThiranMitra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        :root {
+            --glass-bg: rgba(15, 23, 42, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-glow: rgba(79, 70, 229, 0.3);
+        }
+
+        body {
+            background: #0f172a;
+            /* Navy Dark */
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        .detail-hero {
+            position: relative;
+            padding: 120px 0 60px;
+            background: radial-gradient(circle at top right, var(--accent-glow), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(124, 58, 237, 0.1), transparent 30%);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .detail-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .job-card-main {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 2rem;
+            padding: 3rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .job-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .company-logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+            flex-shrink: 0;
+        }
+
+        .job-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-name {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(79, 70, 229, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin: 3rem 0 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--glass-border), transparent);
+        }
+
+        .description-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cbd5e1;
+            white-space: pre-wrap;
+        }
+
+        .skills-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            color: #a5b4fc;
+            padding: 0.5rem 1.25rem;
+            border-radius: 2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Modal Styles */
+        .app-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .app-modal-content {
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            width: 100%;
+            max-width: 500px;
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-step {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .modal-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .pulse-loader {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(79, 70, 229, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .pulse-loader::after {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            border: 2px solid #4f46e5;
+            animation: pulse-ring 1.5s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .resume-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .resume-card:hover {
+            background: rgba(79, 70, 229, 0.1);
+            border-color: #4f46e5;
+        }
+
+        .resume-card.selected {
+            background: rgba(79, 70, 229, 0.2);
+            border-color: #4f46e5;
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .match-score-big {
+            font-size: 4rem;
+            font-weight: 900;
+            text-align: center;
+            margin: 1rem 0;
+            background: linear-gradient(to bottom, #4f46e5, #10b981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAV -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html">
+                <span class="logo-icon">🌉</span>
+                <span class="logo-text">Thiran<span class="logo-accent">Mitra</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="detail-hero">
+        <div class="detail-container">
+            <a href="jobs.html"
+                style="color:#94a3b8; text-decoration:none; font-size:0.95rem; display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:2rem; font-weight:600;">
+                <span style="font-size:1.2rem;">←</span> Back to Job Listings
+            </a>
+
+            <div id="jobContent">
+                <!-- Shimmer Loading -->
+                <div class="job-card-main"
+                    style="min-height: 400px; display:flex; align-items:center; justify-content:center;">
+                    <div class="pulse-loader">🤖</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Modal -->
+    <div class="app-modal" id="appModal">
+        <div class="app-modal-content">
+            <button onclick="closeModal()"
+                style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:#64748b; font-size:1.5rem; cursor:pointer;">✕</button>
+
+            <!-- Step 1: Resume Selection -->
+            <div class="modal-step active" id="step1">
+                <h2 style="font-family:'Outfit',sans-serif; font-size:1.5rem; margin-bottom:0.5rem;">Select Your Resume
+                    📄</h2>
+                <p style="color:#94a3b8; font-size:0.9rem; margin-bottom:1.5rem;">Choose the resume you want to use for
+                    this application.</p>
+                <div id="resumeList">
+                    <div class="pulse-loader" style="width:40px; height:40px;"></div>
+                </div>
+                <div
+                    style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.05); text-align:center;">
+                    <button class="btn btn-outline" onclick="navigateToResumeUpload()"
+                        style="width:100%; justify-content:center;">
+                        + Upload New Resume
+                    </button>
+                    <button id="nextStep1" class="btn btn-primary"
+                        style="width:100%; justify-content:center; margin-top:1rem;" disabled onclick="goToStep(2)">
+                        Analyze & Match Skills →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: AI Matching -->
+            <div class="modal-step" id="step2">
+                <h2 style="text-align:center; font-family:'Outfit',sans-serif; font-size:1.5rem; margin-bottom:1rem;">AI
+                    Skill Matching 🤖</h2>
+                <div id="matchingAnimation">
+                    <div class="pulse-loader">✨</div>
+                    <p id="matchStatusText"
+                        style="text-align:center; color:#94a3b8; font-size:0.9rem; margin-top:1rem;">Comparing your
+                        profile with job requirements...</p>
+                </div>
+                <div id="matchResults" style="display:none;">
+                    <div id="eligibleState" style="display:none;">
+                        <div class="match-score-big" id="matchScoreEligible">85%</div>
+                        <p
+                            style="text-align:center; color:#10b981; font-weight:700; font-size:1.2rem; margin-bottom:0.5rem;">
+                            You are Eligible for this role! 🎉</p>
+                        <p style="text-align:center; color:#94a3b8; font-size:0.9rem; margin-bottom:1.5rem;">Your
+                            profile is a great match for the requirements.</p>
+                        <div id="skillClarityEligible"
+                            style="background:rgba(16,185,129,0.05); padding:1.25rem; border-radius:1rem; font-size:0.85rem; color:#cbd5e1; border:1px solid rgba(16,185,129,0.1); margin-bottom:2rem;">
+                        </div>
+                        <button class="btn btn-primary btn-lg"
+                            style="width:100%; justify-content:center; border-radius:3rem;" onclick="goToApplyPage()">
+                            Confirm & Apply Now 🚀
+                        </button>
+                    </div>
+
+                    <div id="notEligibleState" style="display:none;">
+                        <div style="text-align:center; font-size:3.5rem; margin-bottom:1rem;">⚠️</div>
+                        <h2
+                            style="text-align:center; color:#ef4444; font-family:'Outfit',sans-serif; font-size:1.4rem; margin-bottom:0.5rem;">
+                            You are Not Eligible to apply for this role</h2>
+                        <p style="text-align:center; color:#94a3b8; font-size:0.85rem; margin-bottom:2rem;">Your current
+                            skills do not match the specific requirements for this position.</p>
+
+                        <div style="display:grid; gap:1rem;">
+                            <!-- Option 1: Matched Jobs -->
+                            <div class="resume-card" onclick="window.location.href='jobs.html?matched=1'"
+                                style="padding:1.25rem; background:rgba(79,70,229,0.08); border-color:rgba(79,70,229,0.2);">
+                                <div style="font-size:1.8rem;">🔍</div>
+                                <div>
+                                    <div style="font-weight:700; color:#f1f5f9; margin-bottom:0.2rem;">Find Resume
+                                        Matched Jobs</div>
+                                    <div style="font-size:0.75rem; color:#94a3b8;">Discover 10+ jobs that perfectly
+                                        match your current resume skills.</div>
+                                </div>
+                            </div>
+
+                            <!-- Option 2: Skills & Certification -->
+                            <div class="resume-card"
+                                onclick="window.location.href='training.html?jobId=${currentJob.id}'"
+                                style="padding:1.25rem; background:rgba(16,185,129,0.08); border-color:rgba(16,185,129,0.2);">
+                                <div style="font-size:1.8rem;">🎓</div>
+                                <div>
+                                    <div style="font-weight:700; color:#f1f5f9; margin-bottom:0.2rem;">Get Internship
+                                        Certificates & Tutorials</div>
+                                    <div style="font-size:0.75rem; color:#94a3b8;">Learn missing skills via NPTEL/Swayam
+                                        & YouTube video guides.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-outline"
+                            style="width:100%; justify-content:center; margin-top:1.5rem; border-radius:3rem;"
+                            onclick="closeModal()">
+                            Close & Explore More
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Success -->
+            <div class="modal-step" id="step3">
+                <div style="text-align:center; padding:1rem 0;">
+                    <div style="font-size:5rem; margin-bottom:1rem;">🎉</div>
+                    <h2
+                        style="font-family:'Outfit',sans-serif; font-size:2rem; margin-bottom:0.5rem; background:linear-gradient(to right, #4f46e5, #10b981); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Successfully Applied!</h2>
+                    <p style="color:#94a3b8; line-height:1.6; margin-bottom:2rem;">Your profile has been shared with
+                        <strong><span id="appliedCompany"></span></strong>. We'll notify you when they review your
+                        application.
+                    </p>
+                    <button class="btn btn-primary" style="width:100%; justify-content:center; border-radius:3rem;"
+                        onclick="window.location.href='dashboard.html'">
+                        Go to Dashboard
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 4: Skill Gap & Learning (Optional In-Modal View) -->
+            <div class="modal-step" id="step4">
+                <h2 style="font-family:'Outfit',sans-serif; font-size:1.4rem; margin-bottom:1rem;">Skill Upgradation
+                    Path 🚀</h2>
+                <div id="missingSkillsContent" style="max-height:350px; overflow-y:auto; padding-right:0.5rem;">
+                    <!-- Tutorials and Certs here -->
+                </div>
+                <button class="btn btn-outline"
+                    style="width:100%; justify-content:center; margin-top:1.5rem; border-radius:3rem;"
+                    onclick="goToStep(2)">
+                    ← Back to Analysis
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer" style="padding: 4rem 0; border-top: 1px solid var(--glass-border); margin-top: 5rem;">
+        <div class="detail-container" style="text-align:center;">
+            <div style="margin-bottom:1.5rem;">
+                <span class="logo-icon" style="font-size:2rem;">🌉</span>
+                <span style="font-size:1.5rem; font-weight:800; font-family:'Outfit',sans-serif;">Thiran<span
+                        style="color:#4f46e5;">Mitra</span></span>
+            </div>
+            <p style="color:#64748b; font-size:0.9rem;">Empowering India's Digital Workforce. © 2026 ThiranMitra.</p>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let currentJob = null;
+        let selectedResumeId = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const jobId = params.get('id');
+
+            if (!jobId) {
+                document.getElementById('jobContent').innerHTML = '<div class="job-card-main"><h2>Job Not Found</h2></div>';
+                return;
+            }
+
+            try {
+                const data = await JobsAPI.detail(jobId);
+                currentJob = data.job;
+                renderJob(currentJob);
+            } catch (err) {
+                document.getElementById('jobContent').innerHTML = '<div class="job-card-main"><h2>Error Loading Job</h2></div>';
+            }
+        });
+
+        function renderJob(job) {
+            const skills = Array.isArray(job.skills_required) ? job.skills_required : (typeof job.skills_required === 'string' ? JSON.parse(job.skills_required || '[]') : []);
+            const salary = job.salary_min && job.salary_max
+                ? `₹${(job.salary_min / 100000).toFixed(1)}L – ₹${(job.salary_max / 100000).toFixed(1)}L per annum`
+                : 'Competitive Pay';
+
+            document.getElementById('jobContent').innerHTML = `
+                <div class="job-card-main">
+                    <div class="job-header">
+                        <div class="company-logo" style="background:white; overflow:hidden;">
+                            <img src="https://logo.clearbit.com/${escapeHtml(job.company).toLowerCase().replace(/\s+/g, '')}.com" 
+                                 onerror="this.onerror=null; this.src='https://www.google.com/s2/favicons?domain=${escapeHtml(job.company).toLowerCase().replace(/\s+/g, '')}.com&sz=64';"
+                                 style="width:100%; height:100%; object-fit:contain; padding:15px;" alt="Logo">
+                        </div>
+                        <div>
+                            <h1 class="job-title">${escapeHtml(job.title)}</h1>
+                            <div class="company-name">
+                                🏢 ${escapeHtml(job.company)}
+                                ${job.is_verified ? '<span style="background:#10b981; color:#fff; font-size:0.65rem; padding:0.2rem 0.5rem; border-radius:1rem; margin-left:1rem;">VERIFIED</span>' : ''}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <div class="info-label">Expected Salary</div>
+                            <div class="info-value" style="color:#10b981;">${salary}</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-label">Work Mode</div>
+                            <div class="info-value">${escapeHtml(job.work_mode)}</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-label">Experience</div>
+                            <div class="info-value">${escapeHtml(job.experience)}</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-label">Location</div>
+                            <div class="info-value">${escapeHtml(job.location)}</div>
+                        </div>
+                    </div>
+
+                    <div class="section-title">✨ About the Role</div>
+                    <div class="description-content">${escapeHtml(job.description || 'Join our team as a ' + job.title + '. We are looking for talented individuals to help us grow.')}</div>
+
+                    <div class="section-title">🎯 Skills Required</div>
+                    <div class="skills-wrap">
+                        ${skills.map(s => `<span class="skill-tag">${escapeHtml(s)}</span>`).join('')}
+                    </div>
+
+                    <div style="margin-top: 4rem; padding: 2.5rem; background: linear-gradient(135deg, rgba(79,70,229,0.1), transparent); border-radius: 1.5rem; text-align: center; border: 1px solid rgba(79,70,229,0.2);">
+                        <h3 style="font-family:'Outfit',sans-serif; margin-bottom:1rem; font-size:1.5rem;">Ready to Apply?</h3>
+                        <p style="color:#94a3b8; margin-bottom:2rem; max-width:500px; margin-inline:auto;">Our AI will match your resume skills with this job to give you the best chance of success.</p>
+                        <button id="mainApplyBtn" class="btn btn-primary btn-lg" style="padding: 1rem 4rem; border-radius:3rem; font-size:1.1rem; box-shadow:0 10px 25px rgba(79,70,229,0.4);" onclick="startApplication()">
+                            Applying job ✨
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function startApplication() {
+            if (!AuthAPI.isLoggedIn()) {
+                showToast('Please login to apply!', 'warning');
+                setTimeout(() => window.location.href = 'login.html', 1000);
+                return;
+            }
+
+            document.getElementById('appModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            // Load resumes
+            try {
+                const data = await ProfileAPI.getResumes();
+                const list = document.getElementById('resumeList');
+                list.innerHTML = '';
+
+                if (!data.resumes || data.resumes.length === 0) {
+                    list.innerHTML = '<p style="text-align:center; color:#64748b; margin:2rem 0;">No resumes found in your profile.</p>';
+                    return;
+                }
+
+                data.resumes.forEach(res => {
+                    const card = document.createElement('div');
+                    card.className = 'resume-card';
+                    card.onclick = () => selectResume(res.id, card);
+                    card.innerHTML = `
+                        <div style="font-size:1.5rem;">📄</div>
+                        <div style="flex:1;">
+                            <div style="font-weight:700; color:#f1f5f9;">${escapeHtml(res.filename)}</div>
+                            <div style="font-size:0.75rem; color:#64748b;">Uploaded on ${new Date(res.created_at || Date.now()).toLocaleDateString()}</div>
+                        </div>
+                    `;
+                    list.appendChild(card);
+                });
+            } catch (err) {
+                document.getElementById('resumeList').innerHTML = '<p style="color:#ef4444;">Error loading resumes.</p>';
+            }
+        }
+
+        function selectResume(id, el) {
+            selectedResumeId = id;
+            document.querySelectorAll('.resume-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('nextStep1').disabled = false;
+        }
+
+        function navigateToResumeUpload() {
+            if (currentJob) {
+                sessionStorage.setItem('return_to_job', window.location.href);
+            }
+            window.location.href = 'resume.html';
+        }
+
+        function goToStep(step) {
+            document.querySelectorAll('.modal-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+
+            if (step === 2) {
+                runAILogic();
+            }
+        }
+
+        function runAILogic() {
+            document.getElementById('matchingAnimation').style.display = 'block';
+            document.getElementById('matchResults').style.display = 'none';
+
+            const statusText = document.getElementById('matchStatusText');
+            const phases = [
+                "Extracting your skills...",
+                "Analyzing job requirements...",
+                "Calculating match score...",
+                "Decoding matching algorithms...",
+                "Finalizing AI predictions..."
+            ];
+
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < phases.length) {
+                    statusText.textContent = phases[i];
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    showMatchResults();
+                }
+            }, 700);
+        }
+
+        function showMatchResults() {
+            document.getElementById('matchingAnimation').style.display = 'none';
+            document.getElementById('matchResults').style.display = 'block';
+
+            // Simulate match logic
+            const skills = Array.isArray(currentJob.skills_required) ? currentJob.skills_required : (typeof currentJob.skills_required === 'string' ? JSON.parse(currentJob.skills_required || '[]') : []);
+
+            // Randomly decide eligibility for demo purposes
+            // In real app, we would compare resume text with job skills
+            const isEligible = Math.random() > 0.4;
+            const score = isEligible ? (75 + Math.floor(Math.random() * 20)) : (20 + Math.floor(Math.random() * 35));
+
+            if (isEligible) {
+                document.getElementById('eligibleState').style.display = 'block';
+                document.getElementById('notEligibleState').style.display = 'none';
+                document.getElementById('matchScoreEligible').textContent = score + '%';
+                document.getElementById('skillClarityEligible').innerHTML = `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                        <span>Core Matches:</span>
+                        <span style="color:#10b981; font-weight:700;">High</span>
+                    </div>
+                    <div style="font-size:0.75rem; color:#64748b;">Top matched skills: ${skills.slice(0, 3).join(', ')}</div>
+                `;
+            } else {
+                document.getElementById('eligibleState').style.display = 'none';
+                document.getElementById('notEligibleState').style.display = 'block';
+            }
+        }
+
+        function openSkillGapAnalysis() {
+            goToStep(4);
+            const content = document.getElementById('missingSkillsContent');
+            content.innerHTML = `
+                <div style="padding:1rem; text-align:center; margin-bottom:1rem; background:rgba(249,115,22,0.1); border-radius:1rem; border:1px solid rgba(249,115,22,0.2);">
+                    <div style="color:#f97316; font-weight:700; font-size:0.9rem;">Missing Skills Identified</div>
+                </div>
+            `;
+
+            const skills = Array.isArray(currentJob.skills_required) ? currentJob.skills_required : (typeof currentJob.skills_required === 'string' ? JSON.parse(currentJob.skills_required || '[]') : []);
+
+            skills.forEach(skill => {
+                const div = document.createElement('div');
+                div.style.cssText = 'background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:1rem; padding:1.25rem; margin-bottom:1rem;';
+                div.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1rem;">
+                        <div style="font-weight:700; color:#f1f5f9;">${escapeHtml(skill)}</div>
+                        <span style="background:rgba(239,68,68,0.1); color:#ef4444; font-size:0.65rem; padding:0.2rem 0.6rem; border-radius:1rem;">MISSING</span>
+                    </div>
+                    <div style="display:grid; gap:0.75rem;">
+                        <a href="https://swayam.gov.in/explorer?searchText=${encodeURIComponent(skill)}" target="_blank" class="resume-card" style="padding:0.6rem 0.8rem; margin:0; border-radius:0.75rem; background:rgba(79,70,229,0.05);">
+                            <span style="font-size:1.1rem;">🏛️</span>
+                            <div style="font-size:0.75rem; font-weight:600;">Swayam/NPTEL Internship Cert</div>
+                        </a>
+                        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(skill)}+tutorial+for+beginners" target="_blank" class="resume-card" style="padding:0.6rem 0.8rem; margin:0; border-radius:0.75rem; background:rgba(239,68,68,0.05); border-color:rgba(239,68,68,0.15);">
+                            <span style="font-size:1.1rem;">▶️</span>
+                            <div style="font-size:0.75rem; font-weight:600; color:#ef4444;">Watch Tutorial on YouTube</div>
+                        </a>
+                    </div>
+                `;
+                content.appendChild(div);
+            });
+        }
+
+        function goToApplyPage() {
+            if (currentJob) {
+                window.location.href = `apply.html?jobId=${currentJob.id}`;
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('appModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            // Reset modal steps
+            setTimeout(() => {
+                goToStep(1);
+                document.getElementById('matchingAnimation').style.display = 'block';
+                document.getElementById('matchResults').style.display = 'none';
+            }, 500);
+        }
+
+        function escapeHtml(unsafe) {
+            return (unsafe || '').toString().replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+
+</html>

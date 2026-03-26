@@ -1,0 +1,1702 @@
+[
+    {
+        "id": 1000,
+        "category": "Logistics",
+        "title": "Customer Support",
+        "company": "HDFC Bank",
+        "location": "Bengaluru",
+        "job_type": "Part-time",
+        "work_mode": "Hybrid",
+        "salary_min": 400000,
+        "salary_max": 1900000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1001,
+        "category": "HR",
+        "title": "Business Analyst",
+        "company": "TATA",
+        "location": "Delhi",
+        "job_type": "Full-time",
+        "work_mode": "On-site",
+        "salary_min": 500000,
+        "salary_max": 1400000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1002,
+        "category": "Design",
+        "title": "Field Engineer",
+        "company": "Amazon",
+        "location": "Bengaluru",
+        "job_type": "Internship",
+        "work_mode": "On-site",
+        "salary_min": 900000,
+        "salary_max": 1800000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1003,
+        "category": "Banking",
+        "title": "Assistant Manager",
+        "company": "Amazon",
+        "location": "Kolkata",
+        "job_type": "Full-time",
+        "work_mode": "Remote",
+        "salary_min": 500000,
+        "salary_max": 1600000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1004,
+        "category": "HR",
+        "title": "Assistant Manager",
+        "company": "TCS",
+        "location": "Hyderabad",
+        "job_type": "Internship",
+        "work_mode": "Remote",
+        "salary_min": 700000,
+        "salary_max": 2000000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1005,
+        "category": "Tech",
+        "title": "Production Specialist",
+        "company": "Flipkart",
+        "location": "Kolkata",
+        "job_type": "Part-time",
+        "work_mode": "On-site",
+        "salary_min": 600000,
+        "salary_max": 1400000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1006,
+        "category": "Banking",
+        "title": "Assistant Manager",
+        "company": "Reliance",
+        "location": "Jaipur",
+        "job_type": "Govt",
+        "work_mode": "Remote",
+        "salary_min": 700000,
+        "salary_max": 1500000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1007,
+        "category": "Marketing",
+        "title": "Quality Analyst",
+        "company": "TATA",
+        "location": "Jaipur",
+        "job_type": "Freelance",
+        "work_mode": "Hybrid",
+        "salary_min": 600000,
+        "salary_max": 1600000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1008,
+        "category": "Marketing",
+        "title": "Production Specialist",
+        "company": "ICICI Bank",
+        "location": "Bengaluru",
+        "job_type": "Freelance",
+        "work_mode": "Hybrid",
+        "salary_min": 900000,
+        "salary_max": 1700000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1009,
+        "category": "Logistics",
+        "title": "Technical Lead",
+        "company": "ICICI Bank",
+        "location": "Kolkata",
+        "job_type": "Full-time",
+        "work_mode": "Hybrid",
+        "salary_min": 900000,
+        "salary_max": 1700000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1010,
+        "category": "HR",
+        "title": "Technical Lead",
+        "company": "ICICI Bank",
+        "location": "Hyderabad",
+        "job_type": "Internship",
+        "work_mode": "On-site",
+        "salary_min": 1000000,
+        "salary_max": 2000000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1011,
+        "category": "Tech",
+        "title": "Production Specialist",
+        "company": "Wipro",
+        "location": "Chennai",
+        "job_type": "Freelance",
+        "work_mode": "Remote",
+        "salary_min": 600000,
+        "salary_max": 1800000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1012,
+        "category": "Logistics",
+        "title": "Quality Analyst",
+        "company": "Wipro",
+        "location": "Ahmedabad",
+        "job_type": "Govt",
+        "work_mode": "Remote",
+        "salary_min": 300000,
+        "salary_max": 1400000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1013,
+        "category": "Marketing",
+        "title": "Customer Support",
+        "company": "Amazon",
+        "location": "Hyderabad",
+        "job_type": "Full-time",
+        "work_mode": "Hybrid",
+        "salary_min": 600000,
+        "salary_max": 2000000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1014,
+        "category": "Banking",
+        "title": "Associate Partner",
+        "company": "HDFC Bank",
+        "location": "Lucknow",
+        "job_type": "Govt",
+        "work_mode": "Remote",
+        "salary_min": 600000,
+        "salary_max": 1500000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1015,
+        "category": "Marketing",
+        "title": "Production Specialist",
+        "company": "TATA",
+        "location": "Mumbai",
+        "job_type": "Full-time",
+        "work_mode": "On-site",
+        "salary_min": 700000,
+        "salary_max": 2000000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1016,
+        "category": "Banking",
+        "title": "Quality Analyst",
+        "company": "ICICI Bank",
+        "location": "Mumbai",
+        "job_type": "Full-time",
+        "work_mode": "On-site",
+        "salary_min": 1100000,
+        "salary_max": 2000000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1017,
+        "category": "Logistics",
+        "title": "Office Admin",
+        "company": "TCS",
+        "location": "Mumbai",
+        "job_type": "Internship",
+        "work_mode": "Hybrid",
+        "salary_min": 700000,
+        "salary_max": 1400000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1018,
+        "category": "HR",
+        "title": "Technical Lead",
+        "company": "HDFC Bank",
+        "location": "Lucknow",
+        "job_type": "Internship",
+        "work_mode": "On-site",
+        "salary_min": 700000,
+        "salary_max": 1400000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1019,
+        "category": "Marketing",
+        "title": "Assistant Manager",
+        "company": "TCS",
+        "location": "Mumbai",
+        "job_type": "Internship",
+        "work_mode": "On-site",
+        "salary_min": 600000,
+        "salary_max": 2000000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1020,
+        "category": "Logistics",
+        "title": "Production Specialist",
+        "company": "Infosys",
+        "location": "Kolkata",
+        "job_type": "Full-time",
+        "work_mode": "On-site",
+        "salary_min": 600000,
+        "salary_max": 1500000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1021,
+        "category": "Logistics",
+        "title": "Technical Lead",
+        "company": "Flipkart",
+        "location": "Kolkata",
+        "job_type": "Internship",
+        "work_mode": "Remote",
+        "salary_min": 1100000,
+        "salary_max": 1700000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1022,
+        "category": "Design",
+        "title": "Quality Analyst",
+        "company": "Tech Mahindra",
+        "location": "Bengaluru",
+        "job_type": "Internship",
+        "work_mode": "On-site",
+        "salary_min": 300000,
+        "salary_max": 1700000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1023,
+        "category": "Banking",
+        "title": "Quality Analyst",
+        "company": "TCS",
+        "location": "Lucknow",
+        "job_type": "Govt",
+        "work_mode": "Remote",
+        "salary_min": 400000,
+        "salary_max": 1800000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1024,
+        "category": "HR",
+        "title": "Quality Analyst",
+        "company": "TCS",
+        "location": "Jaipur",
+        "job_type": "Part-time",
+        "work_mode": "Remote",
+        "salary_min": 600000,
+        "salary_max": 2000000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1025,
+        "category": "HR",
+        "title": "Office Admin",
+        "company": "TCS",
+        "location": "Ahmedabad",
+        "job_type": "Govt",
+        "work_mode": "Remote",
+        "salary_min": 1100000,
+        "salary_max": 1700000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1026,
+        "category": "Design",
+        "title": "Business Analyst",
+        "company": "Tech Mahindra",
+        "location": "Delhi",
+        "job_type": "Govt",
+        "work_mode": "On-site",
+        "salary_min": 600000,
+        "salary_max": 1600000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1027,
+        "category": "Logistics",
+        "title": "Project Coordinator",
+        "company": "Infosys",
+        "location": "Pune",
+        "job_type": "Freelance",
+        "work_mode": "On-site",
+        "salary_min": 500000,
+        "salary_max": 1700000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1028,
+        "category": "Marketing",
+        "title": "Technical Lead",
+        "company": "Tech Mahindra",
+        "location": "Chennai",
+        "job_type": "Part-time",
+        "work_mode": "Remote",
+        "salary_min": 800000,
+        "salary_max": 2000000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1029,
+        "category": "Marketing",
+        "title": "Production Specialist",
+        "company": "ICICI Bank",
+        "location": "Lucknow",
+        "job_type": "Part-time",
+        "work_mode": "On-site",
+        "salary_min": 1200000,
+        "salary_max": 1400000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1030,
+        "category": "HR",
+        "title": "Quality Analyst",
+        "company": "ICICI Bank",
+        "location": "Chennai",
+        "job_type": "Freelance",
+        "work_mode": "On-site",
+        "salary_min": 1100000,
+        "salary_max": 1800000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1031,
+        "category": "Tech",
+        "title": "Technical Lead",
+        "company": "Tech Mahindra",
+        "location": "Delhi",
+        "job_type": "Part-time",
+        "work_mode": "On-site",
+        "salary_min": 1000000,
+        "salary_max": 2000000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1032,
+        "category": "Design",
+        "title": "Assistant Manager",
+        "company": "TATA",
+        "location": "Ahmedabad",
+        "job_type": "Freelance",
+        "work_mode": "On-site",
+        "salary_min": 500000,
+        "salary_max": 1500000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1033,
+        "category": "HR",
+        "title": "Business Analyst",
+        "company": "Infosys",
+        "location": "Mumbai",
+        "job_type": "Full-time",
+        "work_mode": "Hybrid",
+        "salary_min": 1100000,
+        "salary_max": 1800000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1034,
+        "category": "Banking",
+        "title": "Technical Lead",
+        "company": "Infosys",
+        "location": "Ahmedabad",
+        "job_type": "Govt",
+        "work_mode": "Remote",
+        "salary_min": 400000,
+        "salary_max": 1600000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1035,
+        "category": "Marketing",
+        "title": "Associate Partner",
+        "company": "Amazon",
+        "location": "Delhi",
+        "job_type": "Freelance",
+        "work_mode": "Remote",
+        "salary_min": 1200000,
+        "salary_max": 2000000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1036,
+        "category": "Banking",
+        "title": "Technical Lead",
+        "company": "TCS",
+        "location": "Ahmedabad",
+        "job_type": "Freelance",
+        "work_mode": "On-site",
+        "salary_min": 900000,
+        "salary_max": 1500000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1037,
+        "category": "Tech",
+        "title": "Customer Support",
+        "company": "HDFC Bank",
+        "location": "Bengaluru",
+        "job_type": "Freelance",
+        "work_mode": "Hybrid",
+        "salary_min": 400000,
+        "salary_max": 1400000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1038,
+        "category": "Marketing",
+        "title": "Field Engineer",
+        "company": "TATA",
+        "location": "Lucknow",
+        "job_type": "Internship",
+        "work_mode": "Hybrid",
+        "salary_min": 800000,
+        "salary_max": 1500000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1039,
+        "category": "Marketing",
+        "title": "Associate Partner",
+        "company": "Infosys",
+        "location": "Bengaluru",
+        "job_type": "Full-time",
+        "work_mode": "Hybrid",
+        "salary_min": 1200000,
+        "salary_max": 1400000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1040,
+        "category": "HR",
+        "title": "Customer Support",
+        "company": "Amazon",
+        "location": "Lucknow",
+        "job_type": "Internship",
+        "work_mode": "On-site",
+        "salary_min": 1000000,
+        "salary_max": 1700000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1041,
+        "category": "Tech",
+        "title": "Business Analyst",
+        "company": "Flipkart",
+        "location": "Ahmedabad",
+        "job_type": "Full-time",
+        "work_mode": "Hybrid",
+        "salary_min": 600000,
+        "salary_max": 2000000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1042,
+        "category": "Tech",
+        "title": "Business Analyst",
+        "company": "Flipkart",
+        "location": "Lucknow",
+        "job_type": "Part-time",
+        "work_mode": "Hybrid",
+        "salary_min": 1100000,
+        "salary_max": 1400000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1043,
+        "category": "Banking",
+        "title": "Associate Partner",
+        "company": "TCS",
+        "location": "Bengaluru",
+        "job_type": "Freelance",
+        "work_mode": "Hybrid",
+        "salary_min": 400000,
+        "salary_max": 2000000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1044,
+        "category": "Banking",
+        "title": "Technical Lead",
+        "company": "Tech Mahindra",
+        "location": "Hyderabad",
+        "job_type": "Govt",
+        "work_mode": "Hybrid",
+        "salary_min": 1000000,
+        "salary_max": 1700000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1045,
+        "category": "Tech",
+        "title": "Production Specialist",
+        "company": "Tech Mahindra",
+        "location": "Delhi",
+        "job_type": "Govt",
+        "work_mode": "Hybrid",
+        "salary_min": 400000,
+        "salary_max": 1800000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1046,
+        "category": "Tech",
+        "title": "Project Coordinator",
+        "company": "TCS",
+        "location": "Delhi",
+        "job_type": "Part-time",
+        "work_mode": "Hybrid",
+        "salary_min": 1000000,
+        "salary_max": 1600000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1047,
+        "category": "Marketing",
+        "title": "Customer Support",
+        "company": "Reliance",
+        "location": "Delhi",
+        "job_type": "Full-time",
+        "work_mode": "On-site",
+        "salary_min": 400000,
+        "salary_max": 2000000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1048,
+        "category": "Marketing",
+        "title": "Business Analyst",
+        "company": "Infosys",
+        "location": "Chennai",
+        "job_type": "Part-time",
+        "work_mode": "On-site",
+        "salary_min": 600000,
+        "salary_max": 1500000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1049,
+        "category": "Banking",
+        "title": "Associate Partner",
+        "company": "Infosys",
+        "location": "Delhi",
+        "job_type": "Govt",
+        "work_mode": "Hybrid",
+        "salary_min": 900000,
+        "salary_max": 1900000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1050,
+        "category": "Design",
+        "title": "Field Engineer",
+        "company": "Infosys",
+        "location": "Chennai",
+        "job_type": "Freelance",
+        "work_mode": "Hybrid",
+        "salary_min": 300000,
+        "salary_max": 1600000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1051,
+        "category": "Banking",
+        "title": "Associate Partner",
+        "company": "Infosys",
+        "location": "Bengaluru",
+        "job_type": "Internship",
+        "work_mode": "On-site",
+        "salary_min": 600000,
+        "salary_max": 1500000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1052,
+        "category": "Tech",
+        "title": "Assistant Manager",
+        "company": "Amazon",
+        "location": "Hyderabad",
+        "job_type": "Internship",
+        "work_mode": "On-site",
+        "salary_min": 400000,
+        "salary_max": 1500000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1053,
+        "category": "Banking",
+        "title": "Business Analyst",
+        "company": "Wipro",
+        "location": "Kolkata",
+        "job_type": "Govt",
+        "work_mode": "Hybrid",
+        "salary_min": 1200000,
+        "salary_max": 1800000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1054,
+        "category": "HR",
+        "title": "Production Specialist",
+        "company": "TATA",
+        "location": "Ahmedabad",
+        "job_type": "Part-time",
+        "work_mode": "On-site",
+        "salary_min": 500000,
+        "salary_max": 1700000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1055,
+        "category": "Tech",
+        "title": "Office Admin",
+        "company": "ICICI Bank",
+        "location": "Pune",
+        "job_type": "Internship",
+        "work_mode": "Hybrid",
+        "salary_min": 900000,
+        "salary_max": 2000000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1056,
+        "category": "Logistics",
+        "title": "Quality Analyst",
+        "company": "Reliance",
+        "location": "Ahmedabad",
+        "job_type": "Part-time",
+        "work_mode": "On-site",
+        "salary_min": 500000,
+        "salary_max": 1700000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1057,
+        "category": "Marketing",
+        "title": "Associate Partner",
+        "company": "Flipkart",
+        "location": "Pune",
+        "job_type": "Internship",
+        "work_mode": "Hybrid",
+        "salary_min": 600000,
+        "salary_max": 1800000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1058,
+        "category": "Banking",
+        "title": "Associate Partner",
+        "company": "ICICI Bank",
+        "location": "Hyderabad",
+        "job_type": "Freelance",
+        "work_mode": "On-site",
+        "salary_min": 400000,
+        "salary_max": 1800000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1059,
+        "category": "Tech",
+        "title": "Office Admin",
+        "company": "ICICI Bank",
+        "location": "Delhi",
+        "job_type": "Freelance",
+        "work_mode": "On-site",
+        "salary_min": 600000,
+        "salary_max": 1700000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1060,
+        "category": "Marketing",
+        "title": "Production Specialist",
+        "company": "TATA",
+        "location": "Bengaluru",
+        "job_type": "Internship",
+        "work_mode": "Hybrid",
+        "salary_min": 600000,
+        "salary_max": 1500000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1061,
+        "category": "Banking",
+        "title": "Business Analyst",
+        "company": "Infosys",
+        "location": "Kolkata",
+        "job_type": "Part-time",
+        "work_mode": "Hybrid",
+        "salary_min": 400000,
+        "salary_max": 1600000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1062,
+        "category": "Marketing",
+        "title": "Assistant Manager",
+        "company": "Infosys",
+        "location": "Kolkata",
+        "job_type": "Freelance",
+        "work_mode": "On-site",
+        "salary_min": 600000,
+        "salary_max": 1900000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1063,
+        "category": "HR",
+        "title": "Business Analyst",
+        "company": "ICICI Bank",
+        "location": "Delhi",
+        "job_type": "Freelance",
+        "work_mode": "Hybrid",
+        "salary_min": 800000,
+        "salary_max": 1500000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1064,
+        "category": "Design",
+        "title": "Business Analyst",
+        "company": "Flipkart",
+        "location": "Jaipur",
+        "job_type": "Freelance",
+        "work_mode": "Remote",
+        "salary_min": 800000,
+        "salary_max": 1600000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1065,
+        "category": "Banking",
+        "title": "Technical Lead",
+        "company": "ICICI Bank",
+        "location": "Bengaluru",
+        "job_type": "Internship",
+        "work_mode": "Hybrid",
+        "salary_min": 900000,
+        "salary_max": 1700000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1066,
+        "category": "Banking",
+        "title": "Production Specialist",
+        "company": "Reliance",
+        "location": "Jaipur",
+        "job_type": "Internship",
+        "work_mode": "Remote",
+        "salary_min": 1200000,
+        "salary_max": 1800000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1067,
+        "category": "Logistics",
+        "title": "Business Analyst",
+        "company": "TCS",
+        "location": "Chennai",
+        "job_type": "Part-time",
+        "work_mode": "Hybrid",
+        "salary_min": 1100000,
+        "salary_max": 1400000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1068,
+        "category": "Tech",
+        "title": "Assistant Manager",
+        "company": "TATA",
+        "location": "Kolkata",
+        "job_type": "Govt",
+        "work_mode": "Hybrid",
+        "salary_min": 1200000,
+        "salary_max": 1400000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1069,
+        "category": "Marketing",
+        "title": "Office Admin",
+        "company": "Flipkart",
+        "location": "Chennai",
+        "job_type": "Full-time",
+        "work_mode": "Remote",
+        "salary_min": 500000,
+        "salary_max": 1800000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1070,
+        "category": "Tech",
+        "title": "Technical Lead",
+        "company": "HDFC Bank",
+        "location": "Ahmedabad",
+        "job_type": "Part-time",
+        "work_mode": "Remote",
+        "salary_min": 500000,
+        "salary_max": 1600000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1071,
+        "category": "Marketing",
+        "title": "Field Engineer",
+        "company": "Reliance",
+        "location": "Ahmedabad",
+        "job_type": "Govt",
+        "work_mode": "Hybrid",
+        "salary_min": 800000,
+        "salary_max": 1900000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1072,
+        "category": "Marketing",
+        "title": "Quality Analyst",
+        "company": "ICICI Bank",
+        "location": "Chennai",
+        "job_type": "Govt",
+        "work_mode": "On-site",
+        "salary_min": 300000,
+        "salary_max": 1700000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1073,
+        "category": "HR",
+        "title": "Business Analyst",
+        "company": "Infosys",
+        "location": "Lucknow",
+        "job_type": "Govt",
+        "work_mode": "Remote",
+        "salary_min": 400000,
+        "salary_max": 2000000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1074,
+        "category": "Marketing",
+        "title": "Business Analyst",
+        "company": "TCS",
+        "location": "Kolkata",
+        "job_type": "Part-time",
+        "work_mode": "Hybrid",
+        "salary_min": 500000,
+        "salary_max": 1700000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1075,
+        "category": "Tech",
+        "title": "Business Analyst",
+        "company": "ICICI Bank",
+        "location": "Ahmedabad",
+        "job_type": "Full-time",
+        "work_mode": "Hybrid",
+        "salary_min": 800000,
+        "salary_max": 1400000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1076,
+        "category": "Tech",
+        "title": "Project Coordinator",
+        "company": "Reliance",
+        "location": "Hyderabad",
+        "job_type": "Part-time",
+        "work_mode": "Remote",
+        "salary_min": 1000000,
+        "salary_max": 1600000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1077,
+        "category": "Design",
+        "title": "Assistant Manager",
+        "company": "Tech Mahindra",
+        "location": "Delhi",
+        "job_type": "Govt",
+        "work_mode": "Remote",
+        "salary_min": 500000,
+        "salary_max": 1600000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1078,
+        "category": "Logistics",
+        "title": "Technical Lead",
+        "company": "Infosys",
+        "location": "Chennai",
+        "job_type": "Internship",
+        "work_mode": "Hybrid",
+        "salary_min": 600000,
+        "salary_max": 2000000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1079,
+        "category": "Design",
+        "title": "Field Engineer",
+        "company": "Tech Mahindra",
+        "location": "Jaipur",
+        "job_type": "Internship",
+        "work_mode": "Remote",
+        "salary_min": 1200000,
+        "salary_max": 1500000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1080,
+        "category": "Logistics",
+        "title": "Project Coordinator",
+        "company": "TCS",
+        "location": "Delhi",
+        "job_type": "Full-time",
+        "work_mode": "On-site",
+        "salary_min": 800000,
+        "salary_max": 1700000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1081,
+        "category": "Tech",
+        "title": "Quality Analyst",
+        "company": "TCS",
+        "location": "Mumbai",
+        "job_type": "Freelance",
+        "work_mode": "Hybrid",
+        "salary_min": 500000,
+        "salary_max": 1400000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1082,
+        "category": "Tech",
+        "title": "Project Coordinator",
+        "company": "Reliance",
+        "location": "Chennai",
+        "job_type": "Internship",
+        "work_mode": "On-site",
+        "salary_min": 1200000,
+        "salary_max": 1400000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1083,
+        "category": "HR",
+        "title": "Assistant Manager",
+        "company": "Reliance",
+        "location": "Delhi",
+        "job_type": "Freelance",
+        "work_mode": "Remote",
+        "salary_min": 800000,
+        "salary_max": 1600000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1084,
+        "category": "Logistics",
+        "title": "Associate Partner",
+        "company": "TCS",
+        "location": "Lucknow",
+        "job_type": "Freelance",
+        "work_mode": "Remote",
+        "salary_min": 500000,
+        "salary_max": 2000000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1085,
+        "category": "Design",
+        "title": "Customer Support",
+        "company": "Infosys",
+        "location": "Delhi",
+        "job_type": "Freelance",
+        "work_mode": "Hybrid",
+        "salary_min": 600000,
+        "salary_max": 1500000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1086,
+        "category": "Logistics",
+        "title": "Office Admin",
+        "company": "Wipro",
+        "location": "Bengaluru",
+        "job_type": "Part-time",
+        "work_mode": "Hybrid",
+        "salary_min": 1000000,
+        "salary_max": 1800000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1087,
+        "category": "Banking",
+        "title": "Assistant Manager",
+        "company": "Flipkart",
+        "location": "Hyderabad",
+        "job_type": "Part-time",
+        "work_mode": "On-site",
+        "salary_min": 700000,
+        "salary_max": 1700000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1088,
+        "category": "Marketing",
+        "title": "Field Engineer",
+        "company": "Amazon",
+        "location": "Hyderabad",
+        "job_type": "Full-time",
+        "work_mode": "Remote",
+        "salary_min": 400000,
+        "salary_max": 1900000,
+        "experience": "Fresher",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1089,
+        "category": "Tech",
+        "title": "Associate Partner",
+        "company": "TCS",
+        "location": "Pune",
+        "job_type": "Internship",
+        "work_mode": "Remote",
+        "salary_min": 1200000,
+        "salary_max": 1900000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1090,
+        "category": "Logistics",
+        "title": "Production Specialist",
+        "company": "Wipro",
+        "location": "Jaipur",
+        "job_type": "Freelance",
+        "work_mode": "Hybrid",
+        "salary_min": 900000,
+        "salary_max": 1800000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1091,
+        "category": "HR",
+        "title": "Associate Partner",
+        "company": "Tech Mahindra",
+        "location": "Mumbai",
+        "job_type": "Part-time",
+        "work_mode": "Hybrid",
+        "salary_min": 600000,
+        "salary_max": 1400000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1092,
+        "category": "Marketing",
+        "title": "Field Engineer",
+        "company": "Infosys",
+        "location": "Ahmedabad",
+        "job_type": "Part-time",
+        "work_mode": "On-site",
+        "salary_min": 300000,
+        "salary_max": 1700000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1093,
+        "category": "Design",
+        "title": "Production Specialist",
+        "company": "Amazon",
+        "location": "Ahmedabad",
+        "job_type": "Full-time",
+        "work_mode": "On-site",
+        "salary_min": 1100000,
+        "salary_max": 1600000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1094,
+        "category": "HR",
+        "title": "Technical Lead",
+        "company": "Amazon",
+        "location": "Lucknow",
+        "job_type": "Govt",
+        "work_mode": "On-site",
+        "salary_min": 1100000,
+        "salary_max": 1800000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1095,
+        "category": "Logistics",
+        "title": "Assistant Manager",
+        "company": "TCS",
+        "location": "Kolkata",
+        "job_type": "Freelance",
+        "work_mode": "Hybrid",
+        "salary_min": 1000000,
+        "salary_max": 1600000,
+        "experience": "3-6 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1096,
+        "category": "Design",
+        "title": "Technical Lead",
+        "company": "TATA",
+        "location": "Ahmedabad",
+        "job_type": "Internship",
+        "work_mode": "Remote",
+        "salary_min": 1000000,
+        "salary_max": 2000000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1097,
+        "category": "Logistics",
+        "title": "Customer Support",
+        "company": "Reliance",
+        "location": "Lucknow",
+        "job_type": "Part-time",
+        "work_mode": "Remote",
+        "salary_min": 1200000,
+        "salary_max": 1800000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1098,
+        "category": "Design",
+        "title": "Quality Analyst",
+        "company": "TCS",
+        "location": "Kolkata",
+        "job_type": "Freelance",
+        "work_mode": "Hybrid",
+        "salary_min": 1000000,
+        "salary_max": 1500000,
+        "experience": "1-3 Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    },
+    {
+        "id": 1099,
+        "category": "Logistics",
+        "title": "Production Specialist",
+        "company": "Wipro",
+        "location": "Delhi",
+        "job_type": "Full-time",
+        "work_mode": "On-site",
+        "salary_min": 700000,
+        "salary_max": 1700000,
+        "experience": "6+ Years",
+        "skills_required": [
+            "Skill A",
+            "Skill B"
+        ],
+        "description": "Job description."
+    }
+]

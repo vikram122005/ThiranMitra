@@ -1,0 +1,446 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Women Employment – ThiranMitra | WFH Jobs, Safety &amp; Rights</title>
+    <meta name="description"
+        content="Women-first job listings, WFH opportunities, return-to-work programs, legal rights guide, and safety-verified employers for Indian women." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        .w-job-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.25rem;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .w-job-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(236, 72, 153, 0.35);
+            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.12);
+        }
+
+        .w-safe-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            color: var(--accent);
+            border-radius: 9999px;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-w {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .stat-w-num {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        .rights-item {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            padding: 1.125rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.875rem;
+            transition: background 0.2s;
+        }
+
+        .rights-item:hover {
+            background: var(--bg-card2);
+        }
+
+        .prog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .prog-card:hover {
+            border-color: rgba(236, 72, 153, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html"><span class="logo-icon">🌉</span><span class="logo-text">Thiran<span
+                        class="logo-accent">Mitra</span></span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="schemes.html" class="nav-link">Schemes</a></li>
+                <li><a href="women.html" class="nav-link active">Women</a></li>
+                <li><a href="entrepreneurship.html" class="nav-link">Entrepreneurship</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register Free</a>
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div
+        style="background:linear-gradient(135deg,#3b0764,#7c3aed,#4c1d95,#831843);padding:6.5rem 0 3rem;text-align:center;position:relative;overflow:hidden;">
+        <div
+            style="position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(236,72,153,0.2),transparent);top:-100px;right:-50px;">
+        </div>
+        <div class="container" style="position:relative;z-index:1;">
+            <div
+                style="display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:0.35rem 1rem;border-radius:9999px;margin-bottom:1.25rem;">
+                For Every Indian Woman 💜</div>
+            <h1
+                style="font-family:'Outfit',sans-serif;font-size:clamp(2rem,5vw,3.25rem);font-weight:900;color:white;margin-bottom:0.875rem;">
+                👩‍💼 Women Employment Hub</h1>
+            <p style="font-size:1.05rem;color:rgba(255,255,255,0.8);max-width:600px;margin:0 auto 1.75rem;">WFH jobs,
+                flexible timings, safety-verified employers, return-to-work programs, and your legal rights — all in one
+                place.</p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                <a href="#wjobs" class="btn" style="background:white;color:#7c3aed;font-weight:700;">Browse Women's Jobs
+                    →</a>
+                <a href="#rights" class="btn"
+                    style="background:rgba(255,255,255,0.12);color:white;border:2px solid rgba(255,255,255,0.3);">Know
+                    Your Rights</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="padding:2.5rem 0 4rem;">
+
+        <!-- STATS -->
+        <div class="stats-bar reveal">
+            <div class="stat-w">
+                <div class="stat-w-num" style="color:#ec4899;">48K+</div>
+                <div style="font-size:0.75rem;color:var(--text-muted);">Women's Jobs Listed</div>
+            </div>
+            <div class="stat-w">
+                <div class="stat-w-num" style="color:#7c3aed;">3.2L+</div>
+                <div style="font-size:0.75rem;color:var(--text-muted);">Women Placed</div>
+            </div>
+            <div class="stat-w">
+                <div class="stat-w-num" style="color:var(--accent);">87%</div>
+                <div style="font-size:0.75rem;color:var(--text-muted);">Success Rate</div>
+            </div>
+            <div class="stat-w">
+                <div class="stat-w-num" style="color:var(--warning);">240+</div>
+                <div style="font-size:0.75rem;color:var(--text-muted);">Safety-Verified Employers</div>
+            </div>
+        </div>
+
+        <!-- WOMEN JOB LISTINGS -->
+        <div id="wjobs">
+            <div
+                style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.75rem;">
+                <h2
+                    style="font-family:'Outfit',sans-serif;font-size:1.25rem;font-weight:800;color:var(--text-primary);">
+                    💼 Jobs for Women</h2>
+                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                    <button class="btn btn-sm btn-primary" onclick="filterWJobs('all',this)">All</button>
+                    <button class="btn btn-sm btn-outline" onclick="filterWJobs('WFH',this)">🏠 WFH</button>
+                    <button class="btn btn-sm btn-outline" onclick="filterWJobs('Flexible',this)">⏰ Flexible</button>
+                    <button class="btn btn-sm btn-outline" onclick="filterWJobs('Part-time',this)">⏱️ Part-time</button>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2rem;" id="wJobsGrid">
+            </div>
+        </div>
+
+        <!-- RETURN TO WORK -->
+        <div style="background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(236,72,153,0.05));border:1px solid rgba(124,58,237,0.2);border-radius:var(--radius-2xl);padding:2rem;margin-bottom:2rem;"
+            class="reveal">
+            <div style="text-align:center;margin-bottom:1.5rem;">
+                <div style="font-size:2.5rem;margin-bottom:0.75rem;">🤝</div>
+                <h2
+                    style="font-family:'Outfit',sans-serif;font-size:1.25rem;font-weight:800;color:var(--text-primary);margin-bottom:0.5rem;">
+                    Return-to-Work Programs</h2>
+                <p style="font-size:0.875rem;color:var(--text-secondary);">For women returning after career gap
+                    (maternity, family responsibilities)</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;" id="returnPrograms"></div>
+        </div>
+
+        <!-- LEGAL RIGHTS -->
+        <div id="rights" style="margin-bottom:2rem;" class="reveal">
+            <h2
+                style="font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-primary);margin-bottom:1.25rem;">
+                ⚖️ Your Legal Rights at Work</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" id="rightsList"></div>
+        </div>
+
+        <!-- SAFETY TIPS -->
+        <div style="background:linear-gradient(135deg,rgba(239,68,68,0.06),transparent);border:1px solid rgba(239,68,68,0.15);border-radius:var(--radius-xl);padding:1.75rem;"
+            class="reveal">
+            <h2
+                style="font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text-primary);margin-bottom:1.25rem;">
+                🛡️ Workplace Safety Guide</h2>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;margin-bottom:1rem;">
+                <div style="font-size:0.82rem;color:var(--text-secondary);display:flex;gap:0.625rem;">
+                    <span>✅</span>Verify employer registration on MCA portal before joining
+                </div>
+                <div style="font-size:0.82rem;color:var(--text-secondary);display:flex;gap:0.625rem;"><span>✅</span>Ask
+                    for written offer letter before joining any company</div>
+                <div style="font-size:0.82rem;color:var(--text-secondary);display:flex;gap:0.625rem;">
+                    <span>✅</span>Check for PoSH committee if company has 10+ employees
+                </div>
+                <div style="font-size:0.82rem;color:var(--text-secondary);display:flex;gap:0.625rem;">
+                    <span>✅</span>Never pay money to join — all legitimate jobs are free
+                </div>
+                <div style="font-size:0.82rem;color:var(--text-secondary);display:flex;gap:0.625rem;">
+                    <span>✅</span>Check employer reviews on glassdoor.co.in before applying
+                </div>
+                <div style="font-size:0.82rem;color:var(--text-secondary);display:flex;gap:0.625rem;">
+                    <span>✅</span>Report fake job offers to cybercrime.gov.in or 1930 helpline
+                </div>
+            </div>
+            <div
+                style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:var(--radius-lg);padding:1rem;display:flex;align-items:center;gap:1rem;">
+                <span style="font-size:1.75rem;">☎️</span>
+                <div>
+                    <div style="font-weight:800;color:var(--text-primary);font-size:0.9rem;">Emergency Helplines</div>
+                    <div style="font-size:0.8rem;color:var(--text-secondary);">
+                        Women Helpline: <strong style="color:var(--text-primary);">1091</strong> &nbsp;·&nbsp;
+                        Cyber Crime: <strong style="color:var(--text-primary);">1930</strong> &nbsp;·&nbsp;
+                        Police: <strong style="color:var(--text-primary);">100</strong>
+                    </div>
+                </div>
+                <button class="btn btn-danger btn-sm"
+                    style="margin-left:auto;background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:var(--danger);"
+                    onclick="showToast('Emergency contacts noted. Stay safe! 🛡️','warning')">Report Scam</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="nav-logo" href="index.html" style="display:inline-flex;margin-bottom:1rem;">
+                        <span class="logo-icon">🌉</span>
+                        <span class="logo-text">Thiran<span class="logo-accent">Mitra</span></span>
+                    </a>
+                    <!-- Branding description removed as per user request -->
+                    <div class="footer-social">
+                        <a href="#" class="social-btn"
+                            onclick="showToast('Facebook page coming soon!','info');return false;">📘 Facebook</a>
+                        <a href="#" class="social-btn"
+                            onclick="showToast('Twitter/X coming soon!','info');return false;">🐦 Twitter</a>
+                        <a href="#" class="social-btn"
+                            onclick="showToast('LinkedIn page coming soon!','info');return false;">💼 LinkedIn</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="jobs.html">Job Search</a></li>
+                        <li><a href="resume.html">Resume Analyzer</a></li>
+                        <li><a href="skills.html">Skill Gap Tool</a></li>
+                        <li><a href="interview.html">Interview Training</a></li>
+                        <li><a href="placement.html">Placement Prep</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="schemes.html">Gov Schemes</a></li>
+                        <li><a href="rural.html">Rural Mode</a></li>
+                        <li><a href="women.html">Women Employment</a></li>
+                        <li><a href="entrepreneurship.html">Entrepreneurship</a></li>
+                        <li><a href="dashboard.html">Career AI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="#" onclick="showToast('Terms of Service coming soon!','info');return false;">Terms
+                                of Service</a></li>
+                        <li><a href="#"
+                                onclick="showToast('Use the Report button on any job card to report a scam.','info');return false;">Report
+                                Scam</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 ThiranMitra. Made with ❤️ for India. &nbsp;|&nbsp; Inspired by NCS, Skill India, PMKVY</p>
+                <p>🇮🇳 Empowering Every Indian, Every District, Every Dream</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chatbot-widget">
+        <div class="chatbot-window" id="chatbotWindow" style="display:none;">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">🤖</div>
+                <div><strong>ThiranMitraBot</strong><span class="chatbot-status">● Online</span></div>
+                <button class="chatbot-close" onclick="toggleChatbot()">✕</button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="chat-msg bot"><span>Namaste! I can help you find safe and flexible jobs. Ask me about WFH
+                        opportunities, maternity rights, or women's schemes 💜</span></div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Ask about women's jobs..."
+                    onkeypress="handleChatKey(event)" />
+                <button onclick="sendChat()" class="chat-send-btn">Send</button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" onclick="toggleChatbot()" id="chatToggleBtn">💬</button>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let WOMEN_JOBS = [];
+        let wJobFilter = 'all';
+
+        async function initWJobs() {
+            try {
+                if (typeof showLoadingOverlay === 'function') showLoadingOverlay('Loading women jobs...');
+                const res = await JobsAPI.list();
+                // Filter to WFH/Flexible jobs or specific ones if needed, here we just show jobs
+                WOMEN_JOBS = res.jobs.map(j => ({
+                    icon: '👩‍💻',
+                    title: j.title,
+                    co: j.company,
+                    loc: j.location,
+                    type: j.work_mode === 'Remote' ? 'WFH' : (j.job_type === 'Part-time' ? 'Part-time' : 'Flexible'),
+                    salary: j.salary_min ? `₹${(j.salary_min / 100000).toFixed(1)}–${(j.salary_max / 100000).toFixed(1)} LPA` : 'As per norms',
+                    safe: true,
+                    flex: j.work_mode === 'Remote' || j.job_type === 'Part-time'
+                }));
+                renderWJobs();
+            } catch (err) {
+                console.error('Failed to load women jobs:', err);
+                document.getElementById('wJobsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text-muted);">Failed to load jobs. Make sure backend is running. <button class="btn btn-outline btn-sm" onclick="initWJobs()">Retry</button></div>';
+            } finally {
+                if (typeof hideLoadingOverlay === 'function') hideLoadingOverlay();
+            }
+        }
+        function filterWJobs(filter, btn) {
+            document.querySelectorAll('[onclick*="filterWJobs"]').forEach(b => { b.classList.remove('btn-primary'); b.classList.add('btn-outline'); });
+            btn.classList.add('btn-primary'); btn.classList.remove('btn-outline');
+            wJobFilter = filter;
+            renderWJobs();
+        }
+
+        function renderWJobs() {
+            const grid = document.getElementById('wJobsGrid');
+            grid.innerHTML = '';
+            const jobs = wJobFilter === 'all' ? WOMEN_JOBS : WOMEN_JOBS.filter(j => j.type === wJobFilter);
+            jobs.forEach(j => {
+                const card = document.createElement('div');
+                card.className = 'w-job-card';
+                card.innerHTML = `
+        <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+          <div style="width:44px;height:44px;background:var(--bg-surface);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">${j.icon}</div>
+          <div style="flex:1;">
+            <div style="font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:0.2rem;">${j.title}</div>
+            <div style="font-size:0.8rem;color:var(--text-secondary);">${j.co} · 📍 ${j.loc}</div>
+          </div>
+          ${j.safe ? '<span class="w-safe-badge">✅ Safe</span>' : ''}
+        </div>
+        <div style="display:flex;gap:0.375rem;flex-wrap:wrap;">
+          <span class="job-tag" style="font-size:0.7rem;">🏠 ${j.type}</span>
+          ${j.flex ? '<span class="job-tag" style="font-size:0.7rem;">⏱️ Flexible Hours</span>' : ''}
+          <span class="job-tag" style="font-size:0.7rem;color:var(--accent);">💰 ${j.salary}</span>
+        </div>
+        <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showToast('Application submitted for ${j.title} at ${j.co}! ✅','success')">Apply Now →</button>
+      `;
+                grid.appendChild(card);
+            });
+        }
+
+        const RETURN_PROGRAMS = [
+            { icon: '🔄', name: 'Back2Work', org: 'NASSCOM', desc: '6-month returnship program for women with 2+ year career gap. IT sector. Stipend provided.' },
+            { icon: '🌸', name: 'Project Eve', org: 'Accenture', desc: 'Flexible hiring program for women returning after maternity/family break. Mentorship included.' },
+            { icon: '💼', name: 'Career ReSTART', org: 'TCS', desc: 'Paid internship → full-time opportunity program for experienced women professionals.' },
+            { icon: '🎓', name: 'WEP Scheme', org: 'Govt / NSDC', desc: 'Women\'s Entrepreneurship Platform with reskilling support, mentors, and funding linkage.' },
+            { icon: '👩‍🏫', name: 'She Means Business', org: 'Meta India', desc: 'Free digital skills training and tools to help women-led businesses grow online.' },
+            { icon: '🚀', name: 'Disha Program', org: 'Infosys', desc: 'Career reignition for women on breaks. Upskilling + placement assistance. Fully paid.' },
+        ];
+
+        function renderReturnPrograms() {
+            const grid = document.getElementById('returnPrograms');
+            RETURN_PROGRAMS.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'prog-card';
+                card.innerHTML = `
+        <div style="font-size:1.75rem;margin-bottom:0.625rem;">${p.icon}</div>
+        <div style="font-size:0.9rem;font-weight:800;color:var(--text-primary);margin-bottom:0.25rem;">${p.name}</div>
+        <div style="font-size:0.7rem;color:var(--primary-light);font-weight:700;margin-bottom:0.625rem;">${p.org}</div>
+        <p style="font-size:0.78rem;color:var(--text-secondary);line-height:1.7;margin-bottom:0.875rem;">${p.desc}</p>
+        <button class="btn btn-outline btn-sm" style="width:100%;justify-content:center;" onclick="showToast('${p.name} program info sent to your email!','success')">Learn More</button>
+      `;
+                grid.appendChild(card);
+            });
+        }
+
+        const LEGAL_RIGHTS = [
+            { icon: '🤱', title: 'Maternity Leave (26 Weeks)', desc: 'The Maternity Benefit Act guarantees 26 weeks paid maternity leave for All women employees in establishments with 10+ workers.' },
+            { icon: '⚖️', title: 'Equal Pay Act', desc: 'Equal Remuneration Act prohibits paying women less than men for similar work. File complaint with Labour Commissioner if violated.' },
+            { icon: '🛡️', title: 'PoSH Act (Sexual Harassment)', desc: 'Every workplace with 10+ employees must have an Internal Complaints Committee (ICC). You can file a complaint within 3 months.' },
+            { icon: '🕐', title: 'Night Shift Safety', desc: 'Employers must arrange safe transport for women working night shifts. They cannot be forced to work nights without written consent.' },
+            { icon: '👶', title: 'Creche Facility', desc: 'Workplaces with 50+ employees must provide crèche facility for children below 6 years. You can visit children 4 times a day.' },
+            { icon: '🏥', title: 'Health & Safety Rights', desc: 'Women cannot be assigned hazardous work in mines, factories. Pregnancy must not result in dismissal. Health check-ups must be paid.' },
+        ];
+
+        function renderRights() {
+            const list = document.getElementById('rightsList');
+            LEGAL_RIGHTS.forEach(r => {
+                const div = document.createElement('div');
+                div.className = 'rights-item';
+                div.innerHTML = `<span style="font-size:1.5rem;flex-shrink:0;">${r.icon}</span><div><div style="font-size:0.875rem;font-weight:700;color:var(--text-primary);margin-bottom:0.3rem;">${r.title}</div><p style="font-size:0.78rem;color:var(--text-secondary);line-height:1.65;margin:0;">${r.desc}</p></div>`;
+                list.appendChild(div);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initWJobs();
+            renderReturnPrograms();
+            renderRights();
+        });
+    </script>
+
+    <!-- SPA Navigation Engine -->
+    <script src="js/page-transition.js"></script>
+</body>
+
+</html>

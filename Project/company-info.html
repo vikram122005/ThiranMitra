@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Company Info – ThiranMitra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        .hero-card {
+            background: linear-gradient(135deg, rgba(79, 70, 229, .12), rgba(124, 58, 237, .08));
+            border: 1px solid rgba(79, 70, 229, .25);
+            border-radius: 24px;
+            padding: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-logo {
+            width: 88px;
+            height: 88px;
+            border-radius: 20px;
+            object-fit: contain;
+            background: #fff;
+            padding: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+            flex-shrink: 0;
+        }
+
+        .hero-logo-fb {
+            width: 88px;
+            height: 88px;
+            border-radius: 20px;
+            background: var(--grad-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .hero-info h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: .35rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            margin-top: .75rem;
+        }
+
+        .meta-chip {
+            background: rgba(15, 23, 55, .6);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: 20px;
+            padding: .3rem .9rem;
+            font-size: .75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Section headers */
+        .sec-head {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        /* Jobs */
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: .875rem;
+        }
+
+        @media(max-width:700px) {
+            .job-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .job-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            transition: all .25s;
+        }
+
+        .job-card:hover {
+            border-color: rgba(79, 70, 229, .35);
+            transform: translateY(-3px);
+        }
+
+        .job-role {
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: .35rem;
+        }
+
+        .job-type {
+            font-size: .72rem;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: .15rem .55rem;
+        }
+
+        .type-ft {
+            background: rgba(16, 185, 129, .15);
+            color: #10b981;
+        }
+
+        .type-in {
+            background: rgba(79, 70, 229, .15);
+            color: var(--primary-light);
+        }
+
+        .job-sal {
+            font-size: .78rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-top: .5rem;
+        }
+
+        /* Skills */
+        .skill-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+        }
+
+        .skill-tag {
+            background: rgba(79, 70, 229, .12);
+            border: 1px solid rgba(79, 70, 229, .25);
+            border-radius: 20px;
+            padding: .35rem .9rem;
+            font-size: .78rem;
+            font-weight: 600;
+            color: var(--primary-light);
+        }
+
+        .skill-tag.must {
+            background: rgba(239, 68, 68, .1);
+            border-color: rgba(239, 68, 68, .3);
+            color: #ef4444;
+        }
+
+        /* Interview rounds */
+        .rounds-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .round-item {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: 18px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary);
+            transition: all .25s;
+        }
+
+        .round-item:hover {
+            border-left-color: var(--accent);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .2);
+        }
+
+        .round-num {
+            width: 32px;
+            height: 32px;
+            background: var(--grad-primary);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            font-weight: 900;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .round-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .round-desc {
+            font-size: .83rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: .5rem 0;
+        }
+
+        .round-dur {
+            font-size: .75rem;
+            color: var(--text-muted);
+        }
+
+        .yt-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(255, 0, 0, .1);
+            border: 1px solid rgba(255, 0, 0, .25);
+            border-radius: 10px;
+            padding: .45rem .9rem;
+            text-decoration: none;
+            font-size: .78rem;
+            font-weight: 700;
+            color: #ff4444;
+            transition: all .2s;
+            margin-top: .75rem;
+            margin-right: .5rem;
+        }
+
+        .yt-link:hover {
+            background: rgba(255, 0, 0, .2);
+            transform: translateY(-1px);
+        }
+
+        /* Tips */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media(max-width:600px) {
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tip-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+
+        .tip-icon {
+            font-size: 1.75rem;
+            margin-bottom: .625rem;
+        }
+
+        .tip-title {
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: .375rem;
+        }
+
+        .tip-body {
+            font-size: .8rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 90px;
+            left: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(15, 23, 55, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 50%;
+            padding: 0;
+            color: #e8f4ff;
+            cursor: pointer;
+            z-index: 50;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: rgba(0, 212, 255, 0.6);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .back-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.3s ease;
+        }
+
+        .back-btn:hover svg {
+            transform: translateX(-3px);
+        }
+
+        .diff-badge {
+            font-size: .72rem;
+            font-weight: 700;
+            border-radius: 10px;
+            padding: .25rem .75rem;
+        }
+
+        .diff-hard {
+            background: rgba(239, 68, 68, .15);
+            color: #ef4444;
+        }
+
+        .diff-med {
+            background: rgba(245, 158, 11, .15);
+            color: #f59e0b;
+        }
+
+        .diff-easy {
+            background: rgba(16, 185, 129, .15);
+            color: #10b981;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html"><span class="logo-icon">🌉</span><span class="logo-text">Thiran<span
+                        class="logo-accent">Mitra</span></span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="placement.html" class="nav-link">Placement</a></li>
+                <li><a href="company-prep.html" class="nav-link active">Company Prep</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register Free</a>
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding:6rem 0 5rem; position:relative;">
+        <a href="javascript:history.back()" class="back-btn" title="Go Back">
+            <svg viewBox="0 0 24 24">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+        </a>
+        <div id="companyContent">
+            <div style="text-align:center;padding:4rem;color:var(--text-muted);">Loading company data...</div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 ThiranMitra. Made with ❤️ for India.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        /* ══════════════ FULL COMPANY DATABASE ══════════════ */
+        const DB = {
+            google: {
+                name: 'Google (Alphabet)', logo: 'https://logo.clearbit.com/google.com', founded: 1998, hq: 'Bengaluru / Hyderabad, India',
+                about: 'Google is the world\'s most used search engine and a global leader in AI, Cloud (GCP), Android, YouTube, and advertising technology.',
+                diff: 'hard', emp: '190,000+', rating: '4.5/5',
+                openRoles: [
+                    { title: 'Software Engineer (L3/L4)', type: 'ft', sal: '₹25–50 LPA' },
+                    { title: 'Data Scientist', type: 'ft', sal: '₹22–40 LPA' },
+                    { title: 'Product Manager', type: 'ft', sal: '₹30–55 LPA' },
+                    { title: 'UX Designer', type: 'ft', sal: '₹18–35 LPA' },
+                    { title: 'SWE Intern', type: 'in', sal: '₹80K–1.2L/mo' },
+                    { title: 'ML Engineer', type: 'ft', sal: '₹25–45 LPA' },
+                ],
+                mustSkills: ['Data Structures & Algorithms', 'System Design', 'Python/C++/Java', 'Problem Solving', 'Distributed Systems'],
+                niceSkills: ['Kubernetes', 'TensorFlow', 'BigQuery', 'LLMs', 'React'],
+                rounds: [
+                    {
+                        num: 1, name: 'Resume / Application Screen', emoji: '📄', dur: '1–2 weeks', desc: 'Submit via careers.google.com. ATS scans for DSA experience, relevant projects, internships. Referrals significantly improve chances.',
+                        videos: [{ title: 'Google Resume Tips by Ex-Googler', url: 'https://www.youtube.com/results?search_query=google+resume+tips+software+engineer' }, { title: 'How to Get Google Interview Call', url: 'https://www.youtube.com/results?search_query=how+to+get+google+interview+call' }]
+                    },
+                    {
+                        num: 2, name: 'Online Assessment (Coding Test)', emoji: '💻', dur: '90 min', desc: '2–3 LeetCode Medium/Hard problems on a coding platform. Tests DSA skills: arrays, trees, graphs, DP.',
+                        videos: [{ title: 'Google OA Prep — LeetCode Strategy', url: 'https://www.youtube.com/results?search_query=google+online+assessment+preparation' }, { title: 'Top 20 Google LeetCode Questions', url: 'https://www.youtube.com/results?search_query=top+google+leetcode+questions+2024' }]
+                    },
+                    {
+                        num: 3, name: 'Phone Screen (Technical)', emoji: '📞', dur: '45–60 min', desc: '1 technical round with a Googler. 1–2 coding problems (Medium). Focus: clean code, edge cases, time/space complexity discussion.',
+                        videos: [{ title: 'Google Phone Screen Interview Tips', url: 'https://www.youtube.com/results?search_query=google+phone+screen+interview+tips' }, { title: 'Mock Google Phone Interview', url: 'https://www.youtube.com/results?search_query=mock+google+phone+interview' }]
+                    },
+                    {
+                        num: 4, name: 'Onsite Interviews × 4–5', emoji: '🏢', dur: '4–5 hours total', desc: '4–5 rounds covering: 2–3 Coding rounds (Medium/Hard DSA), 1 System Design round, 1 Googleyness/Behavioural (values fit). Each round 45 min.',
+                        videos: [{ title: 'Google System Design Interview Guide', url: 'https://www.youtube.com/results?search_query=google+system+design+interview+2024' }, { title: 'Google Behavioural Interview — STAR Method', url: 'https://www.youtube.com/results?search_query=google+behavioural+interview+preparation' }, { title: 'Complete Google Onsite Preparation', url: 'https://www.youtube.com/results?search_query=google+onsite+interview+complete+preparation' }]
+                    },
+                ],
+                tips: [
+                    { icon: '📚', title: 'Master LeetCode (Top 150)', body: 'Solve at least 150 LeetCode problems focusing on Google\'s favourite patterns: Trees, Graphs, DP, Sliding Window, Two Pointers.' },
+                    { icon: '🏗️', title: 'System Design is Non-Negotiable', body: 'For SWE L4+: study Grokking System Design. Practice designing YouTube, Maps, Gmail, Search.' },
+                    { icon: '🔑', title: 'Google Values "Googleyness"', body: 'Prepare STAR stories focusing on: scrappiness, intellectual humility, comfort with ambiguity, and passion for users.' },
+                    { icon: '🔄', title: 'Referrals 10× Your Chances', body: 'Connect with Googlers on LinkedIn. A referral skips ATS and directly gets your resume to a recruiter.' },
+                ]
+            },
+
+            amazon: {
+                name: 'Amazon', logo: 'https://logo.clearbit.com/amazon.com', founded: 1994, hq: 'Bengaluru, India',
+                about: 'Amazon is a global leader in e-commerce, cloud computing (AWS), AI, and logistics. Amazon India is one of its largest tech hubs with 60,000+ employees.',
+                diff: 'hard', emp: '60,000+ (India)', rating: '4.1/5',
+                openRoles: [
+                    { title: 'SDE-1 (Entry Level)', type: 'ft', sal: '₹18–28 LPA' },
+                    { title: 'SDE-2 (Mid Level)', type: 'ft', sal: '₹28–45 LPA' },
+                    { title: 'Data Engineer', type: 'ft', sal: '₹20–35 LPA' },
+                    { title: 'Product Manager', type: 'ft', sal: '₹25–50 LPA' },
+                    { title: 'SDE Intern', type: 'in', sal: '₹60K–1L/mo' },
+                    { title: 'Business Analyst', type: 'ft', sal: '₹12–22 LPA' },
+                ],
+                mustSkills: ['Data Structures & Algorithms', 'Amazon Leadership Principles', 'System Design', 'Java/Python', 'SQL'],
+                niceSkills: ['AWS', 'DynamoDB', 'Kafka', 'Microservices', 'React'],
+                rounds: [
+                    {
+                        num: 1, name: 'Online Assessment (OA)', emoji: '💻', dur: '90 min', desc: '2 DSA problems (LeetCode Medium) + Work Simulation (Leadership Principle scenarios) + Workstyle Survey. Time-pressured.',
+                        videos: [{ title: 'Amazon OA 2024 — Complete Guide', url: 'https://www.youtube.com/results?search_query=amazon+online+assessment+2024+preparation' }, { title: 'Amazon Work Simulation Test Tips', url: 'https://www.youtube.com/results?search_query=amazon+work+simulation+test+tips' }]
+                    },
+                    {
+                        num: 2, name: 'Technical Phone Screen', emoji: '📞', dur: '60 min', desc: 'One DSA problem (Medium/Hard) + 2 Leadership Principle behavioural questions. Must explain thought process throughout.',
+                        videos: [{ title: 'Amazon Phone Screen Interview Prep', url: 'https://www.youtube.com/results?search_query=amazon+phone+screen+interview+preparation' }, { title: 'Amazon LP Questions — Top 25', url: 'https://www.youtube.com/results?search_query=amazon+leadership+principles+interview+questions+2024' }]
+                    },
+                    {
+                        num: 3, name: 'Virtual Onsite Loop (4–5 rounds)', emoji: '🏢', dur: '4–5 hours', desc: '4–5 back-to-back rounds: 2 Coding (DSA), 1 System Design, 1–2 Bar Raiser rounds (strict LP focus). Every round has LP questions.',
+                        videos: [{ title: 'Amazon Loop Interview Complete Guide', url: 'https://www.youtube.com/results?search_query=amazon+loop+interview+complete+guide' }, { title: 'Amazon System Design — Full Prep', url: 'https://www.youtube.com/results?search_query=amazon+system+design+interview+2024' }, { title: 'Amazon Bar Raiser Interview Secrets', url: 'https://www.youtube.com/results?search_query=amazon+bar+raiser+interview+secrets' }]
+                    },
+                ],
+                tips: [
+                    { icon: '📋', title: 'Learn All 16 Leadership Principles', body: 'EVERY Amazon interview includes LP questions. Prepare 2 STAR stories per LP. Key LPs: Ownership, Customer Obsession, Deliver Results, Dive Deep.' },
+                    { icon: '💻', title: 'LeetCode Medium is the Bar', body: 'Amazon rarely asks Hard problems. Focus on: Arrays, Hash Maps, Strings, Trees, BFS/DFS, DP (basic).' },
+                    { icon: '🏗️', title: 'System Design for SDE-2+', body: 'Study: designing URL shortener, distributed cache, notification system. Use: load balancer, CDN, database sharding concepts.' },
+                    { icon: '⭐', title: 'Bar Raiser Round', body: 'One round is conducted by a trained "Bar Raiser" from another team. They have veto power. Focus on clear communication and strong LP examples.' },
+                ]
+            },
+
+            tcs: {
+                name: 'TCS (Tata Consultancy Services)', logo: 'https://logo.clearbit.com/tcs.com', founded: 1968, hq: 'Mumbai, India',
+                about: 'TCS is India\'s largest IT company and one of the most-valuable IT services firms globally. Hires ~40,000 freshers per year through TCS NQT.',
+                diff: 'med', emp: '600,000+', rating: '4.0/5',
+                openRoles: [
+                    { title: 'System Engineer (Fresher)', type: 'ft', sal: '₹3.5–4.5 LPA' },
+                    { title: 'IT Analyst', type: 'ft', sal: '₹6–9 LPA' },
+                    { title: 'Assistant System Engineer', type: 'ft', sal: '₹3.36 LPA' },
+                    { title: 'Digital / Ninja (High Package)', type: 'ft', sal: '₹7–9 LPA' },
+                    { title: 'TCS iON Intern', type: 'in', sal: '₹10–15K/mo' },
+                    { title: 'Data Analyst', type: 'ft', sal: '₹5–8 LPA' },
+                ],
+                mustSkills: ['Aptitude (Quant/Verbal/Reasoning)', 'Core Programming (C/C++/Java/Python)', 'Basic SQL', 'Communication Skills', 'Coding (NQT)'],
+                niceSkills: ['Cloud basics', 'DBMS', 'OS concepts', 'Agile'],
+                rounds: [
+                    {
+                        num: 1, name: 'TCS NQT — National Qualifier Test', emoji: '📝', dur: '3 hours', desc: '4 sections: Verbal Ability (24 min) + Reasoning (30 min) + Numerical (40 min) + Coding (60 min). Minimum 50% in each section required. Coding section = 2 problems (easy to medium).',
+                        videos: [{ title: 'TCS NQT 2024 Complete Preparation Guide', url: 'https://www.youtube.com/results?search_query=tcs+nqt+2024+preparation+guide' }, { title: 'TCS NQT Aptitude Previous Questions', url: 'https://www.youtube.com/results?search_query=tcs+nqt+aptitude+previous+year+questions' }, { title: 'TCS Coding Section Strategy', url: 'https://www.youtube.com/results?search_query=tcs+nqt+coding+section+preparation' }]
+                    },
+                    {
+                        num: 2, name: 'Technical Interview', emoji: '💻', dur: '30–45 min', desc: 'Questions on: your projects, OOP concepts, DBMS (SQL queries), OS basics, Data Structures. Write basic programs. Know your resume thoroughly.',
+                        videos: [{ title: 'TCS Technical Interview Questions 2024', url: 'https://www.youtube.com/results?search_query=tcs+technical+interview+questions+2024' }, { title: 'TCS HR + Technical Combined Prep', url: 'https://www.youtube.com/results?search_query=tcs+interview+preparation+complete' }]
+                    },
+                    {
+                        num: 3, name: 'Managerial / TR Round', emoji: '👔', dur: '20–30 min', desc: 'Project discussion, problem-solving scenarios, situational questions. Tests logical thinking and communication.',
+                        videos: [{ title: 'TCS Managerial Round Questions', url: 'https://www.youtube.com/results?search_query=tcs+managerial+round+interview+questions' }]
+                    },
+                    {
+                        num: 4, name: 'HR Interview', emoji: '🎤', dur: '15–20 min', desc: 'Tell me about yourself, strengths/weaknesses, relocation flexibility, salary, why TCS. Very standard. Be confident and honest.',
+                        videos: [{ title: 'TCS HR Interview Questions & Answers', url: 'https://www.youtube.com/results?search_query=tcs+hr+interview+questions+and+answers+2024' }]
+                    },
+                ],
+                tips: [
+                    { icon: '📱', title: 'Use PrepInsta & IndiaBix', body: 'These platforms have thousands of TCS NQT previous questions. Practice daily for 4–6 weeks before the test.' },
+                    { icon: '💡', title: 'Learn Basic Coding in Python/Java', body: 'TCS NQT coding section needs 2 simple programs. Practice: string manipulation, patterns, basic math algorithms.' },
+                    { icon: '📋', title: 'Know Your Projects Well', body: 'TCS interviewers ask deeply about your college projects. Be ready to explain your tech stack, challenges faced, and your role.' },
+                    { icon: '🌐', title: 'TCS iBegin Portal', body: 'Register on tcsionhub.in/ibegin for all TCS placement updates. Apply only through this official portal.' },
+                ]
+            },
+
+            infosys: {
+                name: 'Infosys', logo: 'https://logo.clearbit.com/infosys.com', founded: 1981, hq: 'Bengaluru, India',
+                about: 'Infosys is India\'s second-largest IT company, known for its strong training programs (Mysore campus). Hires freshers via InfyTQ platform.',
+                diff: 'easy', emp: '300,000+', rating: '4.1/5',
+                openRoles: [
+                    { title: 'Systems Engineer (Fresher)', type: 'ft', sal: '₹3.6 LPA' },
+                    { title: 'Senior Systems Engineer', type: 'ft', sal: '₹6–9 LPA' },
+                    { title: 'Specialist Programmer', type: 'ft', sal: '₹8–10 LPA' },
+                    { title: 'Data Analyst', type: 'ft', sal: '₹5–8 LPA' },
+                    { title: 'InStep Intern', type: 'in', sal: '₹25–40K/mo' },
+                    { title: 'Technology Analyst', type: 'ft', sal: '₹8–12 LPA' },
+                ],
+                mustSkills: ['Aptitude (Infosys style)', 'InfyTQ Certification', 'Core Java / Python', 'SQL', 'Communication Skills'],
+                niceSkills: ['Selenium', 'Agile/Scrum', 'DBMS', 'REST APIs', 'Angular'],
+                rounds: [
+                    {
+                        num: 1, name: 'InfyTQ + HackWithInfy (Online Test)', emoji: '📝', dur: '3 hours', desc: 'Sections: Reasoning (15 Qs/25 min) + Mathematical (10 Qs/35 min) + Verbal (20 Qs/20 min) + Pseudocode + Programming (2 problems/3 hrs). Complete InfyTQ course first.',
+                        videos: [{ title: 'Infosys InfyTQ Complete Guide 2024', url: 'https://www.youtube.com/results?search_query=infosys+infytq+complete+preparation+2024' }, { title: 'HackWithInfy Preparation Strategy', url: 'https://www.youtube.com/results?search_query=hackwithinfy+preparation+strategy+2024' }]
+                    },
+                    {
+                        num: 2, name: 'Technical Interview', emoji: '💻', dur: '30–45 min', desc: 'OOPs concepts, DBMS, DSA basics, your projects, writing code on paper/screen. Questions are moderate — not as tough as FAANG.',
+                        videos: [{ title: 'Infosys Technical Interview 2024', url: 'https://www.youtube.com/results?search_query=infosys+technical+interview+questions+2024' }, { title: 'Infosys Interview Experience — CSE', url: 'https://www.youtube.com/results?search_query=infosys+interview+experience+2024+cse' }]
+                    },
+                    {
+                        num: 3, name: 'HR Interview', emoji: '🎤', dur: '15–20 min', desc: 'Very standard. Tell me about yourself, career goals, relocation, strengths, why Infosys. Infosys values C-LIFE values alignment.',
+                        videos: [{ title: 'Infosys HR Interview Questions', url: 'https://www.youtube.com/results?search_query=infosys+hr+interview+questions+answers+2024' }]
+                    },
+                ],
+                tips: [
+                    { icon: '🏆', title: 'Complete InfyTQ Course First', body: 'Go to infytq.infosys.com and complete the entire curriculum. Certification improves your application score significantly.' },
+                    { icon: '📐', title: 'Pseudocode Section is Unique', body: 'Practice reading pseudocode problems. They test logical thinking without needing to know a specific language syntax.' },
+                    { icon: '🎯', title: 'C-LIFE Core Values', body: 'Infosys values: Client Value, Leadership by Example, Integrity, Fairness, Excellence. Align your HR answers to these values.' },
+                    { icon: '📚', title: 'GeeksForGeeks + PrepInsta', body: 'These sites have Infosys-specific aptitude questions and previous year papers categorised by round.' },
+                ]
+            },
+
+            zoho: {
+                name: 'Zoho Corporation', logo: 'https://logo.clearbit.com/zoho.com', founded: 1996, hq: 'Chennai, India',
+                about: 'Zoho is India\'s most-profitable SaaS company with 50+ products used by 80M+ users globally. Completely bootstrapped — no VC funding. Known for extreme technical depth.',
+                diff: 'hard', emp: '15,000+', rating: '4.3/5',
+                openRoles: [
+                    { title: 'Member Technical Staff', type: 'ft', sal: '₹5–12 LPA' },
+                    { title: 'Software Developer', type: 'ft', sal: '₹6–15 LPA' },
+                    { title: 'UI Developer', type: 'ft', sal: '₹5–10 LPA' },
+                    { title: 'QA Engineer', type: 'ft', sal: '₹4–8 LPA' },
+                    { title: 'Zoho Schools Trainee', type: 'in', sal: '₹15–25K/mo' },
+                    { title: 'Data Analyst', type: 'ft', sal: '₹5–10 LPA' },
+                ],
+                mustSkills: ['Core Programming (C/Java/Python)', 'Problem Solving & Logic', 'Data Structures', 'SQL', 'Low-Level Design'],
+                niceSkills: ['JavaScript', 'REST APIs', 'React', 'Node.js', 'Linux'],
+                rounds: [
+                    {
+                        num: 1, name: 'Written Programming Test (Level 1)', emoji: '📝', dur: '3 hours', desc: 'Pure programming test: 10–15 logic/math problems solved using any language. Tests raw coding ability without frameworks. No MCQ — only write working code.',
+                        videos: [{ title: 'Zoho Programming Test Preparation 2024', url: 'https://www.youtube.com/results?search_query=zoho+programming+test+preparation+2024' }, { title: 'Zoho Coding Questions — Level 1 & 2', url: 'https://www.youtube.com/results?search_query=zoho+coding+questions+level+1+2+preparation' }]
+                    },
+                    {
+                        num: 2, name: 'Advanced Programming Test (Level 2)', emoji: '💻', dur: '3 hours', desc: 'Harder coding problems requiring DS/Algo knowledge. Zoho tests you on string manipulation, number theory, recursion, and basic algorithms. Must write efficient code.',
+                        videos: [{ title: 'Zoho Advanced Programming Round', url: 'https://www.youtube.com/results?search_query=zoho+advanced+programming+round+preparation' }, { title: 'Zoho Interview Experience — MTS', url: 'https://www.youtube.com/results?search_query=zoho+interview+experience+member+technical+staff' }]
+                    },
+                    {
+                        num: 3, name: 'Technical Interview (Multiple)', emoji: '🔧', dur: '60 min each', desc: '2–3 technical rounds: DSA deep dive, OS/DBMS concepts, OOP design, project discussion. Interviewers go very deep. Must explain every line of your code.',
+                        videos: [{ title: 'Zoho Technical Interview Tips', url: 'https://www.youtube.com/results?search_query=zoho+technical+interview+tips+2024' }, { title: 'Zoho Onsite Interview Experience', url: 'https://www.youtube.com/results?search_query=zoho+onsite+interview+experience+2024' }]
+                    },
+                    {
+                        num: 4, name: 'HR Round', emoji: '🎤', dur: '20–30 min', desc: 'Why Zoho (answer must show you value product depth & no VC pressure), career goals, salary, relocation to Chennai/Tenkasi. Zoho values people who want to build real products.',
+                        videos: [{ title: 'Zoho HR Interview Questions', url: 'https://www.youtube.com/results?search_query=zoho+hr+interview+questions+2024' }]
+                    },
+                ],
+                tips: [
+                    { icon: '🔨', title: 'Build Things from Scratch', body: 'Zoho loves developers who build without frameworks. Practice building a linked list, stack, queue from scratch in your preferred language.' },
+                    { icon: '📖', title: 'Read Zoho\'s Core Philosophy', body: 'Zoho is anti-VC, privacy-first, and "transnational localism". Understand their unique culture before the HR round.' },
+                    { icon: '🧩', title: 'HackerRank Easy/Medium Focus', body: 'Zoho Level 1 = HackerRank Easy. Level 2 = HackerRank Medium. Start there and gradually build up.' },
+                    { icon: '🌍', title: 'Zoho Schools & Rural Hiring', body: 'Zoho runs Zoho Schools program for rural students. If eligible, this is an excellent path with mentorship.' },
+                ]
+            },
+
+            flipkart: {
+                name: 'Flipkart', logo: 'https://logo.clearbit.com/flipkart.com', founded: 2007, hq: 'Bengaluru, India',
+                about: 'Flipkart is India\'s largest e-commerce marketplace (owned by Walmart). Strong tech team building large-scale distributed systems. One of India\'s top startup employers.',
+                diff: 'hard', emp: '50,000+', rating: '4.2/5',
+                openRoles: [
+                    { title: 'SDE-1 (Fresher/Experienced)', type: 'ft', sal: '₹15–30 LPA' },
+                    { title: 'SDE-2', type: 'ft', sal: '₹25–45 LPA' },
+                    { title: 'Data Scientist', type: 'ft', sal: '₹18–35 LPA' },
+                    { title: 'Product Manager', type: 'ft', sal: '₹20–40 LPA' },
+                    { title: 'SWE Intern', type: 'in', sal: '₹60K–1L/mo' },
+                    { title: 'ML Engineer', type: 'ft', sal: '₹20–40 LPA' },
+                ],
+                mustSkills: ['DSA (LeetCode Medium/Hard)', 'System Design', 'Java/Python', 'Low-Level Design', 'CS Fundamentals'],
+                niceSkills: ['Spark', 'Kafka', 'Flink', 'Kubernetes', 'Cassandra'],
+                rounds: [
+                    {
+                        num: 1, name: 'Online Assessment', emoji: '💻', dur: '90 min', desc: '2 DSA coding problems (Medium-Hard) + MCQs on CS fundamentals. Similar to FAANG OAs.',
+                        videos: [{ title: 'Flipkart OA Preparation 2024', url: 'https://www.youtube.com/results?search_query=flipkart+online+assessment+preparation+2024' }]
+                    },
+                    {
+                        num: 2, name: 'Technical Round 1 (DSA)', emoji: '🔧', dur: '60 min', desc: '1–2 DSA problems. Focus: Arrays, Trees, Graphs, DP. Must communicate thought process and optimize from brute force → optimal.',
+                        videos: [{ title: 'Flipkart DSA Interview Round', url: 'https://www.youtube.com/results?search_query=flipkart+technical+interview+dsa+2024' }]
+                    },
+                    {
+                        num: 3, name: 'Technical Round 2 (DSA + CS)', emoji: '🔧', dur: '60 min', desc: 'DSA + Operating Systems, DBMS, Networks, OOP design questions. Code quality matters.',
+                        videos: [{ title: 'Flipkart Technical Round 2 Prep', url: 'https://www.youtube.com/results?search_query=flipkart+technical+interview+round+2+preparation' }]
+                    },
+                    {
+                        num: 4, name: 'System Design & HLD', emoji: '🏗️', dur: '60–75 min', desc: 'Design large-scale systems: Search, Recommendations, Cart, Payment. For SDE-1: Light LLD. SDE-2+: Full HLD with scale.',
+                        videos: [{ title: 'Flipkart System Design Interview', url: 'https://www.youtube.com/results?search_query=flipkart+system+design+interview+2024' }, { title: 'E-Commerce System Design — Full Guide', url: 'https://www.youtube.com/results?search_query=ecommerce+system+design+interview' }]
+                    },
+                    {
+                        num: 5, name: 'Hiring Manager + HR', emoji: '🎤', dur: '30–45 min', desc: 'Behavioural questions (ownership, bias for action), career goals, culture fit. Flipkart values hustle, impact, and customer obsession.',
+                        videos: [{ title: 'Flipkart HR Round Preparation', url: 'https://www.youtube.com/results?search_query=flipkart+hr+interview+questions+answers+2024' }]
+                    },
+                ],
+                tips: [
+                    { icon: '⚡', title: 'Speed + Correctness in DSA', body: 'Flipkart has strict time limits. Practice timed LeetCode sessions (30 min per problem). Aim for optimal solution, not just working code.' },
+                    { icon: '🏗️', title: 'System Design Matters a Lot', body: 'Even for freshers, Flipkart expects basic system design knowledge. Study: CAP theorem, load balancing, caching, databases.' },
+                    { icon: '📊', title: 'Know Flipkart\'s Products', body: 'Be familiar with their product ecosystem: Flipkart, Myntra, Shopsy, Cleartrip, PhonePe (now separate). Shows genuine interest.' },
+                    { icon: '🔄', title: 'Referrals Are Powerful', body: 'LinkedIn connections with Flipkart engineers for a referral significantly improve your chances of getting shortlisted.' },
+                ]
+            },
+
+            accenture: {
+                name: 'Accenture', logo: 'https://logo.clearbit.com/accenture.com', founded: 1989, hq: 'Mumbai / Bengaluru, India',
+                about: 'Accenture is one of the world\'s largest consulting & IT services firm. In India, it employs 300,000+ people. Known for its large fresher intake via ACCAT.',
+                diff: 'med', emp: '300,000+ (India)', rating: '4.0/5',
+                openRoles: [
+                    { title: 'Associate Software Engineer', type: 'ft', sal: '₹4.5 LPA' },
+                    { title: 'Packaged App Developer', type: 'ft', sal: '₹4.5–7 LPA' },
+                    { title: 'Advanced App Engineering', type: 'ft', sal: '₹6–9 LPA' },
+                    { title: 'Technology Consultant', type: 'ft', sal: '₹8–14 LPA' },
+                    { title: 'ASE Intern', type: 'in', sal: '₹15–25K/mo' },
+                    { title: 'Cloud & Infra Analyst', type: 'ft', sal: '₹5–9 LPA' },
+                ],
+                mustSkills: ['Aptitude (Quant/Verbal/Reasoning)', 'Communication Skills', 'Basic Programming', 'Logical Reasoning', 'Teamwork'],
+                niceSkills: ['SAP', 'Salesforce', 'Power BI', 'Azure/AWS basics', 'Python'],
+                rounds: [
+                    {
+                        num: 1, name: 'ACCAT — Cognitive & Technical Test', emoji: '📝', dur: '2.5 hours', desc: 'Online test: Cognitive (Quant/Verbal/Logical) + Coding (1–2 easy problems) + Communication (voice assessment). Conducted on AMCAT platform.',
+                        videos: [{ title: 'Accenture ACCAT Test Preparation 2024', url: 'https://www.youtube.com/results?search_query=accenture+ACCAT+test+preparation+2024' }, { title: 'Accenture Online Test Pattern', url: 'https://www.youtube.com/results?search_query=accenture+online+test+pattern+2024' }]
+                    },
+                    {
+                        num: 2, name: 'Technical Interview', emoji: '💻', dur: '30–45 min', desc: 'Basic DSA, OOPs (4 pillars with examples), DBMS, your projects. Questions are moderate. Write simple programs. Know your tech stack well.',
+                        videos: [{ title: 'Accenture Technical Interview Questions', url: 'https://www.youtube.com/results?search_query=accenture+technical+interview+questions+2024' }]
+                    },
+                    {
+                        num: 3, name: 'HR Interview', emoji: '🎤', dur: '15–20 min', desc: 'Tell me about yourself, strengths, weaknesses, why Accenture, relocation, 5-year plan. Accenture values inclusion, diversity, and client-first thinking.',
+                        videos: [{ title: 'Accenture HR Interview Questions 2024', url: 'https://www.youtube.com/results?search_query=accenture+hr+interview+questions+answers+2024' }]
+                    },
+                ],
+                tips: [
+                    { icon: '🗣️', title: 'Communication is Key', body: 'Accenture weights verbal communication heavily. Practice speaking clearly in English. The AMCAT voice round is critical.' },
+                    { icon: '📐', title: 'Focus on Aptitude', body: 'The cognitive section is the main filter. Practice IndiaBix + PrepInsta Accenture-specific aptitude questions daily.' },
+                    { icon: '🌍', title: 'Accenture Values Inclusion', body: 'Highlight any cross-cultural projects, leadership, or community work. Accenture\'s culture deeply values D&I.' },
+                    { icon: '📱', title: 'Check Accenture\'s Careers Page', body: 'Monitor accenture.com/in-en/careers regularly. They hire in large batches via pool drives and campus drives.' },
+                ]
+            },
+
+            hdfc: {
+                name: 'HDFC Bank', logo: 'https://logo.clearbit.com/hdfcbank.com', founded: 1994, hq: 'Mumbai, India',
+                about: 'HDFC Bank is India\'s largest private sector bank by assets. Offers strong career growth in retail banking, technology, and digital banking. Huge fresher intake via PGDM recruitment.',
+                diff: 'med', emp: '150,000+', rating: '3.9/5',
+                openRoles: [
+                    { title: 'Probationary Officer (PO)', type: 'ft', sal: '₹4–6 LPA' },
+                    { title: 'Relationship Manager', type: 'ft', sal: '₹4–8 LPA' },
+                    { title: 'IT Software Developer', type: 'ft', sal: '₹6–12 LPA' },
+                    { title: 'Credit Analyst', type: 'ft', sal: '₹5–9 LPA' },
+                    { title: 'Summer Intern (MBA)', type: 'in', sal: '₹25–40K/mo' },
+                    { title: 'Digital Banking Analyst', type: 'ft', sal: '₹5–8 LPA' },
+                ],
+                mustSkills: ['Banking & Finance Concepts', 'Communication Skills', 'Numerical Ability', 'Customer Service Mindset', 'KYC/AML Basics'],
+                niceSkills: ['CRM Tools', 'Excel/Power BI', 'Credit Analysis', 'Product Sales', 'Digital Payments Knowledge'],
+                rounds: [
+                    {
+                        num: 1, name: 'Online Aptitude Test', emoji: '📝', dur: '45–60 min', desc: 'Quantitative Aptitude (banking calculations, ratios, SI/CI) + Verbal Ability + Logical Reasoning + Banking Awareness. Tests both speed and accuracy.',
+                        videos: [{ title: 'HDFC Bank Interview Preparation 2024', url: 'https://www.youtube.com/results?search_query=HDFC+bank+interview+preparation+2024' }, { title: 'Banking Aptitude Test Preparation', url: 'https://www.youtube.com/results?search_query=banking+aptitude+test+preparation+2024' }]
+                    },
+                    {
+                        num: 2, name: 'Group Discussion (GD)', emoji: '👥', dur: '15–20 min', desc: 'Current affairs, banking sector topics, social issues. HDFC expects confident speakers who listen well and contribute constructively.',
+                        videos: [{ title: 'HDFC Bank Group Discussion Tips', url: 'https://www.youtube.com/results?search_query=HDFC+bank+group+discussion+tips+2024' }, { title: 'Banking GD Topics 2024', url: 'https://www.youtube.com/results?search_query=banking+group+discussion+topics+2024' }]
+                    },
+                    {
+                        num: 3, name: 'Technical Interview', emoji: '💻', dur: '30–45 min', desc: 'For IT roles: Java/Python basics, SQL queries, API knowledge. For banking roles: financial products, banking concepts, regulatory knowledge (RBI, SEBI).',
+                        videos: [{ title: 'HDFC Bank Technical Interview — IT Profile', url: 'https://www.youtube.com/results?search_query=HDFC+bank+technical+interview+IT+profile+2024' }]
+                    },
+                    {
+                        num: 4, name: 'HR Interview', emoji: '🎤', dur: '20–30 min', desc: 'Why HDFC, why banking, career path, salary expectations, relocation flexibility. HDFC values stability, customer focus, and integrity.',
+                        videos: [{ title: 'HDFC Bank HR Interview Questions', url: 'https://www.youtube.com/results?search_query=HDFC+bank+HR+interview+questions+answers+2024' }]
+                    },
+                ],
+                tips: [
+                    { icon: '🏦', title: 'Know Banking Fundamentals', body: 'Study: RBI policies, types of accounts, NPA, CASA, CRR, SLR, Repo Rate, NEFT/RTGS/IMPS, KYC norms. These appear in every banking interview.' },
+                    { icon: '📰', title: 'Read Business News Daily', body: 'Follow The Economic Times or Mint for 15 min daily. GD topics are current affairs and banking sector developments.' },
+                    { icon: '🤝', title: 'Customer Service Mindset', body: 'HDFC values candidates who show empathy, patience, and customer-first thinking. Give examples of helping others in your answers.' },
+                    { icon: '👔', title: 'Professional Appearance Matters', body: 'HDFC is a traditional bank. Dress formally (formals, not business casual). First impressions count significantly here.' },
+                ]
+            },
+        };
+
+        /* ══════════ RENDER LOGIC ══════════ */
+        const COMPANY_DATA = {
+            google: { name: 'Google', logo: 'https://logo.clearbit.com/google.com', tagline: 'Search, Cloud, AI', diff: 'hard', hq: 'Bengaluru, India', founded: 1998 },
+            amazon: { name: 'Amazon', logo: 'https://logo.clearbit.com/amazon.com', tagline: 'E-Commerce, AWS, AI', diff: 'hard', hq: 'Bengaluru, India', founded: 1994 },
+            microsoft: { name: 'Microsoft', logo: 'https://logo.clearbit.com/microsoft.com', tagline: 'Cloud, Office, Azure', diff: 'hard', hq: 'Hyderabad, India', founded: 1975 },
+            meta: { name: 'Meta', logo: 'https://logo.clearbit.com/meta.com', tagline: 'Social Media, VR', diff: 'hard', hq: 'Bengaluru, India', founded: 2004 },
+            apple: { name: 'Apple', logo: 'https://logo.clearbit.com/apple.com', tagline: 'Hardware, iOS, SaaS', diff: 'hard', hq: 'Bengaluru, India', founded: 1976 },
+            netflix: { name: 'Netflix', logo: 'https://logo.clearbit.com/netflix.com', tagline: 'Streaming, Big Data', diff: 'hard', hq: 'Bengaluru, India', founded: 1997 },
+            tcs: { name: 'TCS', logo: 'https://logo.clearbit.com/tcs.com', tagline: 'IT Services, Digital', diff: 'med', hq: 'Mumbai, India', founded: 1968 },
+            infosys: { name: 'Infosys', logo: 'https://logo.clearbit.com/infosys.com', tagline: 'IT Consulting, BPO', diff: 'easy', hq: 'Bengaluru, India', founded: 1981 },
+            wipro: { name: 'Wipro', logo: 'https://logo.clearbit.com/wipro.com', tagline: 'IT Services, Cloud', diff: 'easy', hq: 'Bengaluru, India', founded: 1945 },
+            hcl: { name: 'HCL Tech', logo: 'https://logo.clearbit.com/hcltech.com', tagline: 'IT, Engineering, R&D', diff: 'easy', hq: 'Noida, India', founded: 1976 },
+            capgemini: { name: 'Capgemini', logo: 'https://logo.clearbit.com/capgemini.com', tagline: 'IT, Cloud, Consulting', diff: 'med', hq: 'Mumbai, India', founded: 1967 },
+            cognizant: { name: 'Cognizant', logo: 'https://logo.clearbit.com/cognizant.com', tagline: 'Digital, IT Services', diff: 'med', hq: 'Chennai, India', founded: 1994 },
+            techmahindra: { name: 'Tech Mahindra', logo: 'https://logo.clearbit.com/techmahindra.com', tagline: 'Telecom, IT Services', diff: 'med', hq: 'Pune, India', founded: 1986 },
+            ltimindtree: { name: 'LTIMindtree', logo: 'https://logo.clearbit.com/ltimindtree.com', tagline: 'IT Services, Data', diff: 'med', hq: 'Mumbai, India', founded: 2023 },
+            zoho: { name: 'Zoho Corp', logo: 'https://logo.clearbit.com/zoho.com', tagline: 'SaaS, 50+ Products', diff: 'hard', hq: 'Chennai, India', founded: 1996 },
+            freshworks: { name: 'Freshworks', logo: 'https://logo.clearbit.com/freshworks.com', tagline: 'CRM, SaaS, Cloud', diff: 'hard', hq: 'Chennai, India', founded: 2010 },
+            razorpay: { name: 'Razorpay', logo: 'https://logo.clearbit.com/razorpay.com', tagline: 'Fintech, Payments', diff: 'hard', hq: 'Bengaluru, India', founded: 2014 },
+            cred: { name: 'CRED', logo: 'https://logo.clearbit.com/cred.club', tagline: 'Fintech, Lifestyle', diff: 'hard', hq: 'Bengaluru, India', founded: 2018 },
+            browserstack: { name: 'BrowserStack', logo: 'https://logo.clearbit.com/browserstack.com', tagline: 'Dev Tools, Testing', diff: 'hard', hq: 'Mumbai, India', founded: 2011 },
+            postman: { name: 'Postman', logo: 'https://logo.clearbit.com/postman.com', tagline: 'API Platform, DevTools', diff: 'hard', hq: 'San Francisco', founded: 2014 },
+            flipkart: { name: 'Flipkart', logo: 'https://logo.clearbit.com/flipkart.com', tagline: 'E-Commerce, Logistics', diff: 'hard', hq: 'Bengaluru, India', founded: 2007 },
+            swiggy: { name: 'Swiggy', logo: 'https://logo.clearbit.com/swiggy.com', tagline: 'Food Tech, Quick Commerce', diff: 'hard', hq: 'Bengaluru, India', founded: 2014 },
+            zomato: { name: 'Zomato', logo: 'https://logo.clearbit.com/zomato.com', tagline: 'Food Delivery, Hyperpure', diff: 'hard', hq: 'Gurgaon, India', founded: 2008 },
+            paytm: { name: 'Paytm', logo: 'https://logo.clearbit.com/paytm.com', tagline: 'Fintech, Payments, Banking', diff: 'med', hq: 'Noida, India', founded: 2010 },
+            ola: { name: 'Ola', logo: 'https://logo.clearbit.com/olacabs.com', tagline: 'Mobility, EVs, Fintech', diff: 'med', hq: 'Bengaluru, India', founded: 2010 },
+            meesho: { name: 'Meesho', logo: 'https://logo.clearbit.com/meesho.com', tagline: 'Social Commerce', diff: 'hard', hq: 'Bengaluru, India', founded: 2015 },
+            groww: { name: 'Groww', logo: 'https://logo.clearbit.com/groww.in', tagline: 'Fintech, Investments', diff: 'hard', hq: 'Bengaluru, India', founded: 2016 },
+            accenture: { name: 'Accenture', logo: 'https://logo.clearbit.com/accenture.com', tagline: 'Consulting, Technology', diff: 'med', hq: 'Mumbai, India', founded: 1989 },
+            deloitte: { name: 'Deloitte', logo: 'https://logo.clearbit.com/deloitte.com', tagline: 'Audit, Consulting, Tax', diff: 'med', hq: 'Mumbai, India', founded: 1845 },
+            ibm: { name: 'IBM', logo: 'https://logo.clearbit.com/ibm.com', tagline: 'AI, Cloud, Services', diff: 'med', hq: 'Bengaluru, India', founded: 1911 },
+            ey: { name: 'EY', logo: 'https://logo.clearbit.com/ey.com', tagline: 'Consulting, Assurance', diff: 'med', hq: 'Mumbai, India', founded: 1989 },
+            mckinsey: { name: 'McKinsey', logo: 'https://logo.clearbit.com/mckinsey.com', tagline: 'Strategy Consulting', diff: 'hard', hq: 'Mumbai, India', founded: 1926 },
+            hdfc: { name: 'HDFC Bank', logo: 'https://logo.clearbit.com/hdfcbank.com', tagline: 'Private Banking, Fintech', diff: 'med', hq: 'Mumbai, India', founded: 1994 },
+            sbi: { name: 'SBI', logo: 'https://logo.clearbit.com/sbi.co.in', tagline: 'Public Sector Bank', diff: 'med', hq: 'Mumbai, India', founded: 1806 },
+            icici: { name: 'ICICI Bank', logo: 'https://logo.clearbit.com/icicibank.com', tagline: 'Private Banking, Digital', diff: 'med', hq: 'Mumbai, India', founded: 1994 },
+            axis: { name: 'Axis Bank', logo: 'https://logo.clearbit.com/axisbank.com', tagline: 'Banking, Wealth Mgmt', diff: 'med', hq: 'Mumbai, India', founded: 1993 },
+            kotak: { name: 'Kotak Mahindra', logo: 'https://logo.clearbit.com/kotak.com', tagline: 'Banking, Insurance', diff: 'med', hq: 'Mumbai, India', founded: 1985 },
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            let co = DB[id];
+
+            // Generate fallback data dynamically for any company not strictly defined in Detailed DB
+            if (!co && COMPANY_DATA[id]) {
+                const c = COMPANY_DATA[id];
+                co = {
+                    name: c.name, logo: c.logo, founded: c.founded, hq: c.hq,
+                    about: c.name + " is a leading " + c.tagline + " company rapidly growing its presence and offering outstanding career advancement opportunities.",
+                    diff: c.diff, emp: '10,000+', rating: '4.0/5',
+                    openRoles: [
+                        { title: 'Software Engineer', type: 'ft', sal: 'Competitive' },
+                        { title: 'Data Analyst', type: 'ft', sal: 'Competitive' },
+                        { title: 'Product Manager', type: 'ft', sal: 'Competitive' },
+                        { title: 'Summer Intern', type: 'in', sal: 'Stipend' },
+                    ],
+                    mustSkills: ['Core Programming', 'Data Structures', 'Communication', 'Problem Solving', 'Aptitude/Logic'],
+                    niceSkills: ['Cloud Basics', 'Databases', 'Agile Mindset'],
+                    rounds: [
+                        {
+                            num: 1, name: 'Online Assessment', emoji: '💻', dur: '60 min', desc: 'Aptitude, Logical Reasoning, and basic coding problems to verify technical foundations.',
+                            videos: [{ title: c.name + ' Placement Preparation 2024', url: 'https://www.youtube.com/results?search_query=' + c.name + '+placement+preparation+2024' }]
+                        },
+                        {
+                            num: 2, name: 'Technical Interview', emoji: '🔧', dur: '45 min', desc: 'In-depth discussion of your resume, projects, and live technical coding or architectural questions.',
+                            videos: [{ title: c.name + ' Technical Interview Prep', url: 'https://www.youtube.com/results?search_query=' + c.name + '+technical+interview+questions+2024' }]
+                        },
+                        {
+                            num: 3, name: 'HR & Managerial Round', emoji: '🎤', dur: '20 min', desc: 'Cultural fit, behavioral questions, salary expectations, and career goals discussion.',
+                            videos: [{ title: c.name + ' HR Interview Questions', url: 'https://www.youtube.com/results?search_query=' + c.name + '+hr+interview+questions+answers' }]
+                        }
+                    ],
+                    tips: [
+                        { icon: '📚', title: 'Research the Company', body: 'Read up on ' + c.name + '\\\'s recent products or services to stand out in the interview.' },
+                        { icon: '💻', title: 'Focus on Basics', body: 'Revise core fundamentals of your domain before your technical interview. Review your own projects.' },
+                        { icon: '🎯', title: 'Behavioral Questions', body: 'Practice answering behavioral scenarios with the STAR method (Situation, Task, Action, Result).' },
+                        { icon: '🔥', title: 'Be Confident', body: 'Maintain a positive attitude and communicate clearly and openly.' }
+                    ]
+                };
+            }
+
+            if (!co) {
+                document.getElementById('companyContent').innerHTML = `<div style="text-align:center;padding:4rem"><div style="font-size:3rem;margin-bottom:1rem">🔍</div><h2 style="color:var(--text-primary)">Company not found</h2><p style="color:var(--text-muted)">Try going back and selecting a different company.</p><a href="company-prep.html" class="btn btn-primary" style="margin-top:1rem;display:inline-block;">← Back to Hub</a></div>`;
+                return;
+            }
+            document.title = co.name + ' – Company Prep | ThiranMitra';
+            const diffClass = co.diff === 'hard' ? 'diff-hard' : co.diff === 'med' ? 'diff-med' : 'diff-easy';
+            const diffLabel = co.diff === 'hard' ? '🔥 Hard Interview' : co.diff === 'med' ? '⚡ Medium Difficulty' : '✅ Fresher-Friendly';
+
+            document.getElementById('companyContent').innerHTML = `
+    <!-- HERO -->
+    <div class="hero-card">
+      <div style="width:100px;height:100px;background:white;border-radius:22px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,0.3);flex-shrink:0;padding:12px;border:4px solid rgba(255,255,255,0.1);">
+        <img src="${co.logo}" alt="${co.name}" style="width:80%;height:80%;object-fit:contain;" onerror="this.onerror=null; this.src='https://www.google.com/s2/favicons?domain=' + '${co.logo}'.split('/').pop() + '&sz=128';"/>
+      </div>
+      <div class="hero-info">
+        <h1 style="display:flex;align-items:center;gap:0.4rem;flex-wrap:wrap;">${co.name} <svg viewBox="0 0 24 24" aria-label="Verified" role="img" fill="#1d9bf0" style="width: 26px; height: 26px; flex-shrink:0; margin-top:2px;"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.918-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.337 2.25c-.416-.165-.866-.25-1.336-.25-2.21 0-3.918 1.79-3.918 4 0 .495.084.965.238 1.4-1.273.65-2.148 2.02-2.148 3.6 0 1.46.78 2.73 1.942 3.332-.08.47-.122.95-.122 1.442 0 2.21 1.71 4 3.918 4 .58 0 1.14-.14 1.636-.39 1.05 1.13 2.52 1.83 4.124 1.83s3.074-.7 4.124-1.83c.496.25 1.056.39 1.636.39 2.21 0 3.918-1.79 3.918-4 0-.492-.042-.972-.122-1.442 1.16-.602 1.942-1.872 1.942-3.332zm-12.91 4.54l-3.3-3.3 1.5-1.5 1.8 1.8 4.3-4.3 1.5 1.5-5.8 5.8z" /></svg></h1>
+        <p style="font-size:.88rem;color:var(--text-secondary);line-height:1.7;max-width:600px;">${co.about}</p>
+        <div class="hero-meta">
+          <span class="meta-chip">📍 ${co.hq}</span>
+          <span class="meta-chip">👥 ${co.emp} Employees</span>
+          <span class="meta-chip">📅 Founded ${co.founded}</span>
+          <span class="meta-chip">⭐ ${co.rating} Glassdoor</span>
+          <span class="diff-badge ${diffClass}">${diffLabel}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPEN ROLES -->
+    <div style="margin-bottom:2.5rem">
+      <div class="sec-head">💼 Currently Open Roles</div>
+      <div class="job-grid">${co.openRoles.map(j => `<div class="job-card"><div class="job-role">${j.title}</div><span class="job-type ${j.type === 'ft' ? 'type-ft' : 'type-in'}">${j.type === 'ft' ? 'Full-Time' : 'Internship'}</span><div class="job-sal">💰 ${j.sal}</div></div>`).join('')}</div>
+    </div>
+
+    <!-- SKILLS -->
+    <div style="margin-bottom:2.5rem">
+      <div class="sec-head">🛠️ Required Skills</div>
+      <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.875rem">🔴 Must-Have Skills &nbsp;|&nbsp; 🔷 Good to Have</p>
+      <div class="skill-wrap">${co.mustSkills.map(s => `<span class="skill-tag must">${s}</span>`).join('')}${co.niceSkills.map(s => `<span class="skill-tag">${s}</span>`).join('')}</div>
+    </div>
+
+    <!-- INTERVIEW ROUNDS -->
+    <div style="margin-bottom:2.5rem">
+      <div class="sec-head">🎯 Interview Rounds (${co.rounds.length} Total)</div>
+      <div class="rounds-list">${co.rounds.map(r => `
+        <div class="round-item">
+          <div style="display:flex;align-items:center;gap:.875rem;margin-bottom:.75rem">
+            <span class="round-num">${r.num}</span>
+            <div><div class="round-title">${r.emoji} ${r.name}</div><div class="round-dur">⏱️ Duration: ${r.dur}</div></div>
+          </div>
+          <div class="round-desc">${r.desc}</div>
+          <div style="margin-top:.5rem;font-size:.78rem;font-weight:700;color:var(--primary-light);margin-bottom:.4rem">📺 Prep Videos for this Round:</div>
+          ${r.videos.map(v => `<a href="${v.url}" target="_blank" class="yt-link">▶ ${v.title}</a>`).join('')}
+        </div>`).join('')}
+      </div>
+    </div>
+
+    <!-- TIPS -->
+    <div style="margin-bottom:2rem">
+      <div class="sec-head">💡 How to Crack ${co.name} — Expert Tips</div>
+      <div class="tips-grid">${co.tips.map(t => `<div class="tip-card"><div class="tip-icon">${t.icon}</div><div class="tip-title">${t.title}</div><div class="tip-body">${t.body}</div></div>`).join('')}</div>
+    </div>
+
+    <!-- CTA -->
+    <div style="background:linear-gradient(135deg,rgba(79,70,229,.15),rgba(124,58,237,.1));border:1px solid rgba(79,70,229,.25);border-radius:20px;padding:2rem;text-align:center;margin-top:1.5rem">
+      <div style="font-size:2rem;margin-bottom:.75rem">🚀</div>
+      <h3 style="font-family:'Outfit',sans-serif;font-size:1.25rem;font-weight:800;color:var(--text-primary);margin-bottom:.5rem">Ready to Practice?</h3>
+      <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1.25rem">Take a mock interview with ${co.name}-style questions in our Placement module</p>
+      <a href="placement.html" class="btn btn-primary" style="text-decoration:none;margin-right:.75rem">🎯 Start Mock Interview</a>
+      <a href="company-prep.html" class="btn btn-outline" style="text-decoration:none">← Explore More Companies</a>
+    </div>`;
+        });
+    </script>
+    <script src="js/page-transition.js"></script>
+</body>
+
+</html>

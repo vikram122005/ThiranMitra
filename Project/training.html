@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skill Upgradation Path – ThiranMitra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
+    <style>
+        :root {
+            --glass-bg: rgba(15, 23, 42, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-glow: rgba(79, 70, 229, 0.3);
+            --swayam-color: #f97316;
+            --youtube-color: #ef4444;
+        }
+
+        body {
+            background: #0f172a;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+
+        .training-hero {
+            padding: 120px 0 60px;
+            background: radial-gradient(circle at top right, var(--accent-glow), transparent 40%),
+                linear-gradient(180deg, rgba(15, 23, 42, 1) 0%, rgba(30, 41, 59, 1) 100%);
+            border-bottom: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .badge-ai {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(79, 70, 229, 0.1);
+            color: #a5b4fc;
+            padding: 0.5rem 1.25rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: -3rem;
+            margin-bottom: 5rem;
+        }
+
+        .skill-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(79, 70, 229, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .skill-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .resource-links {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .resource-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            border-radius: 1.25rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-swayam {
+            background: rgba(249, 115, 22, 0.08);
+            border-color: rgba(249, 115, 22, 0.2);
+        }
+
+        .btn-swayam:hover {
+            background: rgba(249, 115, 22, 0.15);
+            transform: scale(1.02);
+        }
+
+        .btn-youtube {
+            background: rgba(239, 68, 68, 0.08);
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-youtube:hover {
+            background: rgba(239, 68, 68, 0.15);
+            transform: scale(1.02);
+        }
+
+        .res-icon {
+            font-size: 1.5rem;
+        }
+
+        .res-text {
+            flex: 1;
+        }
+
+        .res-title {
+            color: #f1f5f9;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .res-desc {
+            color: #94a3b8;
+            font-size: 0.75rem;
+        }
+
+        .arrow {
+            font-size: 1.2rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAV -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a class="nav-logo" href="index.html">
+                <span class="logo-icon">🌉</span>
+                <span class="logo-text">Thiran<span class="logo-accent">Mitra</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="jobs.html" class="nav-link">Jobs</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="skills.html" class="nav-link">Skills</a></li>
+                <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="training-hero">
+        <div class="container">
+            <div class="badge-ai">🤖 AI GAP ANALYSIS</div>
+            <h1 class="hero-title">Your Path to Mastery</h1>
+            <p class="hero-subtitle" id="heroText">We've identified the skills you need to land your dream job. Follow
+                these free certified paths to become eligible.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="skillsGrid" class="skill-grid">
+            <!-- Dynamic skills here -->
+            <div class="pulse-loader" style="grid-column: 1/-1;"></div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const jobId = params.get('jobId');
+
+            if (!jobId) {
+                document.getElementById('skillsGrid').innerHTML = '<h2 style="grid-column:1/-1; text-align:center;">Job information missing.</h2>';
+                return;
+            }
+
+            try {
+                const data = await JobsAPI.detail(jobId);
+                const job = data.job;
+                const skills = Array.isArray(job.skills_required) ? job.skills_required : JSON.parse(job.skills_required || '[]');
+
+                document.getElementById('heroText').textContent = `Bridge the gap for "${job.title}" at ${job.company}. Complete these paths to qualify for the next vacancy!`;
+
+                const grid = document.getElementById('skillsGrid');
+                grid.innerHTML = '';
+
+                if (skills.length === 0) {
+                    grid.innerHTML = '<h2 style="grid-column:1/-1; text-align:center;">No specific skills listed for this role.</h2>';
+                    return;
+                }
+
+                skills.forEach(skill => {
+                    const card = document.createElement('div');
+                    card.className = 'skill-card';
+                    card.innerHTML = `
+                        <div class="skill-icon">⚡</div>
+                        <div class="skill-name">${skill}</div>
+                        <div class="resource-links">
+                            <a href="https://swayam.gov.in/explorer?searchText=${encodeURIComponent(skill)}" target="_blank" class="resource-btn btn-swayam">
+                                <div class="res-icon">🏛️</div>
+                                <div class="res-text">
+                                    <div class="res-title">Swayam/NPTEL Internship</div>
+                                    <div class="res-desc">Get a government-verified certificate</div>
+                                </div>
+                                <div class="arrow">→</div>
+                            </a>
+                            <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(skill)}+fast+tutorial" target="_blank" class="resource-btn btn-youtube">
+                                <div class="res-icon">▶️</div>
+                                <div class="res-text">
+                                    <div class="res-title">YouTube Video Guide</div>
+                                    <div class="res-desc">Learn key concepts in minutes</div>
+                                </div>
+                                <div class="arrow">→</div>
+                            </a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+
+            } catch (err) {
+                document.getElementById('skillsGrid').innerHTML = '<h2 style="grid-column:1/-1; text-align:center;">Error loading career path.</h2>';
+            }
+        });
+    </script>
+</body>
+
+</html>
