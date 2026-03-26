@@ -25,9 +25,8 @@ JWT_EXPIRY_H = 24
 # ── Database type: 'sqlite' or 'mysql' ───────────────────────────
 DB_TYPE = os.environ.get('DB_TYPE', 'sqlite').lower()
 
-# ── SQLite (default fallback) ─────────────────────────────────────
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH  = os.path.join(BASE_DIR, 'thiranmitra.db')
+# ── SQLite (UPDATED FOR RAILWAY) ─────────────────────────────────
+DB_PATH = "/tmp/thiranmitra.db"   # ✅ FIXED (important for cloud)
 
 # ── MySQL settings (used when DB_TYPE=mysql) ──────────────────────
 MYSQL_HOST     = os.environ.get('MYSQL_HOST',     'localhost')
@@ -37,14 +36,13 @@ MYSQL_PASSWORD = os.environ.get('MYSQL_PASSWORD', '')
 MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE', 'thiranmitra')
 
 # ── CORS ──────────────────────────────────────────────────────────
-# 'null' allows pages opened as file:// URLs (direct open without a server)
 ALLOWED_ORIGINS = [
     'http://localhost:8080', 'http://127.0.0.1:8080',
     'http://localhost:5500', 'http://127.0.0.1:5500',
     'http://localhost:5000', 'http://127.0.0.1:5000',
     'http://localhost:3000', 'http://127.0.0.1:3000',
     'http://localhost:4000', 'http://127.0.0.1:4000',
-    'null',   # file:// pages send Origin: null
+    'null',
 ]
 
 # ── App ───────────────────────────────────────────────────────────
